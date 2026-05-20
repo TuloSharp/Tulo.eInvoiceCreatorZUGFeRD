@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using tulo.eInvoiceCreatorZUGFeRD.ViewModels;
-using tulo.eInvoiceCreatorZUGFeRD;
 
 namespace tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
 
