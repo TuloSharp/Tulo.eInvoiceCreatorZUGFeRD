@@ -17,9 +17,6 @@
         WindowStyle="None"
         AllowsTransparency="True"
         ResizeMode="CanResizeWithGrip"
-        Background="{StaticResource PanelBackgroundBrushColor}"
-        BorderBrush="{StaticResource PanelBorderBrushColor}"
-        BorderThickness="2"
         Left="{Binding Left, Mode=TwoWay}"
         Top="{Binding Top, Mode=TwoWay}"
         Height="{Binding Height, Mode=TwoWay}"
@@ -313,7 +310,9 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
 
-                <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}" />
+                <ContentControl Grid.Row="1"
+                                Content="{Binding CurrentViewModel}"
+                                Background="White" />
             </Grid>
         </Grid>
 

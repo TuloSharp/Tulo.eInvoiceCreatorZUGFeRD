@@ -67,7 +67,7 @@
                  Grid.Column="1">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Border CornerRadius="1">
+                    <Border CornerRadius="10" BorderThickness="0">
                         <StackPanel>
                             <sellercontrols:InvoiceNote />
                         </StackPanel>

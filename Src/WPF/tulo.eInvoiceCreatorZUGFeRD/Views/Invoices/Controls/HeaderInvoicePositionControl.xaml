@@ -15,55 +15,39 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <Border Background="{StaticResource PanelBackgroundBrushColor}"
-            BorderBrush="{StaticResource PanelBorderBrushColor}"
-            BorderThickness="2"
-            CornerRadius="5"
-            Margin="1"
-            Padding="4"
-            SnapsToDevicePixels="True">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="4" />
+        </Grid.ColumnDefinitions>
 
-        <Border.Effect>
-            <DropShadowEffect Color="DarkGray"
-                              BlurRadius="10"
-                              ShadowDepth="2"
-                              Opacity="0.5" />
-        </Border.Effect>
-
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="4" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="4" />
-            </Grid.ColumnDefinitions>
-
-            <placeholder:PlaceholderTextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+        <placeholder:PlaceholderTextBox Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                             Grid.Column="1"
                                             ToolTip="{Binding ToolTipSearchText}"
                                             Placeholder="🔍"
-                                            BorderThickness="0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Margin="0,2,4,0"
                                             Width="300"
                                             Height="24"
                                             Padding="6,2" />
 
-            <Button Name="createButton"
+        <Button Name="createButton"
                     Grid.Column="3"
                     HorizontalAlignment="Center"
                     BorderBrush="Transparent"
                     Foreground="Transparent"
                     ToolTip="Insert new invoice position"
                     Command="{Binding OpenAddInvoicePositionViewCommand}">
-                <Grid>
-                    <Path Style="{StaticResource ContentButtonPathStyle}"
+            <Grid>
+                <Path Style="{StaticResource ContentButtonPathStyle}"
                           Data="{StaticResource CreateIconSVG}"
                           Fill="{StaticResource ButtonBrushIconColor}" />
-                </Grid>
-            </Button>
+            </Grid>
+        </Button>
 
-        </Grid>
-    </Border>
+    </Grid>
 </UserControl>
 

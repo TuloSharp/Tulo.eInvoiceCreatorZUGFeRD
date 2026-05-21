@@ -48,20 +48,21 @@ public class InvoiceViewModel : BaseViewModel
     private readonly ObservableCollection<InvoicePositionCardItemViewModel> _invoicePositionCardListItemViewModel;
     public ICollectionView InvoicePositionCardListItemCollectionView { get; set; }
 
-    public InvoicePositionCardItemViewModel SelectedInvoicePositionCardListItemViewModel
+    private InvoicePositionCardItemViewModel? _selectedInvoicePositionCardItemViewModel;
+    public InvoicePositionCardItemViewModel? SelectedInvoicePositionCardListItemViewModel
     {
-        get
-        {
-            var selected = _invoicePositionCardListItemViewModel;
-            if (selected == null || !_selectedInvoicePositionStore.SelectedInvoicePositionId.HasValue) return null!;
-
-            return _invoicePositionCardListItemViewModel.FirstOrDefault(invPos => invPos.InvoicePositionId == _selectedInvoicePositionStore.SelectedInvoicePositionId)!;
-        }
+        get => _selectedInvoicePositionCardItemViewModel;
         set
         {
+            if (_selectedInvoicePositionCardItemViewModel == value)
+                return;
+
+            _selectedInvoicePositionCardItemViewModel = value;
+
             _selectedInvoicePositionStore.SelectedInvoicePositionId = value?.InvoicePositionId;
             _selectedInvoicePositionStore.SelectedInvoicePosition = value?.InvoicePositionDetails!;
-            HasSelectedInvoicePosition = _selectedInvoicePositionStore.SelectedInvoicePosition != null;
+
+            HasSelectedInvoicePosition = value != null;
 
             OnPropertyChanged(nameof(SelectedInvoicePositionCardListItemViewModel));
             OnPropertyChanged(nameof(HasSelectedInvoicePosition));
@@ -578,6 +579,7 @@ public class InvoiceViewModel : BaseViewModel
     #region Commands
     public ICommand UpdatePreviewInvoicePdfCommand { get; }
     public ICommand OpenAddInvoicePositionViewCommand { get; }
+    public ICommand OpenEditInvoicePositionViewCommand { get; }
     public ICommand LoadInvoicePositionsCommand { get; }
     public ICommand CreateElectronicInvoiceComponentsCommand { get; }
 
@@ -653,6 +655,7 @@ public class InvoiceViewModel : BaseViewModel
 
         UpdatePreviewInvoicePdfCommand = new UpdatePreviewInvoicePdfCommand(this, _collectorCollection);
         OpenAddInvoicePositionViewCommand = new OpenModalStackCommand(collectorCollection, () => new AddInvoicePositionViewModel(_collectorCollection), typeof(AddInvoicePositionViewModel));
+        OpenEditInvoicePositionViewCommand = new OpenModalStackCommand(collectorCollection, () => new EditInvoicePositionViewModel(_collectorCollection), typeof(EditInvoicePositionViewModel));
 
         #region Common Commands
         OpenSpinnerMessageCommand = new OpenModalStackCommand(collectorCollection, () => new SpinnerMessageViewModel(), typeof(SpinnerMessageViewModel));
@@ -692,11 +695,27 @@ public class InvoiceViewModel : BaseViewModel
 
     private void OnInvoicePositionCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
     {
-        OnPropertyChanged(nameof(SelectedInvoicePositionCardListItemViewModel));
+        if (_selectedInvoicePositionCardItemViewModel != null && !_invoicePositionCardListItemViewModel.Contains(_selectedInvoicePositionCardItemViewModel))
+            SelectedInvoicePositionCardListItemViewModel = null;
     }
 
     private void OnSelectedInvoicePositionChanged()
     {
+        var storeId = _selectedInvoicePositionStore.SelectedInvoicePositionId;
+
+        if (!storeId.HasValue)
+        {
+            _selectedInvoicePositionCardItemViewModel = null;
+        }
+        else
+        {
+            _selectedInvoicePositionCardItemViewModel =
+                _invoicePositionCardListItemViewModel
+                    .FirstOrDefault(invPos => invPos.InvoicePositionId == storeId.Value);
+        }
+
+        HasSelectedInvoicePosition = _selectedInvoicePositionCardItemViewModel != null;
+
         HasSelectedInvoicePosition = _selectedInvoicePositionStore.SelectedInvoicePosition != null;
         OnPropertyChanged(nameof(SelectedInvoicePositionCardListItemViewModel));
     }
@@ -746,6 +765,9 @@ public class InvoiceViewModel : BaseViewModel
         }
 
         InvoicePositionCardListItemCollectionView.Refresh();
+
+        if (_invoicePositionCardListItemViewModel.Count > 0)
+            SelectedInvoicePositionCardListItemViewModel = _invoicePositionCardListItemViewModel[0];
     }
 
     private void OnInvoicePositionCreated(InvoicePositionDetailsDTO invoicePositionDetailsDTO)
@@ -755,10 +777,10 @@ public class InvoiceViewModel : BaseViewModel
         // 2) Add to the UI list (so that it can be displayed at all)
         _invoicePositionCardListItemViewModel.Add(invPosViewModel);
 
-        // 3) Select (uses YOUR setter -> writes to SelectedStore)
-        SelectedInvoicePositionCardListItemViewModel = invPosViewModel;
+        //// 3) Select (uses YOUR setter -> writes to SelectedStore)
+        //SelectedInvoicePositionCardListItemViewModel = invPosViewModel;
 
-        OnSelectedInvoicePositionChanged();
+        //OnSelectedInvoicePositionChanged();
     }
 
     private void OnInvoicePositionUpdated(InvoicePositionDetailsDTO invoicePositionDetailsDTO)

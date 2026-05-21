@@ -392,6 +392,14 @@
                                     </Setter>
                                 </Style>
                             </ListView.ItemContainerStyle>
+                            <!--  DoubleClick ListViewItem  -->
+                            <behaviors:Interaction.Behaviors>
+                                <behaviorsutilities:ListViewItemDoubleClick />
+                            </behaviors:Interaction.Behaviors>
+                            <ListView.InputBindings>
+                                <MouseBinding MouseAction="LeftDoubleClick" Command="{Binding OpenEditInvoicePositionViewCommand}" />
+                            </ListView.InputBindings>
+                            <!--  End DoubleClick ListViewItem  -->
                         </ListView>
                     </Grid>
                 </Grid>
