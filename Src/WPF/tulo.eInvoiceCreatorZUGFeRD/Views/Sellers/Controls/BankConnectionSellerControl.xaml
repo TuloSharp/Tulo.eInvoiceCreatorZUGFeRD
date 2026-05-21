@@ -32,7 +32,7 @@
                                         ToolTip="{Binding ToolTipBankNameSellerParty}"
                                         Placeholder="{Binding PlaceholderBankNameSellerParty}"
                                         utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                        BorderThickness="0,0,0,0.5"
+                                        BorderThickness="0,0,0,0.75"
                                         Margin="0,2,0,0"
                                         Padding="6,2" />
 
@@ -43,7 +43,7 @@
                                         ToolTip="{Binding ToolTipAccountHolderSellerParty}"
                                         Placeholder="{Binding PlaceholderAccountHolderSellerParty}"
                                         utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                        BorderThickness="0,0,0,0.5"
+                                        BorderThickness="0,0,0,0.75"
                                         Margin="0,2,0,0"
                                         Padding="6,2" />
 
@@ -55,7 +55,7 @@
                                         ToolTip="{Binding ToolTipIbanSellerParty}"
                                         Placeholder="{Binding PlaceholderIbanSellerParty}"
                                         utilities:TextBoxProperties.AllowedCharactersRegex="^[A-Z0-9 ]*$"
-                                        BorderThickness="0,0,0,0.5"
+                                        BorderThickness="0,0,0,0.75"
                                         Margin="0,2,0,0"
                                         Padding="6,2" />
 
@@ -66,7 +66,7 @@
                                         ToolTip="{Binding ToolTipBicSellerParty}"
                                         Placeholder="{Binding PlaceholderBicSellerParty}"
                                         utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                        BorderThickness="0,0,0,0.5"
+                                        BorderThickness="0,0,0,0.75"
                                         Margin="0,2,0,0"
                                         Padding="6,2" />
 

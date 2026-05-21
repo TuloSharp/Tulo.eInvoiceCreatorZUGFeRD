@@ -64,7 +64,9 @@
 
         <ListBox ItemsSource="{Binding InvoiceNoteItems}"
                  Grid.Row="6"
-                 Grid.Column="1">
+                 Grid.Column="1"
+                 BorderThickness="0"
+                 BorderBrush="Transparent">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border CornerRadius="10" BorderThickness="0">

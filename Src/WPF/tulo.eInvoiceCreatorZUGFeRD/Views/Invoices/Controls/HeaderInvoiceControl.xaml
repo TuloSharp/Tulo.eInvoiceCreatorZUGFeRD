@@ -33,7 +33,7 @@
                                         ToolTip="{Binding ToolTipInvoiceNumber}"
                                         Placeholder="{Binding PlaceholderInvoiceNumber}"
                                         utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9A-Za-z\-\/]*$"
-                                        BorderThickness="0,0,0,0.5"
+                                        BorderThickness="0,0,0,0.75"
                                         HorizontalAlignment="Left"
                                         Margin="0,2,0,4"
                                         Padding="6,2" />
@@ -88,7 +88,7 @@
                                         ToolTip="{Binding ToolTipDocumentName}"
                                         Placeholder="{Binding PlaceholderDocumentName}"
                                         utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                        BorderThickness="0,0,0,0.5"
+                                        BorderThickness="0,0,0,0.75"
                                         HorizontalAlignment="Left"
                                         Margin="0,2,0,4"
                                         Padding="6,2" />

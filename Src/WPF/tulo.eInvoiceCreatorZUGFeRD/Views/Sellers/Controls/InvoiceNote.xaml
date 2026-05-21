@@ -43,7 +43,7 @@
                                 ToolTip="{Binding ToolTipContentInvoiceNote}"
                                 Placeholder="{Binding PlaceholderContentInvoiceNote}"
                                 utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                BorderThickness="0,0,0,0.5"
+                                BorderThickness="0,0,0,0.75"
                                 HorizontalAlignment="Left"
                                 Margin="0,1,0,0"
                                 Padding="6,2"

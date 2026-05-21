@@ -124,7 +124,7 @@
                                                             Height="22"
                                                             Width="170"
                                                             MaxLength="100"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="4,0,0,0"
                                                             Padding="2" />
 
@@ -137,7 +137,7 @@
                                                             Height="22"
                                                             Width="310"
                                                             MaxLength="400"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="4,0,0,0"
                                                             Padding="2" />
                         </Grid>
@@ -169,7 +169,7 @@
                                                             Width="120"
                                                             Height="22"
                                                             MaxLength="70"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="2,2,0,0"
                                                             Padding="2" />
 
@@ -182,7 +182,7 @@
                                                             Width="100"
                                                             Height="22"
                                                             MaxLength="14"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="2,2,0,0"
                                                             Padding="2" />
 
@@ -195,7 +195,7 @@
                                                             Width="50"
                                                             Height="22"
                                                             MaxLength="7"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="2,2,0,0"
                                                             Padding="2"
                                                             utilities:MoneyInput.IsEnabled="True"
@@ -236,7 +236,7 @@
                                                             Width="60"
                                                             Height="22"
                                                             MaxLength="10"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="2,2,0,0"
                                                             Padding="2"
                                                             utilities:MoneyInput.IsEnabled="True"
@@ -279,7 +279,7 @@
                                                                 Text="{Binding InvoicePositionVatRate, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToStringConverter}}"
                                                                 Width="22"
                                                                 Height="22"
-                                                                BorderThickness="0,0,0,0.5"
+                                                                BorderThickness="0,0,0,0.75"
                                                                 Margin="4,2,0,0"
                                                                 Padding="2" />
 
@@ -317,7 +317,7 @@
                                                             Width="350"
                                                             Height="22"
                                                             MaxLength="280"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="2,2,0,0"
                                                             Padding="2" />
 
@@ -328,7 +328,7 @@
                                                             Width="66"
                                                             Height="22"
                                                             MaxLength="6"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="2,2,0,0"
                                                             Padding="2"
                                                             utilities:MoneyInput.IsEnabled="True"
@@ -360,7 +360,7 @@
                                                         Text="{Binding InvoicePositionNetAmount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
                                                         Width="90"
                                                         Height="22"
-                                                        BorderThickness="0,0,0,0.5"
+                                                        BorderThickness="0,0,0,0.75"
                                                         Margin="4,4,0,0"
                                                         Padding="2" />
                         <Grid Grid.Row="2" Margin="0,4">
@@ -378,7 +378,7 @@
                                                             Text="{Binding InvoicePositionGrossAmount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
                                                             Width="90"
                                                             Height="22"
-                                                            BorderThickness="0,0,0,0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="4,7,0,0"
                                                             Padding="2" />
 
@@ -421,7 +421,7 @@
                                                         Text="{Binding InvoicePositionNetAmountAfterDiscount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
                                                         Width="90"
                                                         Height="22"
-                                                        BorderThickness="0,0,0,0.5"
+                                                        BorderThickness="0,0,0,0.75"
                                                         Margin="4,2,0,0"
                                                         Padding="2" />
                     </Grid>
@@ -509,7 +509,7 @@
                                                         Height="22"
                                                         Width="160"
                                                         MaxLength="100"
-                                                        BorderThickness="0,0,0,0.5"
+                                                        BorderThickness="0,0,0,0.75"
                                                         Margin="4,0,0,0"
                                                         Padding="2" />
 
@@ -523,7 +523,7 @@
                                                         Height="22"
                                                         Width="160"
                                                         MaxLength="100"
-                                                        BorderThickness="0,0,0,0.5"
+                                                        BorderThickness="0,0,0,0.75"
                                                         Margin="4,0,0,0"
                                                         Padding="2" />
 
@@ -537,7 +537,7 @@
                                                         Height="22"
                                                         Width="160"
                                                         MaxLength="100"
-                                                        BorderThickness="0,0,0,0.5"
+                                                        BorderThickness="0,0,0,0.75"
                                                         Margin="4,0,0,0"
                                                         Padding="2" />
 
@@ -567,7 +567,7 @@
                                                         Height="22"
                                                         Width="160"
                                                         MaxLength="100"
-                                                        BorderThickness="0,0,0,0.5"
+                                                        BorderThickness="0,0,0,0.75"
                                                         Margin="4,0,0,0"
                                                         Padding="2" />
 
@@ -581,7 +581,7 @@
                                                         Height="22"
                                                         Width="160"
                                                         MaxLength="100"
-                                                        BorderThickness="0,0,0,0.5"
+                                                        BorderThickness="0,0,0,0.75"
                                                         Margin="4,0,0,0"
                                                         Padding="2" />
 
@@ -595,7 +595,7 @@
                                                         Height="22"
                                                         Width="160"
                                                         MaxLength="100"
-                                                        BorderThickness="0,0,0,0.5"
+                                                        BorderThickness="0,0,0,0.75"
                                                         Margin="4,0,0,0"
                                                         Padding="2" />
                     </Grid>

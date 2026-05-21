@@ -23,7 +23,7 @@
                                             ToolTip="{Binding ToolTipCompanySellerParty}"
                                             Placeholder="{Binding PlaceholderCompanySellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Grid.Column="2"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
@@ -32,7 +32,7 @@
                                             ToolTip="{Binding ToolTipFiscalIdSellerParty}"
                                             Placeholder="{Binding PlaceholderFiscalIdSellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Grid.Column="2"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
@@ -41,7 +41,7 @@
                                             ToolTip="{Binding ToolTipVatIdSellerParty}"
                                             Placeholder="{Binding PlaceholderVatIdSellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Grid.Column="2"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
@@ -50,7 +50,7 @@
                                             ToolTip="{Binding ToolTipErpCustomerNumberSellerParty}"
                                             Placeholder="{Binding PlaceholderErpCustomerNumberSellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Grid.Column="2"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
@@ -59,7 +59,7 @@
                                             ToolTip="{Binding ToolTipLeitwegIdSellerParty}"
                                             Placeholder="{Binding PlaceholderLeitwegIdSellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Grid.Column="2"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
@@ -68,7 +68,7 @@
                                             ToolTip="{Binding ToolTipPersonSellerParty}"
                                             Placeholder="{Binding PlaceholderPersonSellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Grid.Column="2"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
@@ -78,7 +78,7 @@
                                             Placeholder="{Binding PlaceholderAddressSellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
                                             Grid.Column="2"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
 
@@ -86,7 +86,7 @@
                                             ToolTip="{Binding ToolTipPhoneSellerParty}"
                                             Placeholder="{Binding PlaceholderPhoneSellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Grid.Column="2"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
@@ -95,7 +95,7 @@
                                             ToolTip="{Binding ToolTipEmailAddressSellerParty}"
                                             Placeholder="{Binding PlaceholderEmailAddressSellerParty}"
                                             utilities:TextBoxProperties.AllowedCharactersRegex="^[^~]*$"
-                                            BorderThickness="0,0,0,0.5"
+                                            BorderThickness="0,0,0,0.75"
                                             Grid.Column="2"
                                             Margin="0,2,4,0"
                                             Padding="6,2" />
