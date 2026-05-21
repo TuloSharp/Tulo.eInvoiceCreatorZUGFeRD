@@ -39,7 +39,7 @@ public class GeneratePdfFromCiiIngetrationTests
         string xmlInvoiceContent = File.ReadAllText(xmlInvoicePath, System.Text.Encoding.UTF8);
 
         // Act
-        string createdPath = _pdfGeneratorInvoiceCii.GeneratePdfFile(outputPdfPath, xmlInvoiceFileName, xmlInvoiceContent, hasToRenderHeader);
+        string createdPath = _pdfGeneratorInvoiceCii.GeneratePdfFile(outputPdfPath, xmlInvoiceFileName, xmlInvoiceContent, hasToRenderHeader, string.Empty);
 
         // Assert
         Assert.IsFalse(string.IsNullOrWhiteSpace(createdPath), "Generator returned an empty output path.");
