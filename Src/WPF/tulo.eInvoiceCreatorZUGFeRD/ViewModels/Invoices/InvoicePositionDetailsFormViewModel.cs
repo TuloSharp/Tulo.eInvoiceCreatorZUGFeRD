@@ -568,7 +568,6 @@ public class InvoicePositionDetailsFormViewModel : BaseViewModel
         StatusMessage = new MessageViewModel();
 
         SubmitCommand = submitInvPosDetailsCommand;
-        //SubmitCommand = new CanSaveInvoicePositionDetailsCommand(this, submitInvPosDetailsCommand, collectorCollection);
         CloseCommand = closeInvPosDetailsCommand;
         HideCommand = new HideSaveRequestMessageCommand(collectorCollection);
 
@@ -598,13 +597,19 @@ public class InvoicePositionDetailsFormViewModel : BaseViewModel
     private void GlobalPropsUiManageOnHasUnsavedChangesChanged() => OnPropertyChanged(nameof(HasUnsavedChanges));
     private void GlobalPropsUiManageOnIsSaveRequestMessageVisibleChanged() => OnPropertyChanged(nameof(IsSaveRequestMessageVisible));
 
-    #region Labels
+    #region Labels&Contents
     public string LabelSaveRequestMessage { get; set; } = string.Empty;
     public string LabelInvoicePositionGroupBox { get; set; } = string.Empty;
+    public string ContentButtonSaveSaveRequestMessage { get; set; } = string.Empty;
+    public string ContentButtonNoSaveRequestMessage { get; set; } = string.Empty;
+    public string ContentButtonReturnSaveRequestMessage { get; set; } = string.Empty;
     private void FillAllInvoicePositionDetailsFormLabels()
     {
         LabelSaveRequestMessage = _translatorUiProvider.Translate("LabelSaveRequestMessage");
         LabelInvoicePositionGroupBox = _translatorUiProvider.Translate("LabelInvoicePositionGroupBox");
+        ContentButtonSaveSaveRequestMessage = _translatorUiProvider.Translate("ContentButtonSaveSaveRequestMessage");
+        ContentButtonNoSaveRequestMessage = _translatorUiProvider.Translate("ContentButtonNoSaveRequestMessage");
+        ContentButtonReturnSaveRequestMessage = _translatorUiProvider.Translate("ContentButtonReturnSaveRequestMessage");
     }
 
     #endregion

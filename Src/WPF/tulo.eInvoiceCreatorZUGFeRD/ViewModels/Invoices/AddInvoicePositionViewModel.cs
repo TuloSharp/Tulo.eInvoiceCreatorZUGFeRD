@@ -155,6 +155,7 @@ public class AddInvoicePositionViewModel : BaseViewModel
         StatusMessageViewModel = new MessageViewModel();
 
         #region Invoice Position Commands 
+        //ToDo add add subposition command
         AddInvoicePositionDetailsCommand = IsSubPosition ? new AddSubInvoicePositionDetailsCommand(this, collectorCollection) : new AddInvoicePositionDetailsCommand(this, collectorCollection);
         CloseAddInvoicePositionDetailsCommand = new CloseModalStackCommand(collectorCollection, typeof(AddInvoicePositionViewModel), true);
         #endregion
@@ -190,12 +191,18 @@ public class AddInvoicePositionViewModel : BaseViewModel
         FillAllAddInvoicePositionToolTips();
     }
 
-    #region Labels
+    #region Labels&Contents
     public string LabelCreateInvoicePosition { get; set; } = string.Empty;
+    public string ContentButtonInsertPosition { get; set; } = string.Empty;
+    public string ContentButtonReturn { get; set; } = string.Empty;
+
+    
 
     private void FillAllAddInvoicePositionLabels()
     {
         LabelCreateInvoicePosition = _translatorUiProvider.Translate("LabelCreateInvoicePosition");
+        ContentButtonInsertPosition = _translatorUiProvider.Translate("ContentButtonInsertPosition");
+        ContentButtonReturn = _translatorUiProvider.Translate("ContentButtonReturn");
     }
     #endregion
 

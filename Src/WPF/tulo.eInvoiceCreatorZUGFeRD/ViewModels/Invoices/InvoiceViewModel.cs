@@ -1032,6 +1032,10 @@ public class InvoiceViewModel : BaseViewModel
 
     public string LabelApplyDiscount { get; private set; } = string.Empty;
 
+    public string ContentButtonSave { get; private set; } = string.Empty;
+    public string ContentButtonLoad { get; private set; } = string.Empty;
+    public string ContentButtonClearAll { get; private set; } = string.Empty;
+
     private void FillAllInvoiceLabelsAndContents()
     {
         LabelPaymentDueDate = _translatorUiProvider.Translate("LabelPaymentDueDate");
@@ -1056,6 +1060,10 @@ public class InvoiceViewModel : BaseViewModel
 
         ContentDateInvalid = _translatorUiProvider.Translate("ContentDateInvalid");
         ContentDateMustBeBetween = _translatorUiProvider.Translate("ContentDateMustBeBetween");
+
+        ContentButtonSave = _translatorUiProvider.Translate("ContentButtonSave");
+        ContentButtonLoad = _translatorUiProvider.Translate("ContentButtonLoad");
+        ContentButtonClearAll = _translatorUiProvider.Translate("ContentButtonClearAll");
     }
     #endregion
 

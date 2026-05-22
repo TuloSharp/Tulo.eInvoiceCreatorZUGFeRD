@@ -11,7 +11,7 @@
              xmlns:sellerviewmodels="clr-namespace:tulo.eInvoiceCreatorZUGFeRD.ViewModels.Sellers"
              xmlns:aboutviewmodels="clr-namespace:tulo.eInvoiceCreatorZUGFeRD.ViewModels.About"
              d:DesignHeight="1250"
-             d:DesignWidth="50"
+             d:DesignWidth="100"
              mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -21,6 +21,8 @@
                 <ResourceDictionary Source="pack://application:,,,/tulo.ResourcesWpfLib;component/Resources/NavigationBarResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
+
+        
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -34,86 +36,77 @@
                   Background="{StaticResource BackgroundNavigatorBrushColor}"
                   RenderOptions.EdgeMode="Aliased">
                 <Grid>
-                    <Grid.Resources>
-                        <Style BasedOn="{StaticResource NavigationRadioButtonTextIcon}" TargetType="RadioButton" />
-                    </Grid.Resources>
-
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="auto" />
-                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
+                    <!--  ── Invoice ──  -->
                     <RadioButton Grid.Row="1"
+                                 Style="{StaticResource ModernNavButton}"
                                  ToolTip="{Binding ToolTipInvoiceViewIcon}"
                                  Command="{Binding UpdateCurrentViewModelCommand}"
                                  CommandParameter="{x:Static navType:NavTypes.InvoiceView}"
                                  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type invoiceviewmodels:InvoiceViewModel}}">
-                        <RadioButton.Content>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5" />
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="10" />
-                                </Grid.ColumnDefinitions>
-                                <Path Grid.Column="1"
-                                      Data="{StaticResource InvoiceIconSVG}"
-                                      Style="{StaticResource ContentRadioButtonPathStyle}"
-                                      Width="30"
-                                      Height="30"/>
-
-                            </Grid>
-                        </RadioButton.Content>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="🧾"
+                                       FontSize="16"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,10,0" />
+                            <TextBlock Text="{Binding NavLabelInvoice}"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
                     </RadioButton>
+
+                    <!--  ── Seller ──  -->
                     <RadioButton Grid.Row="2"
+                                 Style="{StaticResource ModernNavButton}"
                                  ToolTip="{Binding ToolTipBuyerViewIcon}"
                                  Command="{Binding UpdateCurrentViewModelCommand}"
                                  CommandParameter="{x:Static navType:NavTypes.SellerView}"
                                  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type sellerviewmodels:SellerViewModel}}">
-                        <RadioButton.Content>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="5" />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition Width="10" />
-                                </Grid.ColumnDefinitions>
-                                <Path Grid.Column="1"
-                                      Data="{StaticResource SellerIconSVG}"
-                                      Style="{StaticResource ContentRadioButtonPathStyle}"
-                                      Width="30"
-                                      Height="30"/>
-                            </Grid>
-                        </RadioButton.Content>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="🏢"
+                                       FontSize="16"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,10,0" />
+                            <TextBlock Text="{Binding NavLabelSeller}"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
                     </RadioButton>
 
+                    <!--  ── About (down) ──  -->
                     <RadioButton Grid.Row="10"
+                                 Style="{StaticResource ModernNavButton}"
                                  ToolTip="{Binding ToolTipAboutViewIcon}"
                                  Command="{Binding UpdateCurrentViewModelCommand}"
                                  CommandParameter="{x:Static navType:NavTypes.AboutView}"
                                  IsChecked="{Binding CurrentViewModel, Mode=OneWay, Converter={StaticResource EqualValueToParameterConverter}, ConverterParameter={x:Type aboutviewmodels:AboutViewModel}}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="5" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="10" />
-                            </Grid.ColumnDefinitions>
-                            <Path Grid.Column="1"
-                                  Data="{StaticResource AboutIconSVG}"
-                                  Style="{StaticResource ContentRadioButtonPathStyle}"
-                                  Width="30"
-                                  Height="30"/>
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <TextBlock Text="ℹ️"
+                                       FontSize="16"
+                                       VerticalAlignment="Center"
+                                       Margin="0,0,10,0" />
+                            <TextBlock Text="{Binding NavLabelAbout}"
+                                       FontWeight="SemiBold"
+                                       VerticalAlignment="Center" />
+                        </StackPanel>
                     </RadioButton>
+
                 </Grid>
             </Grid>
         </Grid>
     </Border>
+
 </UserControl>

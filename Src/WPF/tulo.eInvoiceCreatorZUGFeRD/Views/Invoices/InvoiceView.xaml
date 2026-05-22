@@ -29,6 +29,7 @@
             <system:Boolean x:Key="TrueFlag">True</system:Boolean>
             <system:Boolean x:Key="FalseFlag">False</system:Boolean>
         </ResourceDictionary>
+
     </UserControl.Resources>
     <behaviors:Interaction.Triggers>
         <behaviors:EventTrigger EventName="PreviewKeyUp">
@@ -56,127 +57,114 @@
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="0" />
-                    <RowDefinition Height="0" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+                <Border Background="White"
+                        CornerRadius="8"
+                        BorderThickness="1"
+                        Padding="16,10"
+                        Margin="10,4,10,4">
 
-                <!--  Content="Invoice View"  -->
-                <Label Content="{Binding LabelContentInvoiceView}"
-                       Grid.Row="1"
-                       FontWeight="Bold"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="1" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="1" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
 
-                <Grid Grid.Row="2"
-                      Background="White"
-                      Height="40"
-                      Margin="10,0,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="4" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="4" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="4" />
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="10" />
-                    </Grid.ColumnDefinitions>
+                        <!--  ── Left Buttons ──  -->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
 
-                    <Button Name="saveButton"
-                            Grid.Column="1"
-                            ToolTip="{Binding ToolTipSaveCustomerData}"
-                            HorizontalAlignment="Center"
-                            BorderBrush="Transparent"
-                            Foreground="Transparent"
-                            Command="{Binding SaveCustomerDataCommand}">
-                        <Grid>
-                            <Path Style="{StaticResource ContentButtonPathStyle}"
-                                  Data="{StaticResource SaveDataIconSVG}"
-                                  Fill="{StaticResource ButtonBrushIconColor}" />
-                        </Grid>
-                    </Button>
-                    <Button Name="loadButton"
-                            Grid.Column="3"
-                            ToolTip="{Binding ToolTipLoadCustomerData}"
-                            HorizontalAlignment="Center"
-                            BorderBrush="Transparent"
-                            Foreground="Transparent"
-                            Command="{Binding LoadCustomerDataCommand}">
-                        <Grid>
-                            <Path Style="{StaticResource ContentButtonPathStyle}"
-                                  Data="{StaticResource LoadCustomerDataIconSVG}"
-                                  Fill="{StaticResource ButtonBrushIconColor}" />
-                        </Grid>
-                    </Button>
+                            <Button Name="saveButton"
+                                    Content="{Binding ContentButtonSave}"
+                                    Style="{StaticResource ToolbarPrimaryButton}"
+                                    ToolTip="{Binding ToolTipSaveCustomerData}"
+                                    Command="{Binding SaveCustomerDataCommand}" />
 
-                    <Button Name="clearAllButton"
-                            Grid.Column="5"
-                            ToolTip="{Binding ToolTipClearAllInvoiceView}"
-                            HorizontalAlignment="Center"
-                            BorderBrush="Transparent"
-                            Foreground="Transparent"
-                            Command="{Binding ClearAllInvoiceViewCommand}">
-                        <Grid>
-                            <Path Style="{StaticResource ContentButtonPathStyle}"
-                                  Data="{StaticResource ClearAllIconSVG}"
-                                  Fill="{StaticResource ButtonBrushIconColor}" />
-                        </Grid>
-                    </Button>
+                            <Button Name="loadButton"
+                                    Content="{Binding ContentButtonLoad}"
+                                    Style="{StaticResource ToolbarSecondaryButton}"
+                                    ToolTip="{Binding ToolTipLoadCustomerData}"
+                                    Command="{Binding LoadCustomerDataCommand}"
+                                    Margin="8,0,0,0" />
+
+                            <Button Name="clearAllButton"
+                                    Content="{Binding ContentButtonClearAll}"
+                                    Style="{StaticResource ToolbarDangerButton}"
+                                    ToolTip="{Binding ToolTipClearAllInvoiceView}"
+                                    Command="{Binding ClearAllInvoiceViewCommand}"
+                                    Margin="8,0,0,0" />
+                        </StackPanel>
+
+                        <!--  Vertical separator  -->
+                        <Rectangle Grid.Column="3"
+                                   Fill="#E2E8F0"
+                                   Width="1"
+                                   Margin="0,6" />
+
+                        <!--  ── Preview Label + Toggle ──  -->
+                        <StackPanel Grid.Column="4"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,12,0">
+
+                            <ToggleButton IsChecked="{Binding IsPreviewEnabled, Mode=TwoWay}"
+                                          Content="{Binding LabelContentPreview}"
+                                          VerticalAlignment="Center"
+                                          ToolTip="{Binding ToolTipCreatePreviewElectronicInvoice}"
+                                          Style="{StaticResource ToolbarToggleButton}"
+                                          Command="{Binding CreateElectronicInvoiceComponentsCommand}">
+                                <ToggleButton.CommandParameter>
+                                    <MultiBinding Converter="{StaticResource MultiCommandParameterConverter}">
+                                        <Binding RelativeSource="{RelativeSource AncestorType=Window}" />
+                                        <Binding Path="IsChecked" RelativeSource="{RelativeSource Self}" />
+                                    </MultiBinding>
+                                </ToggleButton.CommandParameter>
+                            </ToggleButton>
+
+                        </StackPanel>
 
 
-                    <Label Content="{Binding LabelContentPreview}"
-                           Grid.Column="7"
-                           HorizontalAlignment="Center"
-                           VerticalAlignment="Center" />
-                    <ToggleButton Grid.Column="8"
-                                  IsChecked="{Binding IsPreviewEnabled, Mode=TwoWay}"
-                                  HorizontalAlignment="Center"
-                                  VerticalAlignment="Center"
-                                  ToolTip="{Binding ToolTipCreatePreviewElectronicInvoice}"
-                                  Style="{StaticResource ModernSwitchToggle}"
-                                  Command="{Binding CreateElectronicInvoiceComponentsCommand}">
-                        <ToggleButton.CommandParameter>
-                            <MultiBinding Converter="{StaticResource MultiCommandParameterConverter}">
-                                <Binding RelativeSource="{RelativeSource AncestorType=Window}" />
-                                <Binding Path="IsChecked" RelativeSource="{RelativeSource Self}" />
-                            </MultiBinding>
-                        </ToggleButton.CommandParameter>
-                    </ToggleButton>
+                        <!--  Vertical separator  -->
+                        <Rectangle Grid.Column="5"
+                                   Fill="#E2E8F0"
+                                   Width="1"
+                                   Margin="0,6" />
 
-                    <slidecontrol:SlideToConfirm Grid.Column="10"
-                                                 HorizontalAlignment="Center"
-                                                 VerticalAlignment="Center"
-                                                 Text="{Binding ContentSlideText}"
-                                                 ToolTip="{Binding ToolTipCreateElectronicInvoice}"
-                                                 ConfirmedText="{Binding ContentSlideConfirmedText}"
-                                                 ConfirmCommand="{Binding CreateElectronicInvoiceComponentsCommand}"
-                                                 ResetSignal="{Binding ResetSlideButton}"
-                                                 Width="100"
-                                                 Height="34"
-                                                 Margin="0,0,0,0"
-                                                 FillBrush="#3B82F6"
-                                                 TrackBrush="{StaticResource ButtonIconPrimaryColorBrush}"
-                                                 ThumbBrush="#FFFFFF" 
-                                                 ThumbHoverBrush ="{StaticResource ButtonIconPrimaryColorBrush}"
-                                                 TrackHoverBrush ="{StaticResource BackgroundTextBoxDisableBrushColor}"
-                                                 TextBrush="White"
-                                                 TextHoverBrush="{StaticResource ButtonIconPrimaryColorBrush}" >
-                        <slidecontrol:SlideToConfirm.ConfirmCommandParameter>
-                            <MultiBinding Converter="{StaticResource MultiCommandParameterConverter}">
-                                <Binding RelativeSource="{RelativeSource AncestorType=Window}" />
-                                <Binding Source="{StaticResource FalseFlag}" />
-                                <Binding Source="{StaticResource TrueFlag}" />
-                            </MultiBinding>
-                        </slidecontrol:SlideToConfirm.ConfirmCommandParameter>
-                    </slidecontrol:SlideToConfirm>
+                        <!--  ── Slide-to-Confirm ──  -->
+                        <slidecontrol:SlideToConfirm Grid.Column="6"
+                                                     HorizontalAlignment="Center"
+                                                     VerticalAlignment="Center"
+                                                     Margin="12,0,0,0"
+                                                     Text="{Binding ContentSlideText}"
+                                                     ToolTip="{Binding ToolTipCreateElectronicInvoice}"
+                                                     ConfirmedText="{Binding ContentSlideConfirmedText}"
+                                                     ConfirmCommand="{Binding CreateElectronicInvoiceComponentsCommand}"
+                                                     ResetSignal="{Binding ResetSlideButton}"
+                                                     Width="100"
+                                                     Height="34"
+                                                     FillBrush="#3B82F6"
+                                                     TrackBrush="{StaticResource ButtonIconPrimaryColorBrush}"
+                                                     ThumbBrush="#FFFFFF"
+                                                     ThumbHoverBrush="{StaticResource ButtonIconPrimaryColorBrush}"
+                                                     TrackHoverBrush="{StaticResource BackgroundTextBoxDisableBrushColor}"
+                                                     TextBrush="White"
+                                                     TextHoverBrush="{StaticResource ButtonIconPrimaryColorBrush}">
+                            <slidecontrol:SlideToConfirm.ConfirmCommandParameter>
+                                <MultiBinding Converter="{StaticResource MultiCommandParameterConverter}">
+                                    <Binding RelativeSource="{RelativeSource AncestorType=Window}" />
+                                    <Binding Source="{StaticResource FalseFlag}" />
+                                    <Binding Source="{StaticResource TrueFlag}" />
+                                </MultiBinding>
+                            </slidecontrol:SlideToConfirm.ConfirmCommandParameter>
+                        </slidecontrol:SlideToConfirm>
 
-                </Grid>
+                    </Grid>
+                </Border>
             </Grid>
 
             <Grid Grid.Row="1">

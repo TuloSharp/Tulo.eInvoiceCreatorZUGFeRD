@@ -67,18 +67,27 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Row="0"
-                  Margin="10,0,10,0"
-                  Padding="0"
-                  BorderThickness="1"
-                  BorderBrush="{StaticResource GroupBoxBrushColor}">
-            <GroupBox.Header>
-                <TextBlock Margin="6,2,6,2"
-                           FontStyle="Oblique"
-                           Text="{Binding LabelInvoicePositionGroupBox}" />
-            </GroupBox.Header>
+        <Border Grid.Row="0"
+                Margin="10,0,10,0"
+                BorderThickness="1"
+                BorderBrush="#E2E8F0"
+                CornerRadius="8">
+            <StackPanel>
 
-            <Grid Margin="0,5,0,5">
+                <!-- Card-Header -->
+                <Border BorderThickness="0,0,0,1"
+                        BorderBrush="#E2E8F0"
+                        CornerRadius="8,8,0,0"
+                        Background="#F8FAFC"
+                        Padding="12,8">
+                    <TextBlock Text="{Binding LabelInvoicePositionGroupBox}"
+                               FontWeight="SemiBold"
+                            
+                               Foreground="#374151"/>
+                </Border>
+
+
+                <Grid Margin="0,5,0,5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="2" />
@@ -427,7 +436,8 @@
                     </Grid>
                 </Border>
             </Grid>
-        </GroupBox>
+            </StackPanel>
+        </Border>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>

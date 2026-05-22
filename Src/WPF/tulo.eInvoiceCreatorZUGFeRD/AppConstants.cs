@@ -4,6 +4,6 @@ public static class AppConstants
 {
     public static class Ui
     {
-        public const double WidthBeforePreview = 730;
+        public const double WidthBeforePreview = 800;
     }
 }

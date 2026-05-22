@@ -61,7 +61,7 @@
     <PackageVersion Include="tulo.LoadingSpinnerControl" Version="1.0.0" />
     <PackageVersion Include="tulo.ModalViewControl" Version="1.0.0" />
     <PackageVersion Include="tulo.PlaceholderTextBoxControl" Version="1.0.0" />
-    <PackageVersion Include="tulo.ResourcesWpfLib" Version="1.0.0" />
+    <PackageVersion Include="tulo.ResourcesWpfLib" Version="1.0.1" />
     <PackageVersion Include="tulo.RevealPasswordBox" Version="1.0.0" />
     <PackageVersion Include="tulo.SerilogLib" Version="1.0.0" />
     <PackageVersion Include="tulo.SlideToComfirmControl" Version="1.0.0" />

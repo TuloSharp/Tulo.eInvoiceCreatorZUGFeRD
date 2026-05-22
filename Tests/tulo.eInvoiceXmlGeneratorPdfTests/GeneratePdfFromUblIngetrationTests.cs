@@ -40,7 +40,7 @@ public class GeneratePdfFromUblIngetrationTests
         string xmlInvoiceContent = File.ReadAllText(xmlInvoicePath, Encoding.UTF8);
 
         // Act
-        string createdPath = _pdfGeneratorInvoiceUbl.GeneratePdfFile(outputPdfPath, xmlInvoiceFileName, xmlInvoiceContent, customInfo);
+        string createdPath = _pdfGeneratorInvoiceUbl.GeneratePdfFile(outputPdfPath, xmlInvoiceFileName, xmlInvoiceContent, customInfo, string.Empty);
 
 
         // Assert

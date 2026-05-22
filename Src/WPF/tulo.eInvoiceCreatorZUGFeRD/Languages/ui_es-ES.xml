@@ -159,6 +159,9 @@
   <!--#region Invoice Position Details - Labels -->
   <entry key="LabelSaveRequestMessage">¿Desea guardar los cambios?</entry>
   <entry key="LabelInvoicePositionGroupBox">Posición de factura</entry>
+  <entry key="ContentButtonSaveSaveRequestMessage">_Salvar</entry>
+  <entry key="ContentButtonNoSaveRequestMessage">_Cancelar</entry>
+  <entry key="ContentButtonReturnSaveRequestMessage">_Retornar</entry>
   <!--#endregion -->
 
   <!--#region Invoice Position Details - ToolTips -->
@@ -248,6 +251,11 @@
   <entry key="LabelCreateInvoicePosition">Insertar posición de factura</entry>
   <entry key="LabelEditInvoicePosition">Editar posición de factura</entry>
   <entry key="LabelDeleteInvoicePosition">Eliminar posición de factura</entry>
+  <entry key="ContentButtonInsertPosition">_Crear</entry>
+  <entry key="ContentButtonEditPosition">_Editar</entry>
+  <entry key="ContentButtonDeletePosition">_Borrar</entry>
+  <entry key="ContentButtonReturn">_Retornar</entry>
+  
   <!--#endregion -->
 
   <!--#region UI Invoice Position - ToolTips -->
@@ -283,7 +291,7 @@
 
   <!--#region Date contest for validation -->
   <entry key="ContentDateInvalid">La fecha no es válida.</entry>
-  <entry key="ContentDateMustBeBetweenTemplate">La fecha debe estar entre</entry>
+  <entry key="ContentDateMustBeBetween">La fecha debe estar entre</entry>
   <!--#endregion -->
 
   <!--#region save & Load customer data -->
@@ -324,5 +332,17 @@
   <entry key="CreateInvoiceCmd_ErrorApplyPdfA">Error en la conversión a PDF/A: {0}</entry>
   <entry key="CreateInvoiceCmd_ErrorFileInUse">El archivo PDF sigue abierto en otra aplicación. Por favor, cierre el visor de PDF e inténtelo de nuevo.</entry>
   <entry key="CreateInvoiceCmd_ErrorUpgradePdfA3">Error en la actualización a PDF/A-3: {0}</entry>
+  <!--#endregion -->
+
+  <!--#region Content BUtons on InvocieView -->
+  <entry key="ContentButtonSave">💾 Guardar</entry>
+  <entry key="ContentButtonLoad">📂 Cargar</entry>
+  <entry key="ContentButtonClearAll">🧹 Limpiar todo</entry>
+  <!--#endregion -->
+
+  <!--#region Navigator Labels -->
+  <entry key="NavLabelInvoice">Factura</entry>
+  <entry key="NavLabelSeller">Vendedor</entry>
+  <entry key="NavLabelAbout">Sobre</entry>
   <!--#endregion -->
 </properties>
