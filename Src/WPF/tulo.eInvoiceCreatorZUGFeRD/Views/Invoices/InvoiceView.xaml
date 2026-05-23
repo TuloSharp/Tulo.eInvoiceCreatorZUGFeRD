@@ -80,24 +80,55 @@
                                     VerticalAlignment="Center">
 
                             <Button Name="saveButton"
-                                    Content="{Binding ContentButtonSave}"
                                     Style="{StaticResource ToolbarPrimaryButton}"
                                     ToolTip="{Binding ToolTipSaveCustomerData}"
-                                    Command="{Binding SaveCustomerDataCommand}" />
+                                    Command="{Binding SaveCustomerDataCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Path Data="{StaticResource SaveDataIconSVG}"
+                                          Fill="White"
+                                          Width="14"
+                                          Height="14"
+                                          Stretch="Uniform"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,8,0" />
+                                    <AccessText Text="{Binding ContentButtonSave}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
 
                             <Button Name="loadButton"
-                                    Content="{Binding ContentButtonLoad}"
                                     Style="{StaticResource ToolbarSecondaryButton}"
                                     ToolTip="{Binding ToolTipLoadCustomerData}"
                                     Command="{Binding LoadCustomerDataCommand}"
-                                    Margin="8,0,0,0" />
+                                    Margin="8,0,0,0">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Path Data="{StaticResource LoadCustomerDataIconSVG}"
+                                          Fill="{StaticResource ButtonIconPrimaryColorBrush}"
+                                          Width="14"
+                                          Height="14"
+                                          Stretch="Uniform"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,8,0" />
+                                    <AccessText Text="{Binding ContentButtonLoad}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
 
                             <Button Name="clearAllButton"
-                                    Content="{Binding ContentButtonClearAll}"
                                     Style="{StaticResource ToolbarDangerButton}"
                                     ToolTip="{Binding ToolTipClearAllInvoiceView}"
                                     Command="{Binding ClearAllInvoiceViewCommand}"
-                                    Margin="8,0,0,0" />
+                                    Margin="8,0,0,0">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Path Data="{StaticResource ClearAllIconSVG}"
+                                          Fill="Red"
+                                          Width="14"
+                                          Height="14"
+                                          Stretch="Uniform"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,8,0" />
+                                    <AccessText Text="{Binding ContentButtonClearAll}" VerticalAlignment="Center" />
+                                </StackPanel>
+                            </Button>
+
                         </StackPanel>
 
                         <!--  Vertical separator  -->

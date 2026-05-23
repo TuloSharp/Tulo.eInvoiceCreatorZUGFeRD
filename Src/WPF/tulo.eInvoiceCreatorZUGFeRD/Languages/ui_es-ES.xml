@@ -54,6 +54,7 @@
   <entry key="ToolTipLoadCustomerData">Los datos del cliente pueden cargarse desde un archivo JSON.</entry>
 
   <entry key="ToolTipSearchText">Buscar el item</entry>
+  <entry key="ToolTipCreateInvoicePosition">Insertar nueva posición de factura</entry>
   <!--#endregion -->
 
   <!--#region Invoice Placeholders -->
@@ -335,9 +336,10 @@
   <!--#endregion -->
 
   <!--#region Content BUtons on InvocieView -->
-  <entry key="ContentButtonSave">💾 Guardar</entry>
-  <entry key="ContentButtonLoad">📂 Cargar</entry>
-  <entry key="ContentButtonClearAll">🧹 Limpiar todo</entry>
+  <entry key="ContentButtonSave">_Guardar</entry>
+  <entry key="ContentButtonLoad">_Cargar</entry>
+  <entry key="ContentButtonClearAll">_Limpiar todo</entry>
+  <entry key="ContentButtonCreateInvoicePosition">_Insertar</entry>
   <!--#endregion -->
 
   <!--#region Navigator Labels -->

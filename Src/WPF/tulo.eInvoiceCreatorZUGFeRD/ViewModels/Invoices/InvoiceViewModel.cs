@@ -895,6 +895,7 @@ public class InvoiceViewModel : BaseViewModel
 
     //Search
     public string ToolTipSearchText { get; private set; } = string.Empty;
+    public string ToolTipCreateInvoicePosition { get; private set; } = string.Empty;
 
     private void FillAllInvoiceToolTips()
     {
@@ -940,6 +941,7 @@ public class InvoiceViewModel : BaseViewModel
 
         //search
         ToolTipSearchText = _translatorUiProvider.Translate("ToolTipSearch");
+        ToolTipCreateInvoicePosition = _translatorUiProvider.Translate("ToolTipCreateInvoicePosition");
     }
     #endregion
 
@@ -1035,6 +1037,7 @@ public class InvoiceViewModel : BaseViewModel
     public string ContentButtonSave { get; private set; } = string.Empty;
     public string ContentButtonLoad { get; private set; } = string.Empty;
     public string ContentButtonClearAll { get; private set; } = string.Empty;
+    public string ContentButtonCreateInvoicePosition { get; private set; } = string.Empty;
 
     private void FillAllInvoiceLabelsAndContents()
     {
@@ -1064,6 +1067,7 @@ public class InvoiceViewModel : BaseViewModel
         ContentButtonSave = _translatorUiProvider.Translate("ContentButtonSave");
         ContentButtonLoad = _translatorUiProvider.Translate("ContentButtonLoad");
         ContentButtonClearAll = _translatorUiProvider.Translate("ContentButtonClearAll");
+        ContentButtonCreateInvoicePosition = _translatorUiProvider.Translate("ContentButtonCreateInvoicePosition");
     }
     #endregion
 

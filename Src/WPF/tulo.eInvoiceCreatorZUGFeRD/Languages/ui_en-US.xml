@@ -54,6 +54,7 @@
   <entry key="ToolTipLoadCustomerData">Customer data can be loaded from a json file</entry>
   
   <entry key="ToolTipSearchText">Search item</entry>
+  <entry key="ToolTipCreateInvoicePosition">Insert new invoice position</entry>
   <!--#endregion -->
 
   <!--#region Invoice Placeholders -->
@@ -336,10 +337,11 @@
   <entry key="CreateInvoiceCmd_ErrorUpgradePdfA3">PDF/A-3 upgrade failed: {0}</entry>
   <!--#endregion -->
 
-  <!--#region Content BUtons on InvocieView -->
-  <entry key="ContentButtonSave">💾 Save</entry>
-  <entry key="ContentButtonLoad">📂 Load</entry>
-  <entry key="ContentButtonClearAll">🧹 Clean all</entry>
+  <!--#region Content Buttons on InvocieView -->
+  <entry key="ContentButtonSave">_Save</entry>
+  <entry key="ContentButtonLoad">_Load</entry>
+  <entry key="ContentButtonClearAll">_Clean all</entry>
+  <entry key="ContentButtonCreateInvoicePosition">_Add</entry>
   <!--#endregion -->
 
   <!--#region Navigator Labels -->

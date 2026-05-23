@@ -221,7 +221,13 @@
                             ToolTip="{Binding ToolTipReturn}"
                             Command="{Binding CloseAddInvoicePositionDetailsCommand}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="←  " VerticalAlignment="Center" />
+                            <Path Data="{StaticResource ArrowBackIconSVG}"
+                                  Fill="{StaticResource ButtonIconPrimaryColorBrush}"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
                             <AccessText Text="{Binding ContentButtonReturn}" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
@@ -231,13 +237,19 @@
                     <Button Name="saveButton"
                             Grid.Column="3"
                             Margin="0,2,0,2"
-                            Style="{StaticResource ToolbarSecondaryButton}"
+                            Style="{StaticResource ToolbarPrimaryButton}"
                             ToolTip="{Binding ToolTipSave}"
                             KeyboardNavigation.AcceptsReturn="False"
                             IsEnabled="{Binding IsEnableToSaveData, Converter={StaticResource DebuggerConverter}, ConverterParameter=IsEnableToSaveData}"
                             Command="{Binding AddInvoicePositionDetailsCommand}">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock Text="✔  " VerticalAlignment="Center" />
+                            <Path Data="{StaticResource DoneIconSVG}"
+                                  Fill="White"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
                             <AccessText Text="{Binding ContentButtonInsertPosition}" VerticalAlignment="Center" />
                         </StackPanel>
                     </Button>
@@ -265,7 +277,9 @@
                                                      Grid.ColumnSpan="1"
                                                      DataContext="{Binding StatusMessageViewModel}" />
 
-                <commoncontrols:SaveRequestMessageControl DataContext="{Binding InvoicePositionDetailsFormViewModel}" Grid.Row="3" />
+                <commoncontrols:SaveRequestMessageControl DataContext="{Binding InvoicePositionDetailsFormViewModel}"
+                                                          Grid.Row="3"
+                                                          Margin="4,0,4,0" />
             </Grid>
         </Grid>
     </Grid>
