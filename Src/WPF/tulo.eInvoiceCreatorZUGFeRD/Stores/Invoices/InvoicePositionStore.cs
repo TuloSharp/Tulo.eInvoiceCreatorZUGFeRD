@@ -245,16 +245,45 @@ public sealed class InvoicePositionStore : IInvoicePositionStore
     private List<InvoicePositionDetailsDTO> BuildOrderedList()
     {
         var list = new List<InvoicePositionDetailsDTO>(_order.Count);
+
+        // Pass 1: LineIds für alle Top-Level Positionen berechnen
+        var topLevelLineIds = new Dictionary<Guid, string>();
         var topLevelNr = 0;
+        foreach (var id in _order)
+        {
+            if (!_items.TryGetValue(id, out var dto)) continue;
+            if (!dto.IsSubPosition)
+                topLevelLineIds[id] = (++topLevelNr).ToString("D2"); // "01", "02", ...
+        }
+
+        // Pass 2: Vollständige Liste mit korrekten LineIds aufbauen
+        var subCountByParent = new Dictionary<Guid, int>();
+        topLevelNr = 0;
 
         foreach (var id in _order)
         {
-            if (!_items.TryGetValue(id, out var dto))
-                continue;
+            if (!_items.TryGetValue(id, out var dto)) continue;
 
             var cloned = Clone(dto);
-            // Sub-positions get 0 — only top-level positions (standalone + GROUP) are numbered
-            cloned.InvoicePositionNr = cloned.IsSubPosition ? 0 : ++topLevelNr;
+
+            if (cloned.IsSubPosition && cloned.ParentPositionId.HasValue)
+            {
+                var parentId = cloned.ParentPositionId.Value;
+                var parentLineId = topLevelLineIds.TryGetValue(parentId, out var lid) ? lid : "00";
+
+                if (!subCountByParent.ContainsKey(parentId))
+                    subCountByParent[parentId] = 0;
+
+                cloned.LineId = $"{parentLineId}{(++subCountByParent[parentId]):D2}"; // "0101", "0102", ...
+                cloned.InvoicePositionNr = 0;
+            }
+            else
+            {
+                topLevelNr++;
+                cloned.LineId = topLevelLineIds[id];
+                cloned.InvoicePositionNr = topLevelNr;
+            }
+
             list.Add(cloned);
         }
 

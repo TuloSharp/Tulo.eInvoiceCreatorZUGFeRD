@@ -2,7 +2,6 @@
 using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
 using tulo.CommonMVVM.GlobalProperties;
-using tulo.CommonMVVM.UiCommands;
 using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
 using tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
@@ -71,25 +70,6 @@ public class AddInvoicePositionViewModel : BaseViewModel
         set => SetField(ref _isEnabledSaveRequestInUI, value);
     }
 
-    private bool _isAltShortcutKeyPressed;
-    public bool IsAltShortcutKeyPressed
-    {
-        get => _isAltShortcutKeyPressed;
-        set {
-
-            if (!SetField(ref _isAltShortcutKeyPressed, value)) return;
-            if (_globalPropsUiManage.IsAltShortcutKeyPressed != value)
-                _globalPropsUiManage.IsAltShortcutKeyPressed = value;
-        }
-    }
-
-    private bool _isShortcutKeyAlreadyPressed;
-    public bool IsAltShortcutKeyAlreadyPressed
-    {
-        get => _isShortcutKeyAlreadyPressed;
-        set => SetField(ref _isShortcutKeyAlreadyPressed, value);
-    }
-
     private bool _isDuplicate;
     public bool IsDuplicate
     {
@@ -140,8 +120,6 @@ public class AddInvoicePositionViewModel : BaseViewModel
     #region Common Commands 
     public ICommand CloseSpinnerMessageCommand { get; }
     public ICommand OpenSpinnerMessageCommand { get; }
-    public ICommand IsAltShortcutKeyReleasedCommand { get; }
-    public ICommand IsAltShortcutKeyPressedCommand { get; }
     #endregion
 
     public AddInvoicePositionViewModel(ICollectorCollection collectorCollection)
@@ -177,14 +155,10 @@ public class AddInvoicePositionViewModel : BaseViewModel
         HasUnsavedChanges = false;
         _globalPropsUiManage.IsSaveRequestMessageVisibleChanged += GlobalPropsUiManageOnIsSaveRequestMessageVisibleChanged;
         IsRequiredField = false;
-        _globalPropsUiManage.IsAltShortcutKeyPressedChanged += GlobalPropsUiManageOnIsAltShortcutKeyPressedChanged;
-        IsAltShortcutKeyPressed = false;
 
         #region Common Commands 
         OpenSpinnerMessageCommand = new OpenModalStackCommand(collectorCollection, () => new SpinnerMessageViewModel(), typeof(SpinnerMessageViewModel));
         CloseSpinnerMessageCommand = new CloseModalStackCommand(collectorCollection, typeof(SpinnerMessageViewModel));
-        IsAltShortcutKeyReleasedCommand = new IsAltShortcutKeyReleasedCommand(collectorCollection);
-        IsAltShortcutKeyPressedCommand = new IsAltShortcutKeyPressedCommand(collectorCollection);
         #endregion
 
         FillAllAddInvoicePositionLabels();
@@ -200,7 +174,7 @@ public class AddInvoicePositionViewModel : BaseViewModel
 
     private void FillAllAddInvoicePositionLabels()
     {
-        LabelCreateInvoicePosition = _translatorUiProvider.Translate("LabelCreateInvoicePosition");
+        LabelCreateInvoicePosition = ParentPositionId.HasValue ? _translatorUiProvider.Translate("LabelCreateSubInvoicePosition") : _translatorUiProvider.Translate("LabelCreateInvoicePosition");
         ContentButtonInsertPosition = _translatorUiProvider.Translate("ContentButtonInsertPosition");
         ContentButtonReturn = _translatorUiProvider.Translate("ContentButtonReturn");
     }
@@ -221,10 +195,6 @@ public class AddInvoicePositionViewModel : BaseViewModel
     private void GlobalPropsUiManageOnIsRequiredFieldChanged() => OnPropertyChanged(nameof(IsRequiredField));
     private void GlobalPropsUiManageOnHasUnsavedChangesChanged() => OnPropertyChanged(nameof(HasUnsavedChanges));
     private void GlobalPropsUiManageOnIsSaveRequestMessageVisibleChanged() => OnPropertyChanged(nameof(IsSaveRequestMessageVisible));
-    private void GlobalPropsUiManageOnIsAltShortcutKeyPressedChanged()
-    {
-        IsAltShortcutKeyPressed = _globalPropsUiManage.IsAltShortcutKeyPressed;
-    }
 
     public override void Dispose()
     {
@@ -237,6 +207,5 @@ public class AddInvoicePositionViewModel : BaseViewModel
         _globalPropsUiManage.HasUnsavedChangesChanged -= GlobalPropsUiManageOnHasUnsavedChangesChanged;
         _globalPropsUiManage.IsSaveRequestMessageVisibleChanged -= GlobalPropsUiManageOnIsSaveRequestMessageVisibleChanged;
         _globalPropsUiManage.IsRequiredFieldChanged -= GlobalPropsUiManageOnIsRequiredFieldChanged;
-        _globalPropsUiManage.IsAltShortcutKeyPressedChanged -= GlobalPropsUiManageOnIsAltShortcutKeyPressedChanged;
     }
 }

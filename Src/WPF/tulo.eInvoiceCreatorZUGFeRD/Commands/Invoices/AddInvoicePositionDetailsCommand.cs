@@ -6,9 +6,10 @@ using tulo.eInvoiceCreatorZUGFeRD.Services;
 using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
 namespace tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
+
 public class AddInvoicePositionDetailsCommand(AddInvoicePositionViewModel addInvoicePositionViewModel, ICollectorCollection collectorCollection) : AsyncBaseCommand
 {
-    private AddInvoicePositionViewModel _addInvoicePositionViewModel = addInvoicePositionViewModel;
+    private readonly AddInvoicePositionViewModel _addInvoicePositionViewModel = addInvoicePositionViewModel;
 
     #region Services / Stores filled via CollectorCollection
     private readonly ILogger<AddInvoicePositionDetailsCommand> _logger = collectorCollection.GetService<ILoggerFactory>().CreateLogger<AddInvoicePositionDetailsCommand>();
@@ -55,7 +56,9 @@ public class AddInvoicePositionDetailsCommand(AddInvoicePositionViewModel addInv
             InvoicePositionRefDocType = invPosDetailsViewModel.InvoicePositionRefDocType,
             InvoicePositionRefDocRefType = invPosDetailsViewModel.InvoicePositionRefDocRefType,
 
-            InvoicePositionSelectedVatCategory = invPosDetailsViewModel.InvoicePositionSelectedVatCategory
+            InvoicePositionSelectedVatCategory = invPosDetailsViewModel.InvoicePositionSelectedVatCategory,
+            //main position 
+            LineStatusReasonCode = "GROUP"
         };
 
         try

@@ -250,6 +250,7 @@
 
   <!--#region UI Invoice Position - Labels -->
   <entry key="LabelCreateInvoicePosition">Insertar posición de factura</entry>
+  <entry key="LabelCreateSubInvoicePosition">Insertar subposición de factura</entry>
   <entry key="LabelEditInvoicePosition">Editar posición de factura</entry>
   <entry key="LabelDeleteInvoicePosition">Eliminar posición de factura</entry>
   <entry key="ContentButtonInsertPosition">_Crear</entry>
@@ -346,5 +347,11 @@
   <entry key="NavLabelInvoice">Factura</entry>
   <entry key="NavLabelSeller">Vendedor</entry>
   <entry key="NavLabelAbout">Sobre</entry>
+  <!--#endregion -->
+
+  <!--#region Content DropdownMenu -->
+  <entry key="ContentEditDropDownMenu">Editar</entry>
+  <entry key="ContentDeleteDropDownMenu">Eliminar</entry>
+  <entry key="ContentInserSubPosDropDownMenu">Crear SubPos</entry>
   <!--#endregion -->
 </properties>

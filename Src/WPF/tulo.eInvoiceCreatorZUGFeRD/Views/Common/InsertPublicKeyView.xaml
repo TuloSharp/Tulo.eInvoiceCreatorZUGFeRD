@@ -77,18 +77,6 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <behaviors:Interaction.Triggers>
-        <behaviors:EventTrigger EventName="PreviewKeyDown">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyPressedCommand}" PassEventArgsToCommand="True" />
-        </behaviors:EventTrigger>
-        <behaviors:EventTrigger EventName="PreviewKeyUp">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyReleasedCommand}" PassEventArgsToCommand="True" />
-        </behaviors:EventTrigger>
-        <behaviors:EventTrigger EventName="Deactivated">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyReleasedCommand}" />
-        </behaviors:EventTrigger>
-    </behaviors:Interaction.Triggers>
-
     <UserControl.InputBindings>
         <KeyBinding Modifiers="Alt"
                     Key="F4"
@@ -175,76 +163,60 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="0" />
-                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="3" />
                     </Grid.ColumnDefinitions>
 
                     <Button Name="requestedReturnButton"
                             Grid.Column="1"
-                            HorizontalAlignment="Center"
+                            Margin="0,2,0,2"
+                            Style="{StaticResource ToolbarSecondaryButton}"
                             KeyboardNavigation.AcceptsReturn="False"
                             IsEnabled="{Binding IsSaveRequestMessageVisible, Converter={StaticResource InverseBoolConverter}}"
-                            BorderBrush="Transparent"
-                            Foreground="Transparent"
                             ToolTip="{Binding ToolTipReturn}"
                             Command="{Binding CloseAddInvoicePositionDetailsCommand}">
-                        <Grid>
-                            <Path Style="{StaticResource ContentButtonPathStyle}"
-                                  Data="{StaticResource ArrowBackIconSVG}"
-                                  Fill="{StaticResource ButtonBrushIconColor}" />
-                            <TextBlock Text="R"
-                                       Width="12"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Right"
-                                       Visibility="{Binding IsAltShortcutKeyPressed, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                       Background="{StaticResource MainBrushColor}"
-                                       Foreground="{StaticResource ButtonBrushIconColor}" />
-                            <AccessText Text="_Return"
-                                        FontSize="8"
-                                        Foreground="Transparent"
-                                        Background="Transparent" />
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource ArrowBackIconSVG}"
+                                  Fill="{StaticResource ButtonIconPrimaryColorBrush}"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
+                            <AccessText Text="{Binding ContentButtonReturn}" VerticalAlignment="Center" />
+                        </StackPanel>
                     </Button>
 
                     <!--  ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"  -->
                     <!--  ToolTipService.ShowOnDisabled="True"  -->
                     <Button Name="saveButton"
                             Grid.Column="3"
+                            Margin="0,2,0,2"
+                            Style="{StaticResource ToolbarPrimaryButton}"
                             ToolTip="{Binding ToolTipSave}"
                             KeyboardNavigation.AcceptsReturn="False"
-                            BorderBrush="Transparent"
-                            Foreground="Transparent"
                             IsEnabled="{Binding IsEnableToSaveData, Converter={StaticResource DebuggerConverter}, ConverterParameter=IsEnableToSaveData}"
                             Command="{Binding AddInvoicePositionDetailsCommand}">
-
-                        <Grid>
-                            <Viewbox Style="{StaticResource ViewBox4Icon}">
-                                <Path Style="{StaticResource ContentButtonPathStyle}"
-                                      Data="{StaticResource DoneIconSVG}"
-                                      Fill="{StaticResource ButtonBrushIconColor}"
-                                      Width="auto"
-                                      Height="auto" />
-                            </Viewbox>
-                            <TextBlock Text="O"
-                                       Width="12"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Right"
-                                       Background="{StaticResource MainBrushColor}"
-                                       Foreground="{StaticResource ButtonBrushIconColor}"
-                                       Visibility="{Binding IsAltShortcutKeyPressed, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                            <AccessText Text="_Okay"
-                                        FontSize="8"
-                                        Foreground="Transparent"
-                                        Background="Transparent" />
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource DoneIconSVG}"
+                                  Fill="White"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
+                            <AccessText Text="{Binding ContentButtonInsertPosition}" VerticalAlignment="Center" />
+                        </StackPanel>
                     </Button>
+
+
+
+
+
 
                 </Grid>
             </Border>
@@ -296,7 +268,7 @@
                                                             Height="22"
                                                             Width="400"
                                                             MaxLength="400"
-                                                            BorderThickness="0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="4,0,0,0"
                                                             Padding="2" />
 
@@ -318,7 +290,7 @@
                                                             Height="22"
                                                             Width="400"
                                                             MaxLength="400"
-                                                            BorderThickness="0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="4,0,0,0"
                                                             Padding="2" />
 
@@ -332,7 +304,7 @@
                                                             Height="22"
                                                             Width="400"
                                                             MaxLength="400"
-                                                            BorderThickness="0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="4,4,0,0"
                                                             Padding="2" />
 
@@ -346,7 +318,7 @@
                                                             Height="22"
                                                             Width="400"
                                                             MaxLength="400"
-                                                            BorderThickness="0.5"
+                                                            BorderThickness="0,0,0,0.75"
                                                             Margin="4,4,0,0"
                                                             Padding="2" />
                         </Grid>

@@ -16,7 +16,7 @@ public class AddSubInvoicePositionDetailsCommand(AddInvoicePositionViewModel add
     private readonly IInvoicePositionService _invoicePositionService = collectorCollection.GetService<IInvoicePositionService>();
     #endregion
 
-    protected override async Task ExecuteAsync(object parameter)
+    protected override async Task ExecuteAsync(object parameter)    
     {
         _logger.LogInformation($"{nameof(AddSubInvoicePositionDetailsCommand)} start execution");
 

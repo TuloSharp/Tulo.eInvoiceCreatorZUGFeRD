@@ -251,9 +251,10 @@
 
   <!--#region UI Invoice Position - Labels -->
   <entry key="LabelCreateInvoicePosition">Rechnungsposition einfügen</entry>
+  <entry key="LabelCreateSubInvoicePosition">Untere Rechnungsposition einfügen</entry>
   <entry key="LabelEditInvoicePosition">Rechnungsposition bearbeiten</entry>
   <entry key="LabelDeleteInvoicePosition">Rechnungsposition löschen</entry>
-  <entry key="ContentButtonInsertPosition">_Erstellen</entry>
+  <entry key="ContentButtonInsertPosition">_Hinzufügen</entry>
   <entry key="ContentButtonEditPosition">_Bearbeiten</entry>
   <entry key="ContentButtonDeletePosition">_Löschen</entry>
   <entry key="ContentButtonReturn">_Zurück</entry>
@@ -347,5 +348,11 @@
   <entry key="NavLabelInvoice">Rechnung</entry>
   <entry key="NavLabelSeller">Verkäufer</entry>
   <entry key="NavLabelAbout">Über</entry>
+  <!--#endregion -->
+
+  <!--#region Content DropdownMenu -->
+  <entry key="ContentEditDropDownMenu">Ändern</entry>
+  <entry key="ContentDeleteDropDownMenu">Löschen</entry>
+  <entry key="ContentInserSubPosDropDownMenu">SubPos hinzufügen</entry>
   <!--#endregion -->
 </properties>

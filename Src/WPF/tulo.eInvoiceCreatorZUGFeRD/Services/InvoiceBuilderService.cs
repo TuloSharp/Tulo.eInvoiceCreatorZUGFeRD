@@ -150,7 +150,9 @@ public sealed class InvoiceBuilderService(ICollectorCollection collectorCollecti
                 Description = dto.InvoicePositionDescription ?? string.Empty,
                 ProductDescription = dto.InvoicePositionDescription ?? string.Empty,
 
-                Quantity = dto.InvoicePositionQuantity,
+                // Only for ZUGFeRD: if DocumentTypeCode = 381 (credit note), 
+                // quantities must be negated according to ZUGFeRD standard
+                Quantity = invoice.DocumentTypeCode == "381" ? dto.InvoicePositionQuantity * -1 : dto.InvoicePositionQuantity,
                 //C62 is the UN/CEFACT common code for “piece”
                 UnitCode = string.IsNullOrWhiteSpace(dto.InvoicePostionUnit) ? "C62" : dto.InvoicePostionUnit,
                 UnitPrice = dto.InvoicePositionUnitPrice,
@@ -254,9 +256,7 @@ public sealed class InvoiceBuilderService(ICollectorCollection collectorCollecti
 
         foreach (var l in invoice.Lines)
         {
-            var lineNet = l.ForcedLineTotalAmount.HasValue
-                ? Round2(l.ForcedLineTotalAmount.Value)
-                : Round2(l.Quantity * l.UnitPrice);
+            var lineNet = l.ForcedLineTotalAmount.HasValue ? Round2(l.ForcedLineTotalAmount.Value) : Round2(l.Quantity * l.UnitPrice);
 
             var lineTax = Round2(lineNet * (l.TaxPercent / 100m));
 

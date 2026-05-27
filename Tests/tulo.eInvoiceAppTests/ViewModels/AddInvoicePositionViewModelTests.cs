@@ -114,17 +114,6 @@ public class AddInvoicePositionViewModelTests : IDisposable
         });
     }
 
-    [Fact(DisplayName = "Constructor: IsAltShortcutKeyPressed starts as false")]
-    public void Constructor_IsAltShortcutKeyPressed_StartsAsFalse()
-    {
-        _wpf.Invoke(() =>
-        {
-            var vm = CreateVm();
-
-            Assert.False(vm.IsAltShortcutKeyPressed);
-        });
-    }
-
     [Fact(DisplayName = "Constructor: InvoicePositionDetailsFormViewModel is not null")]
     public void Constructor_InvoicePositionDetailsFormViewModel_IsNotNull()
     {
@@ -238,19 +227,6 @@ public class AddInvoicePositionViewModelTests : IDisposable
             Assert.True(_globalProps.IsSaveRequestMessageVisible);
         });
     }
-
-    [Fact(DisplayName = "IsAltShortcutKeyPressed: setting true updates GlobalPropsUiManage")]
-    public void IsAltShortcutKeyPressed_SetTrue_UpdatesGlobalProps()
-    {
-        _wpf.Invoke(() =>
-        {
-            var vm = CreateVm();
-
-            vm.IsAltShortcutKeyPressed = true;
-
-            Assert.True(_globalProps.IsAltShortcutKeyPressed);
-        });
-    }
     #endregion
 
     #region 5. GlobalPropsUiManage Events -> VM PropertyChanged
@@ -311,20 +287,6 @@ public class AddInvoicePositionViewModelTests : IDisposable
             _globalProps.IsSaveRequestMessageVisible = true;
 
             Assert.Contains(nameof(vm.IsSaveRequestMessageVisible), changed);
-        });
-    }
-
-    [Fact(DisplayName = "IsAltShortcutKeyPressedChanged event: VM updates IsAltShortcutKeyPressed from GlobalProps")]
-    public void IsAltShortcutKeyPressedChanged_Event_UpdatesVmProperty()
-    {
-        _wpf.Invoke(() =>
-        {
-            var vm = CreateVm();
-            Assert.False(vm.IsAltShortcutKeyPressed);
-
-            _globalProps.IsAltShortcutKeyPressed = true;
-
-            Assert.True(vm.IsAltShortcutKeyPressed);
         });
     }
     #endregion

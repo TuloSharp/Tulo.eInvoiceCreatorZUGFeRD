@@ -5,6 +5,7 @@ using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
 using tulo.eInvoiceCreatorZUGFeRD.DTOs;
 using tulo.eInvoiceCreatorZUGFeRD.Services;
+using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
 namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
@@ -13,6 +14,7 @@ public class InvoicePositionCardItemViewModel : BaseViewModel
     #region Services / Stores filled via CollectorCollection
     private readonly IInvoicePositionLookupService _lookup;
     private readonly ICollectorCollection _collectorCollection;
+    private readonly ISelectedInvoicePositionStore _selectedInvoicePositionStore;
     private readonly ITranslatorUiProvider _translatorUiProvider;
     #endregion
 
@@ -79,11 +81,14 @@ public class InvoicePositionCardItemViewModel : BaseViewModel
     public ICommand OpenDeleteInvoicePositionViewCommand { get; }
 
     // Only enabled in XAML when IsGroupPosition == true
-    public ICommand OpenAddSubInvociePostionViewCommand { get; }
+    public ICommand OpenAddSubInvoicePositionViewCommand { get; }
     #endregion
 
-    #region Tooltips
+    #region ToolTips&Contents
     public string ToolTipDiscountInfosExpander { get; set; } = string.Empty;
+    public string ContentEditDropDownMenu { get; set; } = string.Empty;
+    public string ContentDeleteDropDownMenu { get; set; } = string.Empty;
+    public string ContentInserSubPosDropDownMenu { get; set; } = string.Empty;
     #endregion
 
     public InvoicePositionCardItemViewModel(InvoicePositionDetailsDTO invoicePositionDetails, ICollectorCollection collectorCollection)
@@ -92,6 +97,7 @@ public class InvoicePositionCardItemViewModel : BaseViewModel
         _collectorCollection = collectorCollection;
         _lookup = collectorCollection.GetService<IInvoicePositionLookupService>();
         _translatorUiProvider = collectorCollection.GetService<ITranslatorUiProvider>();
+        _selectedInvoicePositionStore = collectorCollection.GetService<ISelectedInvoicePositionStore>();
         #endregion
 
         InvoicePositionDetails = invoicePositionDetails;
@@ -99,10 +105,17 @@ public class InvoicePositionCardItemViewModel : BaseViewModel
         #region Commands
         OpenEditInvoicePositionViewCommand = new OpenModalStackCommand(collectorCollection, () => new EditInvoicePositionViewModel(collectorCollection), typeof(EditInvoicePositionViewModel));
         OpenDeleteInvoicePositionViewCommand = new OpenModalStackCommand(collectorCollection, () => new DeleteInvoicePositionViewModel(collectorCollection), typeof(DeleteInvoicePositionViewModel));
-        OpenAddSubInvociePostionViewCommand = new OpenModalStackCommand(collectorCollection, () => new AddInvoicePositionViewModel(collectorCollection), typeof(AddInvoicePositionViewModel));
+        OpenAddSubInvoicePositionViewCommand = new OpenModalStackCommand(collectorCollection, () => { _selectedInvoicePositionStore.SelectedParentPositionId = InvoicePositionId;
+                                                                                                            return new AddInvoicePositionViewModel(collectorCollection);
+                                                                                                           }, typeof(AddInvoicePositionViewModel));
         #endregion
 
+        #region ToolTips&Contents
         ToolTipDiscountInfosExpander = _translatorUiProvider.Translate("ToolTipDiscountInfosExpander");
+        ContentEditDropDownMenu = _translatorUiProvider.Translate("ContentEditDropDownMenu");
+        ContentDeleteDropDownMenu = _translatorUiProvider.Translate("ContentDeleteDropDownMenu");
+        ContentInserSubPosDropDownMenu = _translatorUiProvider.Translate("ContentInserSubPosDropDownMenu");
+        #endregion
     }
 
     // Updates the card with fresh DTO data and notifies all bindings at once

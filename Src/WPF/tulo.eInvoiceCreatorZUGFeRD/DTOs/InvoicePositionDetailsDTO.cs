@@ -5,7 +5,7 @@ public class InvoicePositionDetailsDTO
     public Guid Id { get; set; }
     public int InvoicePositionNr { get; set; }
 
-    #region Sub-position fields
+    #region SubPosition fields
     // Id of the parent GROUP position — null means top-level position
     public Guid? ParentPositionId { get; set; }
 

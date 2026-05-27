@@ -175,20 +175,6 @@ public class MainViewModel : BaseViewModel, IResizeWindowViewModel
         set => SetField(ref _isEnabledSaveRequestInUI, value);
     }
 
-    private bool _isAltShortcutKeyPressed;
-    public bool IsAltShortcutKeyPressed
-    {
-        get => _isAltShortcutKeyPressed;
-        set => SetField(ref _isAltShortcutKeyPressed, value);
-    }
-
-    private bool _isShortcutKeyAlreadyPressed;
-    public bool IsAltShortcutKeyAlreadyPressed
-    {
-        get => _isShortcutKeyAlreadyPressed;
-        set => SetField(ref _isShortcutKeyAlreadyPressed, value);
-    }
-
     private bool _isDuplicate;
     public bool IsDuplicate
     {
@@ -225,8 +211,6 @@ public class MainViewModel : BaseViewModel, IResizeWindowViewModel
 
     #region Commands
     public ICommand MakeScreenshotCommand { get; }
-    public ICommand IsAltShortcutKeyPressedCommand { get; }
-    public ICommand IsAltShortcutKeyReleasedCommand { get; }
     public ICommand CloseMainWindowCommand { get; }
     public ICommand MinimizedMainWindowCommand { get; }
     public ICommand ResizeMainWindowCommand { get; }
@@ -273,8 +257,6 @@ public class MainViewModel : BaseViewModel, IResizeWindowViewModel
 
         #region Management UI Commands
         MakeScreenshotCommand = new SaveScreenshotAsPngCommand();
-        IsAltShortcutKeyPressedCommand = new IsAltShortcutKeyPressedCommand(collectorCollection);
-        IsAltShortcutKeyReleasedCommand = new IsAltShortcutKeyReleasedCommand(collectorCollection);
         CloseMainWindowCommand = new CloseMainWindowCommand();
         MinimizedMainWindowCommand = new MinimizedWindowCommand();
         ResizeMainWindowCommand = new ResizeWindowCommand(this);

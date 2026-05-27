@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+	<entry key="PdfDisclamerText">Este documento visualiza la factura electrónica en formato XML. Presenta los datos contenidos en el XML; no se realiza ninguna verificación de exactitud, integridad o validez:</entry>
+	<entry key="LabelInvoiceTable">Los siguientes servicios se facturan</entry>
+	<entry key="InvoiceTypeCode">Tipo de factura</entry>
+	<entry key="PaymentCurrencyCode">Moneda:</entry>
+	<entry key="SalesOrderReference">Número de pedido</entry>
+	<entry key="InvoiceTotalAmountWithoutVat">Importe total neto</entry>
+	<entry key="InvoiceTotalVatAmount">Importe total de impuestos</entry>
+	<entry key="InvoiceChargeTotalAmount">Recargo/Suplemento</entry>
+	<entry key="InvoiceAllowanceTotalAmount">Descuento</entry>
+	<entry key="InvoiceLineAllowanceReason">Motivo del descuento</entry>
+	<entry key="PaidAmount">Importe pagado</entry>
+	<entry key="AmountDueForPayment">Importe vencido</entry>
+	<entry key="VatCategoryCode">Categoría de IVA:</entry>
+	<entry key="VatCategoryRate">Tipo de IVA</entry>
+	<entry key="PaymentTerms">Descuento por pronto pago;|Otras condiciones de pago</entry>
+	<entry key="PaymentDueDate">Fecha de vencimiento</entry>
+	<entry key="PaymentTypeCode">Código de medio de pago</entry>
+	<entry key="RemittanceInfo">Concepto de pago</entry>
+	<entry key="PaymentCardPrimaryAccountNr">Número de tarjeta</entry>
+	<entry key="PaymentCardHolderName">Titular de la tarjeta</entry>
+	<entry key="InvoiceNote">Observación</entry>
+	<entry key="BusinessProcessTypeId">Identificación del proceso</entry>
+	<entry key="SpecificationId">Identificación de especificación</entry>
+	<entry key="ItemPriceDiscount" id="BT-147">Descuento(neto)</entry>
+	<entry key="OverviewCreditNote">Nota de crédito</entry>
+	<entry key="OverviewSalesTax">Desglose del IVA a nivel de factura</entry>
+	<entry key="OverviewPaymentsData">Condiciones de pago &amp; Datos bancarios</entry>
+	<entry key="OverviewDiscount">Descuento a nivel de factura</entry>
+	<entry key="OverviewHandyFlatRate">Recargo/Suplemento a nivel de factura</entry>
+	<entry key="OverviewInvoiceDescription">Descripción de las líneas de factura a nivel de factura</entry>
+	<entry key="OverviewRemarks">Observaciones de la factura</entry>
+	<entry key="OverviewVarios">Varios</entry>
+	<entry key="OverviewInvoiceInfo">Factura</entry>
+	<entry key="OverviewCreditInfo">Nota de crédito</entry>
+	<entry key="OverviewDirectDebit">Domiciliación</entry>
+	<entry key="OverviewSelfBilledInvoiceInfo">Factura autoliquidada</entry>
+	<entry key="OverviewSelfBilledCreditNoteInfo">Nota de crédito autoliquidada</entry>
+	<entry key="OverviewConsolidatedInvoice">Factura consolidada</entry>
+	<entry key="OverviewInvoiceCorrection">Corrección de factura</entry>
+	<entry key="OverviewAdvancePaymentInvoiceInfo">Factura de pago anticipado</entry>
+	<entry key="OverviewProformaInvoiceInfo">Factura proforma</entry>
+
+	<entry key="NoLiabilityInfo">No nos hacemos responsables de la exactitud de los datos.</entry>
+	<entry key="Details">Detalles</entry>
+	<entry key="Disclaimer">No nos hacemos responsables de la exactitud de los datos.</entry>
+	<entry key="NoDdata">No hay datos disponibles</entry>
+	<entry key="Net">neto</entry>
+	<entry key="Gross">bruto</entry>
+	<entry key="NoContent">¡Las áreas sin contenido no se muestran!</entry>
+	<entry key="Description">Descripción</entry>
+	<entry key="Price">Precio</entry>
+	<entry key="PriceUnit">Unidad de precio</entry>
+	<entry key="Vat">Tipo IVA</entry>
+	<entry key="VatID">NIF/CIF</entry>
+	<entry key="TaxNumber">CIF</entry>
+	<entry key="TaxCcode">Código impuesto</entry>
+	<entry key="Total">Total</entry>
+	<entry key="Page">Página</entry>
+	<entry key="SubjectCode">Asunto</entry>
+	
+	<entry key="ChargeIndicatorFee">Tarifa</entry>
+	<entry key="ChargeIndicatorDiscount">Descuento</entry>
+
+	<entry key="SubtotalTaxTableTypeCode">Tipo de impuesto</entry>
+	<entry key="SubtotalTaxTableCategoryCode">Identificación fiscal</entry>
+	<entry key="SubtotalTaxTableReason">Motivo</entry>
+	<entry key="SubtotalTaxTablePercent">Impuesto[%]</entry>
+	<entry key="SubtotalTaxTableBaseAmount">Importe neto</entry>
+	<entry key="SubtotalTaxTableAmount">Importe impuesto</entry>
+	<entry key="ProjectId">Número de proyecto:</entry>
+	<entry key="ProjectName">Nombre del proyecto:</entry>
+	<entry key="ContractIssuerAssignedId">Número de contrato:</entry>
+	<entry key="BuyerIssuerAssignedId">Número de pedido:</entry>
+	
+	<entry key="DirectDebitMandantRef">Domiciliación|Referencia de mandato:</entry>
+	<entry key="DirectDebitIBAN">IBAN de domiciliación:</entry>
+	<entry key="DirectDebitCreditorId">Domiciliación|ID del acreedor:</entry>
+	<entry key="OccurrenceDateTime">Fecha de servicio: </entry>
+	<entry key="BillingDateTimeFromTo">Facturación desde StartDate hasta EndDate</entry>
+
+	<entry key="InvoiceNr">Número de factura</entry>
+	<entry key="InvoiceIssueDate">Fecha de factura</entry>
+	<entry key="BuyerRefId">Número de socio comercial</entry>
+	
+	<entry key="Overview">Resumen</entry>
+	<entry key="OverviewBuyer">Nombre del cliente / Empresa</entry>
+	<entry key="OverviewSeller">Empresa</entry>
+	
+	<entry key="PaymentAccountId">IBAN</entry>
+	<entry key="PaymentServiceProviderId">BIC</entry>
+	<entry key="PaymentMeansMsg">Medio de pago:</entry>
+	<entry key="PaymentAccountName">Titular de la cuenta</entry>
+	<entry key="PaymentMeansInfo">Información de medio de pago</entry>
+	
+	<entry key="PdfFooterTitle">Información de pago del emisor de facturas:</entry>
+	
+	<!--#regiom currency-->
+	<entry key="EUR">€</entry>
+	<!--#endregion -->
+
+	<entry key="InfoFormatXML">Formato XML</entry>
+
+	<!--#region unite code -->
+	<entry key="C62">Unidad</entry>		
+	<entry key="HUR">Hora</entry>		
+	<entry key="KGM">kg</entry>		
+	<entry key="LTR">Litro</entry>		
+	<entry key="MTR">m</entry>	
+	<entry key="LM">ml</entry>	
+	<entry key="M2">m²</entry>		
+	<entry key="MTK">m²</entry>		
+	<entry key="MTQ">m³</entry>		
+	<entry key="M3">m³</entry>		
+	<entry key="DAY">Día</entry>		
+	<entry key="MIN">Minuto</entry>	
+	<entry key="SEC">Segundo</entry>	
+	<entry key="HAR">Hectárea</entry>	
+	<entry key="KTM">km</entry>	
+	<entry key="KMT">km</entry>	
+	<entry key="LS">pieza</entry>	
+	<entry key="XPP">pieza</entry>	
+	<entry key="NAR">Cant</entry>	
+	<entry key="NPR">Cant. P</entry>	
+	<entry key="SET">Conjunto</entry>	
+	<entry key="TNE">Tonelada</entry>	
+	<entry key="WEE">Semana</entry>	
+	<entry key="H87">Unidad</entry>	
+	<entry key="P1">%</entry>	
+	<!--#endregion -->
+	
+	<!-- Payment means typecode -->
+	<entry key="58">(Transferencia de crédito SEPA)</entry>
+	<entry key="59">(Domiciliación SEPA)</entry>
+	<entry key="57">(Acuerdo permanente)</entry>
+	<entry key="30">(Transferencia bancaria (no SEPA))</entry>
+	<entry key="49">(Domiciliación (no SEPA))</entry>
+	<entry key="48">(Tarjeta bancaria)</entry>
+
+	<!--Categoría IVA-->
+	<entry key="AE">Inversión del sujeto pasivo del IVA (VAT Reverse Charge)</entry>
+	<entry key="E">Exento de impuesto (Exempt from tax)</entry>
+	<entry key="G">Artículo de exportación gratuito, sin impuesto (Free export item, tax not charged)</entry>
+	<entry key="K">Exención de IVA para el EEE(IVA exempt for EEA intra-community supply of goods and services)</entry>
+	<entry key="L">Tipo impositivo reducido (Canary Islands general indirect tax)</entry>
+	<entry key="M">Tipos impositivos mixtos (Tax for production, services and importation in Ceuta and Melilla)</entry>
+	<entry key="O">Fuera del ámbito fiscal (Services outside scope of tax)</entry>
+	<entry key="S">Tipo estándar (Standard rate)</entry>
+	<entry key="Z">Tipo cero (Zero rated goods)</entry>
+	<entry key="NS">No sujeto a impuestos (Not Subject to Tax)</entry>
+
+	<!--#region Invoice Table-->
+ <entry key="InvoiceTableNr">#</entry>
+  <entry key="InvoiceTablePosDescription">Descripción de la línea</entry>
+  <entry key="InvoiceTablePosText">Descripción de la línea</entry>
+  <entry key="InvoiceTableItemNr">Número de artículo \ EAN</entry>
+  <entry key="InvoiceTableQuantity">Cantidad</entry>
+  <entry key="InvoiceTableUnit">Unidad</entry>
+  <entry key="InvoiceTableUnitNetPrice">P. Unt.</entry>
+  <entry key="InvoiceTableTaxPrecentage">IVA [%]</entry>
+  <entry key="InvoiceTableNetAmount">Neto</entry>
+  <entry key="InvoiceTableGrossAmount">Bruto</entry>
+  <entry key="InvoiceTableTotalNetAmount">Importe total neto</entry>
+  <entry key="InvoiceTableTotalTaxes">Importe total de impuestos</entry>
+  <entry key="InvoiceTableTotalGrossAmount">Importe total bruto</entry>
+  <entry key="SumInvoiceLineNetAmount">Importe total bruto</entry>
+	<!--#endregion -->
+</properties>

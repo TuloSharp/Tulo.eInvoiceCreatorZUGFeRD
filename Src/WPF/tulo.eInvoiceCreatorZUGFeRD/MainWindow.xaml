@@ -90,15 +90,6 @@
 
     </Window.InputBindings>
 
-    <behaviors:Interaction.Triggers>
-        <behaviors:EventTrigger EventName="PreviewKeyUp">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyPressedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
-        </behaviors:EventTrigger>
-        <behaviors:EventTrigger EventName="KeyUp">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyReleasedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
-        </behaviors:EventTrigger>
-    </behaviors:Interaction.Triggers>
-
     <Grid TextElement.FontSize="{Binding UiFontSize}"
           ToolTipService.ShowOnDisabled="True"
           Style="{StaticResource MainWindowPanelStyle}">

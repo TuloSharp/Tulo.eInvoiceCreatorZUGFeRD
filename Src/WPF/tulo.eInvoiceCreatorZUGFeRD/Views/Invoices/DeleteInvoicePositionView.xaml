@@ -8,6 +8,7 @@
              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:commoncontrols="clr-namespace:tulo.ResourcesWpfLib.Controls.Common;assembly=tulo.ResourcesWpfLib"
              xmlns:extended="clr-namespace:tulo.ResourcesWpfLib.Utilities;assembly=tulo.ResourcesWpfLib"
+             xmlns:converters="clr-namespace:tulo.ResourcesWpfLib.Converters;assembly=tulo.ResourcesWpfLib"
              Background="White"
              ToolTipService.InitialShowDelay="500"
              BorderThickness="2"
@@ -19,19 +20,11 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
             <flag:Boolean x:Key="TrueFlag">True</flag:Boolean>
             <flag:Boolean x:Key="FalseFlag">False</flag:Boolean>
         </ResourceDictionary>
     </UserControl.Resources>
-
-    <behaviors:Interaction.Triggers>
-        <behaviors:EventTrigger EventName="PreviewKeyDown">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyReleasedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
-        </behaviors:EventTrigger>
-        <behaviors:EventTrigger EventName="KeyUp">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyReleasedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
-        </behaviors:EventTrigger>
-    </behaviors:Interaction.Triggers>
 
     <UserControl.InputBindings>
         <KeyBinding Modifiers="Alt"
@@ -70,7 +63,7 @@
                         <ColumnDefinition Width="2" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Margin="1,0,0,0"
+                    <Image Margin="2,0,0,1"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
@@ -119,9 +112,9 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="0" />
-                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="40" />
                         <ColumnDefinition Width="3" />
@@ -129,66 +122,46 @@
 
                     <Button Name="requestedReturnButton"
                             Grid.Column="1"
-                            HorizontalAlignment="Center"
+                            Margin="0,2,0,2"
+                            Style="{StaticResource ToolbarSecondaryButton}"
                             KeyboardNavigation.AcceptsReturn="False"
-                            BorderBrush="Transparent"
-                            Foreground="Transparent"
+                            IsEnabled="{Binding IsSaveRequestMessageVisible, Converter={StaticResource InverseBoolConverter}}"
                             ToolTip="{Binding ToolTipReturn}"
                             Command="{Binding CloseDeleteInvoicePositionDetailsCommand}">
-                        <Grid>
-                            <Path Style="{StaticResource ContentButtonPathStyle}"
-                                  Data="{StaticResource ArrowBackIconSVG}"
-                                  Fill="{StaticResource ButtonBrushIconColor}" />
-                            <TextBlock Text="R"
-                                       Width="12"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Right"
-                                       Visibility="{Binding IsAltShortcutKeyPressed, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                       Background="{StaticResource MainBrushColor}"
-                                       Foreground="{StaticResource ButtonBrushIconColor}" />
-                            <AccessText Text="_Return"
-                                        FontSize="8"
-                                        Foreground="Transparent"
-                                        Background="Transparent" />
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource ArrowBackIconSVG}"
+                                  Fill="{StaticResource ButtonIconPrimaryColorBrush}"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
+                            <AccessText Text="{Binding ContentButtonReturn}" VerticalAlignment="Center" />
+                        </StackPanel>
                     </Button>
 
                     <Button Name="doneButton"
                             Grid.Column="3"
-                            KeyboardNavigation.AcceptsReturn="False"
-                            BorderBrush="Transparent"
+                            Margin="0,2,0,2"
+                            Style="{StaticResource ToolbarDangerButton}"
                             ToolTip="{Binding ToolTipSave}"
-                            Foreground="Transparent"
-                            Command="{Binding DeleteInvoicePositionDetailsCommand}"
-                            IsEnabled="{Binding IsSyntaxCheckValid}">
-                        <Grid>
-                            <Viewbox Style="{StaticResource ViewBox4Icon}">
-                                <Path Style="{StaticResource ContentButtonPathStyle}"
-                                      Data="{StaticResource DeleteIconSVG}"
-                                      Fill="{StaticResource ButtonBrushIconColor}"
-                                      Width="auto"
-                                      Height="auto" />
-                            </Viewbox>
-                            <TextBlock Text="O"
-                                       Width="12"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Right"
-                                       Background="{StaticResource MainBrushColor}"
-                                       Foreground="{StaticResource ButtonBrushIconColor}"
-                                       Visibility="{Binding IsAltShortcutKeyPressed, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                            <AccessText Text="_Okay"
-                                        FontSize="8"
-                                        Foreground="Transparent"
-                                        Background="Transparent" />
-                        </Grid>
+                            KeyboardNavigation.AcceptsReturn="False"
+                            IsEnabled="{Binding IsEnableToSaveData}"
+                            Command="{Binding DeleteInvoicePositionDetailsCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource DeleteIconSVG}"
+                                  Fill="Red"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
+                            <AccessText Text="{Binding ContentButtonDeletePosition}" VerticalAlignment="Center" />
+                        </StackPanel>
                     </Button>
 
                 </Grid>
             </Border>
-
 
             <Grid Grid.Row="4">
                 <Grid.RowDefinitions>
@@ -210,8 +183,6 @@
                                                      Grid.Column="1"
                                                      Grid.ColumnSpan="1"
                                                      DataContext="{Binding StatusMessageViewModel}" />
-
-
 
             </Grid>
         </Grid>

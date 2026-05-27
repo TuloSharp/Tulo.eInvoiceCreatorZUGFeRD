@@ -272,14 +272,14 @@ public class InvoiceViewModelTests : IDisposable
         _wpf.Invoke(() =>
         {
             var vm = CreateVm();
-            var dto = MakeDto(Guid.NewGuid(), 99, "TestPos");
+            var dto = MakeDto(Guid.NewGuid(), 99, "TestPos", "GROUP");
 
             _invoiceService.RaiseCreated(dto);
 
             var items = GetItems(vm);
-            Assert.Contains(items, x => x.InvoicePositionId == dto.Id);
-            Assert.NotNull(vm.SelectedInvoicePositionCardListItemViewModel);
-            Assert.Equal(dto.Id, vm.SelectedInvoicePositionCardListItemViewModel!.InvoicePositionId);
+            var item = items.FirstOrDefault(x => x.InvoicePositionId == dto.Id);
+            Assert.NotNull(item);
+            Assert.True(item!.IsGroupPosition);
         });
     }
 
@@ -321,8 +321,12 @@ public class InvoiceViewModelTests : IDisposable
         _wpf.Invoke(() =>
         {
             var vm = CreateVm();
-            var dto = MakeDto(Guid.NewGuid(), 99, "ToDelete");
+            var dto = MakeDto(Guid.NewGuid(), 99, "ToDelete", "GROUP");
             _invoiceService.RaiseCreated(dto);
+
+            var item = GetItems(vm).FirstOrDefault(x => x.InvoicePositionId == dto.Id);
+            Assert.NotNull(item);
+            vm.SelectedInvoicePositionCardListItemViewModel = item;
             Assert.NotNull(vm.SelectedInvoicePositionCardListItemViewModel);
 
             _invoiceService.RaiseDeleted(dto.Id);
@@ -331,6 +335,7 @@ public class InvoiceViewModelTests : IDisposable
             Assert.False(vm.HasSelectedInvoicePosition);
         });
     }
+
 
     [Fact(DisplayName = "InvoicePositionsLoaded event: replaces entire list with newly loaded positions")]
     public void InvoicePositionsLoaded_ReplacesEntireList()
@@ -404,13 +409,19 @@ public class InvoiceViewModelTests : IDisposable
             _invoiceService.RaiseCreated(dto1);
             _invoiceService.RaiseCreated(dto2);
 
-            // dto2 is selected (last created), delete dto1
+            // manual selection
+            var item2 = GetItems(vm).FirstOrDefault(x => x.InvoicePositionId == dto2.Id);
+            Assert.NotNull(item2);
+            vm.SelectedInvoicePositionCardListItemViewModel = item2;
+
+            // dto2 is selected, delete dto1
             _invoiceService.RaiseDeleted(dto1.Id);
 
             Assert.True(vm.HasSelectedInvoicePosition);
             Assert.Equal(dto2.Id, vm.SelectedInvoicePositionCardListItemViewModel!.InvoicePositionId);
         });
     }
+
     #endregion
 
     #region DiscountPreviewText / NoDiscountPreviewText
@@ -599,7 +610,7 @@ public class InvoiceViewModelTests : IDisposable
           .Cast<InvoicePositionCardItemViewModel>()
           .ToList();
 
-    private static InvoicePositionDetailsDTO MakeDto(Guid id, int nr, string description) =>
+    private static InvoicePositionDetailsDTO MakeDto(Guid id, int nr, string description, string lineStatusReasonCode = "GROUP") =>
         new()
         {
             Id = id,
@@ -610,7 +621,8 @@ public class InvoiceViewModelTests : IDisposable
             InvoicePositionVatRate = 19,
             InvoicePositionVatCategoryCode = "S",
             InvoicePositionNetAmount = 0m,
-            InvoicePositionGrossAmount = 0m
+            InvoicePositionGrossAmount = 0m,
+            LineStatusReasonCode = lineStatusReasonCode
         };
     #endregion
 }

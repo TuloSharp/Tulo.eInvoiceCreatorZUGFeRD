@@ -98,17 +98,6 @@ public class AddInvoicePositionIntegrationTests : IDisposable
         Assert.Equal(100m, result.Data[0].InvoicePositionUnitPrice);
     }
 
-    [Fact(DisplayName = "Integration: Add command assigns IsStandalonePosition when no parent")]
-    public async Task AddCommand_AssignsStandalonePosition_WhenNoParent()
-    {
-        var vm = MakeFilledVm("Standalone");
-
-        _wpf.Invoke(() => vm.AddInvoicePositionDetailsCommand.Execute(null));
-
-        var result = await _store.GetAllAsync();
-        Assert.True(result.Data[0].IsStandalonePosition);
-    }
-
     [Fact(DisplayName = "Integration: multiple adds result in correct count in store")]
     public async Task AddCommand_MultipleAdds_CorrectCountInStore()
     {

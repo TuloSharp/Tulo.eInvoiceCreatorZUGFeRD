@@ -6,7 +6,6 @@ using System.Windows.Input;
 using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
 using tulo.CommonMVVM.GlobalProperties;
-using tulo.CommonMVVM.UiCommands;
 using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
 using tulo.eInvoiceCreatorZUGFeRD.Commands;
@@ -545,20 +544,6 @@ public class InvoiceViewModel : BaseViewModel
         set => SetField(ref _isEnabledSaveRequestInUI, value);
     }
 
-    private bool _isAltShortcutKeyPressed;
-    public bool IsAltShortcutKeyPressed
-    {
-        get => _isAltShortcutKeyPressed;
-        set => SetField(ref _isAltShortcutKeyPressed, value);
-    }
-
-    private bool _isShortcutKeyAlreadyPressed;
-    public bool IsAltShortcutKeyAlreadyPressed
-    {
-        get => _isShortcutKeyAlreadyPressed;
-        set => SetField(ref _isShortcutKeyAlreadyPressed, value);
-    }
-
     private bool _isDuplicate;
     public bool IsDuplicate
     {
@@ -589,8 +574,6 @@ public class InvoiceViewModel : BaseViewModel
     public ICommand CloseSpinnerMessageCommand { get; }
     public ICommand OpenSpinnerMessageCommand { get; }
     public ICommand RequestBringIntoViewCommand { get; }
-    public ICommand IsAltShortcutKeyReleasedCommand { get; }
-    public ICommand IsAltShortcutKeyPressedCommand { get; }
     public ICommand SaveCustomerDataCommand { get; }
     public ICommand LoadCustomerDataCommand { get; }
     public ICommand ClearAllInvoiceViewCommand { get; }
@@ -661,8 +644,6 @@ public class InvoiceViewModel : BaseViewModel
         OpenSpinnerMessageCommand = new OpenModalStackCommand(collectorCollection, () => new SpinnerMessageViewModel(), typeof(SpinnerMessageViewModel));
         CloseSpinnerMessageCommand = new CloseModalStackCommand(collectorCollection, typeof(SpinnerMessageViewModel));
         RequestBringIntoViewCommand = new RequestBringIntoViewCommand();
-        IsAltShortcutKeyReleasedCommand = new IsAltShortcutKeyReleasedCommand(collectorCollection);
-        IsAltShortcutKeyPressedCommand = new IsAltShortcutKeyPressedCommand(collectorCollection);
         SaveCustomerDataCommand = new SaveCustomerDataCommand(this, _collectorCollection);
         LoadCustomerDataCommand = new LoadCustomerDataCommand(this, _collectorCollection);
         ClearAllInvoiceViewCommand = new ClearAllInvoiceViewCommand(this, _collectorCollection);
@@ -1144,7 +1125,8 @@ public class InvoiceViewModel : BaseViewModel
             InvoicePositionDeliveryNoteLineId = "000010",
             InvoicePositionRefDocId = "2156307416",
             InvoicePositionRefDocType = "130",
-            InvoicePositionRefDocRefType = "VN"
+            InvoicePositionRefDocRefType = "VN",
+            LineStatusReasonCode = "GROUP"
         }).GetAwaiter().GetResult();
 
         _invoicePositionService.AddInvoicePositionAsync(new InvoicePositionDetailsDTO
@@ -1171,7 +1153,8 @@ public class InvoiceViewModel : BaseViewModel
             InvoicePositionDeliveryNoteLineId = "000020",
             InvoicePositionRefDocId = "2156307416",
             InvoicePositionRefDocType = "130",
-            InvoicePositionRefDocRefType = "VN"
+            InvoicePositionRefDocRefType = "VN",
+            LineStatusReasonCode = "GROUP"
         }).GetAwaiter().GetResult();
 
         _invoicePositionService.AddInvoicePositionAsync(new InvoicePositionDetailsDTO
@@ -1198,7 +1181,8 @@ public class InvoiceViewModel : BaseViewModel
             InvoicePositionDeliveryNoteLineId = "000010",
             InvoicePositionRefDocId = "2156307417",
             InvoicePositionRefDocType = "130",
-            InvoicePositionRefDocRefType = "VN"
+            InvoicePositionRefDocRefType = "VN",
+            LineStatusReasonCode = "GROUP"
         }).GetAwaiter().GetResult();
     }
     #endregion

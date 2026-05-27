@@ -8,6 +8,7 @@
              xmlns:behaviors="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:commoncontrols="clr-namespace:tulo.ResourcesWpfLib.Controls.Common;assembly=tulo.ResourcesWpfLib"
              xmlns:extended="clr-namespace:tulo.ResourcesWpfLib.Utilities;assembly=tulo.ResourcesWpfLib"
+             xmlns:converters="clr-namespace:tulo.ResourcesWpfLib.Converters;assembly=tulo.ResourcesWpfLib"
              Background="{StaticResource PanelBackgroundBrushColor}"
              Style="{StaticResource RoundedUserControlStyle}"
              ToolTipService.InitialShowDelay="500"
@@ -19,19 +20,11 @@
     <UserControl.Resources>
         <ResourceDictionary>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+            <converters:InverseBoolConverter x:Key="InverseBoolConverter" />
             <flag:Boolean x:Key="TrueFlag">True</flag:Boolean>
             <flag:Boolean x:Key="FalseFlag">False</flag:Boolean>
         </ResourceDictionary>
     </UserControl.Resources>
-
-    <behaviors:Interaction.Triggers>
-        <behaviors:EventTrigger EventName="PreviewKeyDown">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyReleasedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
-        </behaviors:EventTrigger>
-        <behaviors:EventTrigger EventName="KeyUp">
-            <behaviors:InvokeCommandAction Command="{Binding IsAltShortcutKeyReleasedCommand, Mode=OneWay}" PassEventArgsToCommand="True" />
-        </behaviors:EventTrigger>
-    </behaviors:Interaction.Triggers>
 
     <UserControl.InputBindings>
         <KeyBinding Modifiers="Alt"
@@ -70,7 +63,7 @@
                         <ColumnDefinition Width="2" />
                     </Grid.ColumnDefinitions>
 
-                    <Image Margin="1,0,0,0"
+                    <Image Margin="2,0,0,1"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            HorizontalAlignment="Center"
@@ -119,9 +112,9 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="0" />
-                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="40" />
                         <ColumnDefinition Width="3" />
@@ -129,61 +122,44 @@
 
                     <Button Name="requestedReturnButton"
                             Grid.Column="1"
-                            HorizontalAlignment="Center"
+                            Margin="0,2,0,2"
+                            Style="{StaticResource ToolbarSecondaryButton}"
                             KeyboardNavigation.AcceptsReturn="False"
-                            BorderBrush="Transparent"
-                            Foreground="Transparent"
                             ToolTip="{Binding ToolTipReturn}"
+                            IsEnabled="{Binding IsSaveRequestMessageVisible, Converter={StaticResource InverseBoolConverter}}"
                             Command="{Binding CloseEditInvoicePositionDetailsCommand}">
-                        <Grid>
-                            <Path Style="{StaticResource ContentButtonPathStyle}"
-                                  Data="{StaticResource ArrowBackIconSVG}"
-                                  Fill="{StaticResource ButtonBrushIconColor}" />
-                            <TextBlock Text="R"
-                                       Width="12"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Right"
-                                       Visibility="{Binding IsAltShortcutKeyPressed, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                       Background="{StaticResource MainBrushColor}"
-                                       Foreground="{StaticResource ButtonBrushIconColor}" />
-                            <AccessText Text="_Return"
-                                        FontSize="8"
-                                        Foreground="Transparent"
-                                        Background="Transparent" />
-                        </Grid>
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource ArrowBackIconSVG}"
+                                  Fill="{StaticResource ButtonIconPrimaryColorBrush}"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
+                            <AccessText Text="{Binding ContentButtonReturn}" VerticalAlignment="Center" />
+                        </StackPanel>
                     </Button>
 
+                    <!--  ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"  -->
+                    <!--  ToolTipService.ShowOnDisabled="True"  -->
                     <Button Name="saveButton"
                             Grid.Column="3"
+                            Margin="0,2,0,2"
+                            Style="{StaticResource ToolbarPrimaryButton}"
                             ToolTip="{Binding ToolTipSave}"
                             KeyboardNavigation.AcceptsReturn="False"
-                            BorderBrush="Transparent"
-                            Foreground="Transparent"
-                            Command="{Binding EditInvoicePositionDetailsCommand}"
-                            IsEnabled="{Binding IsEnableToSaveData}">
-                        <Grid>
-                            <Viewbox Style="{StaticResource ViewBox4Icon}">
-                                <Path Style="{StaticResource ContentButtonPathStyle}"
-                                      Data="{StaticResource DoneIconSVG}"
-                                      Fill="{StaticResource ButtonBrushIconColor}"
-                                      Width="auto"
-                                      Height="auto" />
-                            </Viewbox>
-                            <TextBlock Text="O"
-                                       Width="12"
-                                       TextAlignment="Center"
-                                       VerticalAlignment="Bottom"
-                                       HorizontalAlignment="Right"
-                                       Background="{StaticResource MainBrushColor}"
-                                       Foreground="{StaticResource ButtonBrushIconColor}"
-                                       Visibility="{Binding IsAltShortcutKeyPressed, Converter={StaticResource BooleanToVisibilityConverter}}" />
-
-                            <AccessText Text="_Okay"
-                                        FontSize="8"
-                                        Foreground="Transparent"
-                                        Background="Transparent" />
-                        </Grid>
+                            IsEnabled="{Binding IsEnableToSaveData}"
+                            Command="{Binding EditInvoicePositionDetailsCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource DoneIconSVG}"
+                                  Fill="White"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
+                            <AccessText Text="{Binding ContentButtonEditPosition}" VerticalAlignment="Center" />
+                        </StackPanel>
                     </Button>
 
                 </Grid>

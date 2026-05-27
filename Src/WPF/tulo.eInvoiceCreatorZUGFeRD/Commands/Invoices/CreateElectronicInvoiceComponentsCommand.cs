@@ -185,9 +185,7 @@ public class CreateElectronicInvoiceComponentsCommand(InvoiceViewModel invoiceVi
 
             if (!pdfAResult.Success)
             {
-                _logger.LogError("[Create] Step 1 FAILED (ApplyPdfA). " +
-                                 "InvoiceNumber={InvoiceNumber}, Reason={Reason}.",
-                    invoiceViewModel.InvoiceNumber, pdfAResult.Message);
+                _logger.LogError("[Create] Step 1 FAILED (ApplyPdfA). " + "InvoiceNumber={InvoiceNumber}, Reason={Reason}.", invoiceViewModel.InvoiceNumber, pdfAResult.Message);
 
                 invoiceViewModel.StatusMessage = $"ApplyPdfA failed: {pdfAResult.Message}";
                 invoiceViewModel.ResetSlideButton = !invoiceViewModel.ResetSlideButton;
