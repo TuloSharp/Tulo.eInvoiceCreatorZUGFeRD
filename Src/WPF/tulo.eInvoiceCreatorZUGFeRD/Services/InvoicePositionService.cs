@@ -239,23 +239,14 @@ public sealed class InvoicePositionService(IInvoicePositionStore invoicePosition
     }
 
     // GROUP total = sum of all its DETAIL children
-    private static void RecalculateGroup(
-        InvoicePositionDetailsDTO group, List<InvoicePositionDetailsDTO> all)
+    private static void RecalculateGroup(InvoicePositionDetailsDTO group, List<InvoicePositionDetailsDTO> all)
     {
         var children = all.Where(p => p.ParentPositionId == group.Id).ToList();
 
-        group.InvoicePositionNetAmount =
-            children.Sum(c => c.InvoicePositionNetAmount);
-
-        group.InvoicePositionDiscountNetAmount =
-            children.Sum(c => c.InvoicePositionDiscountNetAmount);
-
-        group.InvoicePositionNetAmountAfterDiscount =
-            children.Sum(c => c.InvoicePositionNetAmountAfterDiscount
-                               ?? c.InvoicePositionNetAmount);
-
-        group.InvoicePositionGrossAmount =
-            children.Sum(c => c.InvoicePositionGrossAmount);
+        group.InvoicePositionNetAmount = children.Sum(c => c.InvoicePositionNetAmount);
+        group.InvoicePositionDiscountNetAmount = children.Sum(c => c.InvoicePositionDiscountNetAmount);
+        group.InvoicePositionNetAmountAfterDiscount = children.Sum(c => c.InvoicePositionNetAmountAfterDiscount ?? c.InvoicePositionNetAmount);
+        group.InvoicePositionGrossAmount = children.Sum(c => c.InvoicePositionGrossAmount);
     }
 
     // "01", "02" for top-level — "0101", "0102", "0201" for sub-positions
@@ -282,7 +273,6 @@ public sealed class InvoicePositionService(IInvoicePositionStore invoicePosition
     }
 
     // ── Validation ───────────────────────────────────────────────────────────
-
     private static bool Validate(InvoicePositionDetailsDTO invPos)
     {
         // All positions need a description
@@ -302,25 +292,20 @@ public sealed class InvoicePositionService(IInvoicePositionStore invoicePosition
     }
 
     // ── Recalculate amounts ───────────────────────────────────────────────────
-
     private static void Recalculate(InvoicePositionDetailsDTO invPos)
     {
         // GROUP amounts are set by RecalculateGroup — do not override here
         if (invPos.IsGroupPosition) return;
 
-        invPos.InvoicePositionNetAmount =
-            Math.Round(invPos.InvoicePositionQuantity * invPos.InvoicePositionUnitPrice,
-                       2, MidpointRounding.AwayFromZero);
+        invPos.InvoicePositionNetAmount = Math.Round(invPos.InvoicePositionQuantity * invPos.InvoicePositionUnitPrice, 2, MidpointRounding.AwayFromZero);
 
-        var netAfterDiscount = invPos.InvoicePositionNetAmount
-                               - invPos.InvoicePositionDiscountNetAmount;
-        if (netAfterDiscount < 0) netAfterDiscount = 0;
+        var netAfterDiscount = invPos.InvoicePositionNetAmount - invPos.InvoicePositionDiscountNetAmount;
+        if (netAfterDiscount < 0 && invPos.InvoicePositionNetAmount >= 0)
+            netAfterDiscount = 0;
         invPos.InvoicePositionNetAmountAfterDiscount = netAfterDiscount;
 
         var vatFactor = 1m + invPos.InvoicePositionVatRate / 100m;
-        invPos.InvoicePositionGrossAmount =
-            Math.Round((decimal)invPos.InvoicePositionNetAmountAfterDiscount * vatFactor,
-                       2, MidpointRounding.AwayFromZero);
+        invPos.InvoicePositionGrossAmount = Math.Round((decimal)invPos.InvoicePositionNetAmountAfterDiscount * vatFactor, 2, MidpointRounding.AwayFromZero);
     }
 
     // ── Flag helpers ─────────────────────────────────────────────────────────
@@ -337,6 +322,6 @@ public sealed class InvoicePositionService(IInvoicePositionStore invoicePosition
     {
         IsLoaded = false;
         StatusMessage = string.Empty;
-    } 
+    }
     #endregion
 }

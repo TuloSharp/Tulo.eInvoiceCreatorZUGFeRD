@@ -5,6 +5,15 @@ public class InvoicePositionDetailsDTO
     public Guid Id { get; set; }
     public int InvoicePositionNr { get; set; }
 
+    #region Parsing InvoicePositionNr to Show in UI
+    public string DisplayInvPosNr => LineId.Length switch
+    {
+        2 => int.Parse(LineId).ToString(),
+        4 => $"{int.Parse(LineId[..2])}.{int.Parse(LineId[2..])}",
+        _ => InvoicePositionNr.ToString()
+    }; 
+    #endregion
+
     #region SubPosition fields
     // Id of the parent GROUP position — null means top-level position
     public Guid? ParentPositionId { get; set; }

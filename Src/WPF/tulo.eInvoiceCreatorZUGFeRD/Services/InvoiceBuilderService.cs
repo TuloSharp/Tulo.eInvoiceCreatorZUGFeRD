@@ -143,12 +143,15 @@ public sealed class InvoiceBuilderService(ICollectorCollection collectorCollecti
 
         invoice.Lines.Clear();
 
+        var lineIdByGuid = result.Data.ToDictionary(d => d.Id, d => d.LineId);
+
         foreach (var dto in result.Data)
         {
+            var parentLineId = dto.ParentPositionId.HasValue && lineIdByGuid.TryGetValue(dto.ParentPositionId.Value, out var pid) ? pid : string.Empty;
             var line = new InvoiceLine
             {
                 Description = dto.InvoicePositionDescription ?? string.Empty,
-                ProductDescription = dto.InvoicePositionDescription ?? string.Empty,
+                ProductDescription = dto.InvoicePositionProductDescription ?? string.Empty,
 
                 // Only for ZUGFeRD: if DocumentTypeCode = 381 (credit note), 
                 // quantities must be negated according to ZUGFeRD standard
@@ -161,7 +164,7 @@ public sealed class InvoiceBuilderService(ICollectorCollection collectorCollecti
                 TaxCategory = string.IsNullOrWhiteSpace(dto.InvoicePositionVatCategoryCode) ? "S" : dto.InvoicePositionVatCategoryCode,
 
                 // Discount handling: store already provides NetAmountAfterDiscount.
-                ForcedLineTotalAmount = dto.InvoicePositionNetAmountAfterDiscount ?? dto.InvoicePositionNetAmount,
+                ForcedLineTotalAmount = dto.InvoicePositionNetAmountAfterDiscount is { } v && v != 0 ? v : dto.InvoicePositionNetAmount != 0 ? (decimal?)dto.InvoicePositionNetAmount : null,
 
                 // Identifiers
                 SellerAssignedId = dto.InvoicePositionItemNr ?? string.Empty,
@@ -171,21 +174,22 @@ public sealed class InvoiceBuilderService(ICollectorCollection collectorCollecti
 
                 // Order reference
                 BuyerOrderReferencedId = dto.InvoicePositionOrderId ?? string.Empty,
-                BuyerOrderDate = dto.InvoicePositionOrderDate.HasValue
-                ? new DateTime(dto.InvoicePositionOrderDate.Value.Year, dto.InvoicePositionOrderDate.Value.Month, dto.InvoicePositionOrderDate.Value.Day)
-                : null,
+                BuyerOrderDate = dto.InvoicePositionOrderDate.HasValue ? new DateTime(dto.InvoicePositionOrderDate.Value.Year, dto.InvoicePositionOrderDate.Value.Month, dto.InvoicePositionOrderDate.Value.Day) : null,
 
                 // Delivery note reference
                 DeliveryNoteNumber = dto.InvoicePositionDeliveryNoteId ?? string.Empty,
                 DeliveryNoteLineId = dto.InvoicePositionDeliveryNoteLineId ?? string.Empty,
-                DeliveryNoteDate = dto.InvoicePositionDeliveryNoteDate.HasValue
-                ? new DateTime(dto.InvoicePositionDeliveryNoteDate.Value.Year, dto.InvoicePositionDeliveryNoteDate.Value.Month, dto.InvoicePositionDeliveryNoteDate.Value.Day)
-                : null,
+                DeliveryNoteDate = dto.InvoicePositionDeliveryNoteDate.HasValue ? new DateTime(dto.InvoicePositionDeliveryNoteDate.Value.Year, dto.InvoicePositionDeliveryNoteDate.Value.Month, dto.InvoicePositionDeliveryNoteDate.Value.Day) : null,
 
                 // Additional referenced document
                 AdditionalReferencedDocumentId = dto.InvoicePositionRefDocId ?? string.Empty,
                 AdditionalReferencedDocumentTypeCode = dto.InvoicePositionRefDocType ?? string.Empty,
                 AdditionalReferencedDocumentReferenceTypeCode = dto.InvoicePositionRefDocRefType ?? string.Empty,
+
+                //Subline handling
+                LineId = dto.LineId,
+                ParentLineId = parentLineId,
+                LineStatusReasonCode = dto.LineStatusReasonCode,
             };
 
             invoice.Lines.Add(line);
@@ -256,7 +260,7 @@ public sealed class InvoiceBuilderService(ICollectorCollection collectorCollecti
 
         foreach (var l in invoice.Lines)
         {
-            var lineNet = l.ForcedLineTotalAmount.HasValue ? Round2(l.ForcedLineTotalAmount.Value) : Round2(l.Quantity * l.UnitPrice);
+            var lineNet = (l.ForcedLineTotalAmount.HasValue && l.ForcedLineTotalAmount.Value != 0) ? Round2(l.ForcedLineTotalAmount.Value) : Round2(l.Quantity * l.UnitPrice);
 
             var lineTax = Round2(lineNet * (l.TaxPercent / 100m));
 

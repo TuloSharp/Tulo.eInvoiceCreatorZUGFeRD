@@ -25,6 +25,7 @@
             </Grid.ColumnDefinitions>
 
             <ComboBox Grid.Column="0"
+                      Template="{StaticResource ComboBoxCustomized}"
                       HorizontalAlignment="Left"
                       SelectedValue="{Binding SubjectCodeInvoiceNote, UpdateSourceTrigger=PropertyChanged}"
                       ToolTip="{Binding ToolTipSubjectCodeInvoiceNote}"

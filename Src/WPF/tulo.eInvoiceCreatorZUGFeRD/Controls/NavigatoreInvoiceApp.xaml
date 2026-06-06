@@ -21,8 +21,6 @@
                 <ResourceDictionary Source="pack://application:,,,/tulo.ResourcesWpfLib;component/Resources/NavigationBarResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:EqualValueToParameterConverter x:Key="EqualValueToParameterConverter" />
-
-        
         </ResourceDictionary>
     </UserControl.Resources>
 

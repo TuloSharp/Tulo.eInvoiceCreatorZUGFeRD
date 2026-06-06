@@ -20,7 +20,7 @@ using tulo.ResourcesWpfLib.Commands;
 
 namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
-public class InvoiceViewModel : BaseViewModel
+public partial class InvoiceViewModel : BaseViewModel
 {
     #region Services / Stores filled via CollectorCollection
     private readonly IGlobalPropsUiManage _globalPropsUiManage;
@@ -39,9 +39,10 @@ public class InvoiceViewModel : BaseViewModel
     private const string DateFormat = "dd.MM.yyyy";
     #endregion
 
+    #region Common Vars
     public Invoice Invoice { get; private set; } = new Invoice();
-
     public double? NormalWidthBeforePreview { get; set; } = AppConstants.Ui.WidthBeforePreview;
+    #endregion
 
     #region InvoicePositions
     private readonly ObservableCollection<InvoicePositionCardItemViewModel> _invoicePositionCardListItemViewModel;
@@ -90,8 +91,6 @@ public class InvoiceViewModel : BaseViewModel
         get => _documentName;
         set => SetField(ref _documentName, value);
     }
-
-
 
     private string _documentTypeCode = string.Empty;
     public string DocumentTypeCode
@@ -160,11 +159,7 @@ public class InvoiceViewModel : BaseViewModel
         }
     }
 
-    public string SelectedDocumentTypeTooltip =>
-        SelectedDocumentTypeItem is null
-            ? string.Empty
-            : _translatorUiProvider.Translate($"ToolTip{SelectedDocumentTypeItem.TextKey}");
-
+    public string SelectedDocumentTypeTooltip => SelectedDocumentTypeItem is null ? string.Empty : _translatorUiProvider.Translate($"ToolTip{SelectedDocumentTypeItem.TextKey}");
     #endregion
 
     #region Buyer Party
@@ -372,9 +367,6 @@ public class InvoiceViewModel : BaseViewModel
     }
 
     public string ToolTipPaymentMeansCode => SelectedPaymentMeansItem is null ? string.Empty : _translatorUiProvider.Translate($"ToolTip{SelectedPaymentMeansItem.TextKey}");
-
-
-
     #endregion
 
     #region Payment Infos - Terms
@@ -619,9 +611,8 @@ public class InvoiceViewModel : BaseViewModel
 
     public InvoiceViewModel(ICollectorCollection collectorCollection)
     {
-        _collectorCollection = collectorCollection;
-
         #region Get Services / Stores from CollectorCollection
+        _collectorCollection = collectorCollection;
         _selectedInvoicePositionStore = collectorCollection.GetService<ISelectedInvoicePositionStore>();
         _invoicePositionService = collectorCollection.GetService<IInvoicePositionService>();
         _globalPropsUiManage = collectorCollection.GetService<IGlobalPropsUiManage>();
@@ -633,24 +624,26 @@ public class InvoiceViewModel : BaseViewModel
         _invoicePositionCardListItemViewModel = [];
         InvoicePositionCardListItemCollectionView = CollectionViewSource.GetDefaultView(_invoicePositionCardListItemViewModel);
         InvoicePositionCardListItemCollectionView.Filter = FilterInvoicePositions;
+        InvoicePositionCardListItemCollectionView.SortDescriptions.Add(new SortDescription(nameof(InvoicePositionCardItemViewModel.LineId), ListSortDirection.Ascending));
 
         StatusMessageViewModel = new MessageViewModel();
 
+        #region ViewModel Commands
         UpdatePreviewInvoicePdfCommand = new UpdatePreviewInvoicePdfCommand(this, _collectorCollection);
         OpenAddInvoicePositionViewCommand = new OpenModalStackCommand(collectorCollection, () => new AddInvoicePositionViewModel(_collectorCollection), typeof(AddInvoicePositionViewModel));
         OpenEditInvoicePositionViewCommand = new OpenModalStackCommand(collectorCollection, () => new EditInvoicePositionViewModel(_collectorCollection), typeof(EditInvoicePositionViewModel));
+        SaveCustomerDataCommand = new SaveCustomerDataCommand(this, _collectorCollection);
+        LoadCustomerDataCommand = new LoadCustomerDataCommand(this, _collectorCollection);
+        ClearAllInvoiceViewCommand = new ClearAllInvoiceViewCommand(this, _collectorCollection);
+        LoadInvoicePositionsCommand = new LoadInvoicePositionsCommand(this, _collectorCollection);
+        CreateElectronicInvoiceComponentsCommand = new CreateElectronicInvoiceComponentsCommand(this, _collectorCollection);
+        #endregion
 
         #region Common Commands
         OpenSpinnerMessageCommand = new OpenModalStackCommand(collectorCollection, () => new SpinnerMessageViewModel(), typeof(SpinnerMessageViewModel));
         CloseSpinnerMessageCommand = new CloseModalStackCommand(collectorCollection, typeof(SpinnerMessageViewModel));
         RequestBringIntoViewCommand = new RequestBringIntoViewCommand();
-        SaveCustomerDataCommand = new SaveCustomerDataCommand(this, _collectorCollection);
-        LoadCustomerDataCommand = new LoadCustomerDataCommand(this, _collectorCollection);
-        ClearAllInvoiceViewCommand = new ClearAllInvoiceViewCommand(this, _collectorCollection);
         #endregion
-
-        LoadInvoicePositionsCommand = new LoadInvoicePositionsCommand(this, _collectorCollection);
-        CreateElectronicInvoiceComponentsCommand = new CreateElectronicInvoiceComponentsCommand(this, _collectorCollection);
 
         #region Events
         _selectedInvoicePositionStore!.SelectedInvoicePositionChanged += OnSelectedInvoicePositionChanged;
@@ -659,19 +652,25 @@ public class InvoiceViewModel : BaseViewModel
         _invoicePositionService.InvoicePositionCreated += OnInvoicePositionCreated;
         _invoicePositionService.InvoicePositionUpdated += OnInvoicePositionUpdated;
         _invoicePositionService.InvoicePositionDeleted += OnInvoicePositionDeleted;
-        _invoicePositionService.InvoicePositionsLoaded += OnInvoicePositionsLoaded; 
+        _invoicePositionService.InvoicePositionsLoaded += OnInvoicePositionsLoaded;
         #endregion
 
         LoadDocumentTypeCodesList();
         LoadPaymentMeansCodesList();
 
+        #region Partial Class Translation
         FillAllInvoiceToolTips();
         FillAllInvoicePlaceholders();
         FillAllInvoiceLabelsAndContents();
+        #endregion
 
+#if DEBUG
         //Only for UI Tests
-        SeedTestSellerData();
-        SeedTestInvoicePositions();
+        //SeedTestSellerData();
+        //SeedTestInvoicePositions();
+        SeedTestSellerDataSublines();
+        SeedTestMainAndSubInvoicePositions();
+#endif
     }
 
     private void OnInvoicePositionCollectionChanged(object? sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -685,15 +684,9 @@ public class InvoiceViewModel : BaseViewModel
         var storeId = _selectedInvoicePositionStore.SelectedInvoicePositionId;
 
         if (!storeId.HasValue)
-        {
             _selectedInvoicePositionCardItemViewModel = null;
-        }
         else
-        {
-            _selectedInvoicePositionCardItemViewModel =
-                _invoicePositionCardListItemViewModel
-                    .FirstOrDefault(invPos => invPos.InvoicePositionId == storeId.Value);
-        }
+            _selectedInvoicePositionCardItemViewModel = _invoicePositionCardListItemViewModel.FirstOrDefault(invPos => invPos.InvoicePositionId == storeId.Value);
 
         HasSelectedInvoicePosition = _selectedInvoicePositionCardItemViewModel != null;
 
@@ -717,8 +710,7 @@ public class InvoiceViewModel : BaseViewModel
         // 1. Update existing cards / add new ones
         foreach (var dto in invoicePositions)
         {
-            var existing = _invoicePositionCardListItemViewModel
-                .FirstOrDefault(vm => vm.InvoicePositionId == dto.Id);
+            var existing = _invoicePositionCardListItemViewModel.FirstOrDefault(vm => vm.InvoicePositionId == dto.Id);
 
             if (existing is not null)
                 existing.Update(dto);
@@ -728,18 +720,14 @@ public class InvoiceViewModel : BaseViewModel
 
         // 2. Remove cards that no longer exist in the store
         var activeIds = invoicePositions.Select(d => d.Id).ToHashSet();
-        var toRemove = _invoicePositionCardListItemViewModel
-            .Where(vm => !activeIds.Contains(vm.InvoicePositionId))
-            .ToList();
+        var toRemove = _invoicePositionCardListItemViewModel.Where(vm => !activeIds.Contains(vm.InvoicePositionId)).ToList();
         foreach (var vm in toRemove)
             _invoicePositionCardListItemViewModel.Remove(vm);
 
         // 3. Sync ObservableCollection order with store order
         for (var i = 0; i < invoicePositions.Count; i++)
         {
-            var currentIndex = _invoicePositionCardListItemViewModel
-                .IndexOf(_invoicePositionCardListItemViewModel
-                    .First(vm => vm.InvoicePositionId == invoicePositions[i].Id));
+            var currentIndex = _invoicePositionCardListItemViewModel.IndexOf(_invoicePositionCardListItemViewModel.First(vm => vm.InvoicePositionId == invoicePositions[i].Id));
 
             if (currentIndex != i)
                 _invoicePositionCardListItemViewModel.Move(currentIndex, i);
@@ -755,19 +743,12 @@ public class InvoiceViewModel : BaseViewModel
     {
         var invPosViewModel = new InvoicePositionCardItemViewModel(invoicePositionDetailsDTO, _collectorCollection);
 
-        // 2) Add to the UI list (so that it can be displayed at all)
         _invoicePositionCardListItemViewModel.Add(invPosViewModel);
-
-        //// 3) Select (uses YOUR setter -> writes to SelectedStore)
-        //SelectedInvoicePositionCardListItemViewModel = invPosViewModel;
-
-        //OnSelectedInvoicePositionChanged();
     }
 
     private void OnInvoicePositionUpdated(InvoicePositionDetailsDTO invoicePositionDetailsDTO)
     {
-        var existingItemViewModel = _invoicePositionCardListItemViewModel
-            .FirstOrDefault(invPos => invPos.InvoicePositionId == invoicePositionDetailsDTO.Id);
+        var existingItemViewModel = _invoicePositionCardListItemViewModel.FirstOrDefault(invPos => invPos.InvoicePositionId == invoicePositionDetailsDTO.Id);
 
         if (existingItemViewModel == null) return;
 
@@ -797,7 +778,6 @@ public class InvoiceViewModel : BaseViewModel
 
         InvoicePositionCardListItemCollectionView.Refresh();
     }
-
 
     public static InvoiceViewModel LoadInvoiceViewModel(ICollectorCollection collectorCollection)
     {
@@ -832,231 +812,11 @@ public class InvoiceViewModel : BaseViewModel
             || vm.InvoicePositionProductDescription.Contains(search, StringComparison.OrdinalIgnoreCase)
             || vm.InvoicePositionEan.Contains(search, StringComparison.OrdinalIgnoreCase);
     }
-
-    #endregion
-
-    #region Tooltips
-    public string ToolTipCompanyBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipFiscalIdBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipVatIdBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipErpCustomerNumberBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipLeitwegIdBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipPersonBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipStreetBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipHouseNumberBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipPostalCodeBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipCityBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipCountryCodeBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipPhoneBuyerParty { get; private set; } = string.Empty;
-    public string ToolTipEmailAddressBuyerParty { get; private set; } = string.Empty;
-
-    public string ToolTipPaymentDueDateText { get; private set; } = string.Empty;
-    public string ToolTipPaymentReference { get; private set; } = string.Empty;
-    public string ToolTipPaymentTerms { get; private set; } = string.Empty;
-
-    //header
-    public string ToolTipInvoiceNumber { get; private set; } = string.Empty;
-    public string ToolTipCurrency { get; private set; } = string.Empty;
-    public string ToolTipDocumentName { get; private set; } = string.Empty;
-    public string ToolTipDocumentTypeCode { get; private set; } = string.Empty;
-
-    public string ToolTipCreatePreviewElectronicInvoice { get; private set; } = string.Empty;
-    public string ToolTipClearAllInvoiceView { get; private set; } = string.Empty;
-    public string ToolTipCreateElectronicInvoice { get; private set; } = string.Empty;
-    public string ToolTipSaveCustomerData { get; private set; } = string.Empty;
-    public string ToolTipLoadCustomerData { get; private set; } = string.Empty;
-
-
-    public string ToolTipDiscountPercent { get; private set; } = string.Empty;
-    public string ToolTipDiscountDays { get; private set; } = string.Empty;
-    public string ToolTipDiscountBasisDate { get; private set; } = string.Empty;
-    public string ToolTipDiscountPreviewText { get; private set; } = string.Empty;
-    public string ToolTipPaymentDueDateRangeText { get; private set; } = string.Empty;
-    public string ToolTipNoDiscountPreviewText { get; private set; } = string.Empty;
-
-    //Search
-    public string ToolTipSearchText { get; private set; } = string.Empty;
-    public string ToolTipCreateInvoicePosition { get; private set; } = string.Empty;
-
-    private void FillAllInvoiceToolTips()
-    {
-        // Buyer Party tooltips
-        ToolTipCompanyBuyerParty = _translatorUiProvider.Translate("ToolTipCompanyBuyerParty");
-        ToolTipFiscalIdBuyerParty = _translatorUiProvider.Translate("ToolTipFiscalIdBuyerParty");
-        ToolTipVatIdBuyerParty = _translatorUiProvider.Translate("ToolTipVatIdBuyerParty");
-        ToolTipErpCustomerNumberBuyerParty = _translatorUiProvider.Translate("ToolTipErpCustomerNumberBuyerParty");
-        ToolTipLeitwegIdBuyerParty = _translatorUiProvider.Translate("ToolTipLeitwegIdBuyerParty");
-        ToolTipPersonBuyerParty = _translatorUiProvider.Translate("ToolTipPersonBuyerParty");
-        ToolTipStreetBuyerParty = _translatorUiProvider.Translate("ToolTipStreetBuyerParty");
-        ToolTipHouseNumberBuyerParty = _translatorUiProvider.Translate("ToolTipHouseNumberBuyerParty");
-        ToolTipPostalCodeBuyerParty = _translatorUiProvider.Translate("ToolTipPostalCodeBuyerParty");
-        ToolTipCityBuyerParty = _translatorUiProvider.Translate("ToolTipCityBuyerParty");
-        ToolTipCountryCodeBuyerParty = _translatorUiProvider.Translate("ToolTipCountryCodeBuyerParty");
-        ToolTipPhoneBuyerParty = _translatorUiProvider.Translate("ToolTipPhoneBuyerParty");
-        ToolTipEmailAddressBuyerParty = _translatorUiProvider.Translate("ToolTipEmailAddressBuyerParty");
-
-        // Payment tooltips
-        ToolTipPaymentDueDateText = _translatorUiProvider.Translate("ToolTipPaymentDueDateText");
-        ToolTipPaymentReference = _translatorUiProvider.Translate("ToolTipPaymentReference");
-        ToolTipPaymentTerms = _translatorUiProvider.Translate("ToolTipPaymentTerms");
-
-        // Header tooltips
-        ToolTipInvoiceNumber = _translatorUiProvider.Translate("ToolTipInvoiceNumber");
-        ToolTipCurrency = _translatorUiProvider.Translate("ToolTipCurrency");
-        ToolTipDocumentName = _translatorUiProvider.Translate("ToolTipDocumentName");
-        ToolTipDocumentTypeCode = _translatorUiProvider.Translate("ToolTipDocumentTypeCode");
-
-        ToolTipCreatePreviewElectronicInvoice = _translatorUiProvider.Translate("ToolTipCreatePreviewElectronicInvoice");
-        ToolTipClearAllInvoiceView = _translatorUiProvider.Translate("ToolTipClearAllInvoiceView");
-        ToolTipCreateElectronicInvoice = _translatorUiProvider.Translate("ToolTipCreateElectronicInvoice");
-        ToolTipSaveCustomerData = _translatorUiProvider.Translate("ToolTipSaveCustomerData");
-        ToolTipLoadCustomerData = _translatorUiProvider.Translate("ToolTipLoadCustomerData");
-
-        //payment terms
-        ToolTipDiscountPercent = _translatorUiProvider.Translate("ToolTipDiscountPercent");
-        ToolTipDiscountDays = _translatorUiProvider.Translate("ToolTipDiscountDays");
-        ToolTipDiscountBasisDate = _translatorUiProvider.Translate("ToolTipDiscountBasisDate");
-        ToolTipDiscountPreviewText = _translatorUiProvider.Translate("ToolTipDiscountPreviewText");
-        ToolTipPaymentDueDateRangeText = _translatorUiProvider.Translate("ToolTipPaymentDueDateRangeText");
-        ToolTipNoDiscountPreviewText = _translatorUiProvider.Translate("ToolTipNoDiscountPreviewText");
-
-        //search
-        ToolTipSearchText = _translatorUiProvider.Translate("ToolTipSearch");
-        ToolTipCreateInvoicePosition = _translatorUiProvider.Translate("ToolTipCreateInvoicePosition");
-    }
-    #endregion
-
-    #region Placeholders
-    public string PlaceholderCompanyBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderFiscalIdBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderVatIdBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderErpCustomerNumberBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderLeitwegIdBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderPersonBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderStreetBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderHouseNumberBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderPostalCodeBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderCityBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderCountryCodeBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderPhoneBuyerParty { get; private set; } = string.Empty;
-    public string PlaceholderEmailAddressBuyerParty { get; private set; } = string.Empty;
-
-    public string PlaceholderPaymentReference { get; private set; } = string.Empty;
-    public string PlaceholderPaymentTerms { get; private set; } = string.Empty;
-
-    public string PlaceholderInvoiceNumber { get; private set; } = string.Empty;
-    public string PlaceholderCurrency { get; private set; } = string.Empty;
-    public string PlaceholderDocumentName { get; private set; } = string.Empty;
-    public string PlaceholderDocumentTypeCode { get; private set; } = string.Empty;
-
-    public string PlaceholderDiscountPercent { get; private set; } = string.Empty;
-    public string PlaceholderDiscountDays { get; private set; } = string.Empty;
-    public string PlaceholderDiscountPreviewText { get; private set; } = string.Empty;
-    public string PlaceholderNoDiscountPreviewText { get; private set; } = string.Empty;
-
-    private void FillAllInvoicePlaceholders()
-    {
-        // Buyer Party placeholders
-        PlaceholderCompanyBuyerParty = _translatorUiProvider.Translate("PlaceholderCompanyBuyerParty");
-        PlaceholderFiscalIdBuyerParty = _translatorUiProvider.Translate("PlaceholderFiscalIdBuyerParty");
-        PlaceholderVatIdBuyerParty = _translatorUiProvider.Translate("PlaceholderVatIdBuyerParty");
-        PlaceholderErpCustomerNumberBuyerParty = _translatorUiProvider.Translate("PlaceholderErpCustomerNumberBuyerParty");
-        PlaceholderLeitwegIdBuyerParty = _translatorUiProvider.Translate("PlaceholderLeitwegIdBuyerParty");
-        PlaceholderPersonBuyerParty = _translatorUiProvider.Translate("PlaceholderPersonBuyerParty");
-        PlaceholderStreetBuyerParty = _translatorUiProvider.Translate("PlaceholderStreetBuyerParty");
-        PlaceholderHouseNumberBuyerParty = _translatorUiProvider.Translate("PlaceholderHouseNumberBuyerParty");
-        PlaceholderPostalCodeBuyerParty = _translatorUiProvider.Translate("PlaceholderPostalCodeBuyerParty");
-        PlaceholderCityBuyerParty = _translatorUiProvider.Translate("PlaceholderCityBuyerParty");
-        PlaceholderCountryCodeBuyerParty = _translatorUiProvider.Translate("PlaceholderCountryCodeBuyerParty");
-        PlaceholderPhoneBuyerParty = _translatorUiProvider.Translate("PlaceholderPhoneBuyerParty");
-        PlaceholderEmailAddressBuyerParty = _translatorUiProvider.Translate("PlaceholderEmailAddressBuyerParty");
-
-        // Payment placeholders
-        PlaceholderPaymentReference = _translatorUiProvider.Translate("PlaceholderPaymentReference");
-        PlaceholderPaymentTerms = _translatorUiProvider.Translate("PlaceholderPaymentTerms");
-
-        // Header placeholders
-        PlaceholderInvoiceNumber = _translatorUiProvider.Translate("PlaceholderInvoiceNumber");
-        PlaceholderCurrency = _translatorUiProvider.Translate("PlaceholderCurrency");
-        PlaceholderDocumentName = _translatorUiProvider.Translate("PlaceholderDocumentName");
-        PlaceholderDocumentTypeCode = _translatorUiProvider.Translate("PlaceholderDocumentTypeCode");
-
-        //payment terms
-        PlaceholderDiscountPercent = _translatorUiProvider.Translate("PlaceholderDiscountPercent");
-        PlaceholderDiscountDays = _translatorUiProvider.Translate("PlaceholderDiscountDays");
-        PlaceholderDiscountPreviewText = _translatorUiProvider.Translate("PlaceholderDiscountPreviewText");
-        PlaceholderNoDiscountPreviewText = _translatorUiProvider.Translate("PlaceholderNoDiscountPreviewText");
-
-    }
-    #endregion
-
-    #region Labels, Tags & Contents
-    public string ContentDateInvalid { get; private set; } = string.Empty;
-    public string ContentDateMustBeBetween { get; private set; } = string.Empty;
-
-    public string LabelPaymentDueDate { get; private set; } = string.Empty;
-    public string LabelPaymentMeansCode { get; private set; } = string.Empty;
-
-    public string LabelCurrency { get; private set; } = string.Empty;
-    public string LabelDocumentTypeCode { get; private set; } = string.Empty;
-
-    public string LabelContentInvoiceView { get; private set; } = string.Empty;
-    public string LabelContentPreview { get; private set; } = string.Empty;
-    public string ContentSlideText { get; private set; } = string.Empty;
-    public string ContentSlideConfirmedText { get; private set; } = string.Empty;
-    public string LabelContenBuyerInformation { get; private set; } = string.Empty;
-    public string LabelContentHeader { get; private set; } = string.Empty;
-    public string LabelContentPaymentInformation { get; private set; } = string.Empty;
-    public string LabelContentPositionsList { get; private set; } = string.Empty;
-
-    public string TagDiscountBasisDate { get; private set; } = string.Empty;
-    public string TagPaymentDueDateRangeText { get; private set; } = string.Empty;
-    public string LabelContentPaymentTerms { get; private set; } = string.Empty;
-
-    public string LabelApplyDiscount { get; private set; } = string.Empty;
-
-    public string ContentButtonSave { get; private set; } = string.Empty;
-    public string ContentButtonLoad { get; private set; } = string.Empty;
-    public string ContentButtonClearAll { get; private set; } = string.Empty;
-    public string ContentButtonCreateInvoicePosition { get; private set; } = string.Empty;
-
-    private void FillAllInvoiceLabelsAndContents()
-    {
-        LabelPaymentDueDate = _translatorUiProvider.Translate("LabelPaymentDueDate");
-        LabelPaymentMeansCode = _translatorUiProvider.Translate("LabelPaymentMeansCode");
-
-        LabelCurrency = _translatorUiProvider.Translate("LabelCurrency");
-        LabelDocumentTypeCode = _translatorUiProvider.Translate("LabelDocumentTypeCode");
-
-        LabelContentInvoiceView = _translatorUiProvider.Translate("LabelContentInvoiceView");
-        LabelContentPreview = _translatorUiProvider.Translate("LabelContentPreview");
-        ContentSlideText = _translatorUiProvider.Translate("ContentSlideText");
-        ContentSlideConfirmedText = _translatorUiProvider.Translate("ContentSlideConfirmedText");
-        LabelContenBuyerInformation = _translatorUiProvider.Translate("LabelContenBuyerInformation");
-        LabelContentHeader = _translatorUiProvider.Translate("LabelContentHeader");
-        LabelContentPaymentInformation = _translatorUiProvider.Translate("LabelContentPaymentInformation");
-        LabelContentPositionsList = _translatorUiProvider.Translate("LabelContentPositionsList");
-
-        TagDiscountBasisDate = _translatorUiProvider.Translate("TagDiscountBasisDate");
-        TagPaymentDueDateRangeText = _translatorUiProvider.Translate("TagPaymentDueDateRangeText");
-        LabelContentPaymentTerms = _translatorUiProvider.Translate("LabelContentPaymentTerms");
-        LabelApplyDiscount = _translatorUiProvider.Translate("LabelApplyDiscount");
-
-        ContentDateInvalid = _translatorUiProvider.Translate("ContentDateInvalid");
-        ContentDateMustBeBetween = _translatorUiProvider.Translate("ContentDateMustBeBetween");
-
-        ContentButtonSave = _translatorUiProvider.Translate("ContentButtonSave");
-        ContentButtonLoad = _translatorUiProvider.Translate("ContentButtonLoad");
-        ContentButtonClearAll = _translatorUiProvider.Translate("ContentButtonClearAll");
-        ContentButtonCreateInvoicePosition = _translatorUiProvider.Translate("ContentButtonCreateInvoicePosition");
-    }
     #endregion
 
     #region Dispose
     public override void Dispose()
     {
-        //_globalProps4UiControl.IsAltKeyPressedChanged -= OnIsAltKeyIsChanged_IsAltKeyPressedChanged;
-
         _selectedInvoicePositionStore.SelectedInvoicePositionChanged -= OnSelectedInvoicePositionChanged;
         _invoicePositionCardListItemViewModel.CollectionChanged -= OnInvoicePositionCollectionChanged;
 
@@ -1066,124 +826,6 @@ public class InvoiceViewModel : BaseViewModel
         _invoicePositionService.InvoicePositionsLoaded -= OnInvoicePositionsLoaded;
 
         base.Dispose();
-    }
-    #endregion
-
-    #region Only for UI Test
-    private void SeedTestSellerData()
-    {
-        InvoiceNumber = "6063636771001";
-        Currency = "EUR";
-        DocumentName = "RECHNUNG";
-        DocumentTypeCode = "380";
-
-        CompanyBuyerParty = "Musterkunde GmbH & Co Name 2 Musterkunde";
-        FiscalIdBuyerParty = "77777/01234";
-        VatIdBuyerParty = "DE2012129398";
-        ErpCustomerNumberBuyerParty = "9900880077";
-        LeitwegIdBuyerParty = "04011000-1234512345-35";
-        PersonBuyerParty = "Herr Test Monteur";
-
-        StreetBuyerParty = "Musterstrasse";
-        HouseNumberBuyerParty = "44";
-        PostalCodeBuyerParty = "40789";
-        CityBuyerParty = "Musterstadt";
-        CountryCodeBuyerParty = "DE";
-        PhoneBuyerParty = "02173 9364";
-        EmailAddressBuyerParty = "mike.maier@lieferant.com";
-
-        PaymentMeansCode = "58";
-        PaymentReference = "Kundennummer:. 9900880077 Rechnungsnummer:. 6063636771001";
-        PaymentTerms = "Zahlbar innerhalb von 14 Tagen ohne Abzug.";
-        PaymentDueDate = new DateOnly(2026, 9, 16);
-        PaymentDueDateText = "16.09.2026";
-    }
-
-    private void SeedTestInvoicePositions()
-    {
-        _invoicePositionService.AddInvoicePositionAsync(new InvoicePositionDetailsDTO
-        {
-            InvoicePositionNr = 1,
-            InvoicePositionDescription = "GWDSTG-DIN976-A-4.8-(A2K)-M10X1000",
-            InvoicePositionProductDescription = "Gewindestange",
-            InvoicePositionItemNr = "0595810 25",
-            InvoicePositionEan = "7711231873598",
-            InvoicePositionQuantity = 25m,
-            InvoicePostionUnit = "H87",
-            InvoicePositionUnitPrice = 2.06m,
-            InvoicePositionVatRate = 19,
-            InvoicePositionVatCategoryCode = "S",
-            InvoicePositionNetAmount = 0m,
-            InvoicePositionGrossAmount = 0m,
-            InvoicePositionDiscountReason = string.Empty,
-            InvoicePositionDiscountNetAmount = 0m,
-            InvoicePositionNetAmountAfterDiscount = null,
-            InvoicePositionOrderDate = new DateOnly(2026, 8, 27),
-            InvoicePositionOrderId = "Abholung 1",
-            InvoicePositionDeliveryNoteDate = new DateOnly(2026, 8, 27),
-            InvoicePositionDeliveryNoteId = "8408230045",
-            InvoicePositionDeliveryNoteLineId = "000010",
-            InvoicePositionRefDocId = "2156307416",
-            InvoicePositionRefDocType = "130",
-            InvoicePositionRefDocRefType = "VN",
-            LineStatusReasonCode = "GROUP"
-        }).GetAwaiter().GetResult();
-
-        _invoicePositionService.AddInvoicePositionAsync(new InvoicePositionDetailsDTO
-        {
-            InvoicePositionNr = 2,
-            InvoicePositionDescription = "MUELLSACK-EXTRASTARK-BLAU-700X1100X0,07",
-            InvoicePositionProductDescription = "Müllsack, -beutel",
-            InvoicePositionItemNr = "05899800555 150",
-            InvoicePositionEan = "7748539263943",
-            InvoicePositionQuantity = 150m,
-            InvoicePostionUnit = "H87",
-            InvoicePositionUnitPrice = 49.29m,
-            InvoicePositionVatRate = 19,
-            InvoicePositionVatCategoryCode = "S",
-            InvoicePositionNetAmount = 0m,
-            InvoicePositionGrossAmount = 0m,
-            InvoicePositionDiscountReason = string.Empty,
-            InvoicePositionDiscountNetAmount = 0m,
-            InvoicePositionNetAmountAfterDiscount = null,
-            InvoicePositionOrderDate = new DateOnly(2026, 8, 27),
-            InvoicePositionOrderId = "Abholung 1",
-            InvoicePositionDeliveryNoteDate = new DateOnly(2026, 8, 27),
-            InvoicePositionDeliveryNoteId = "8408230045",
-            InvoicePositionDeliveryNoteLineId = "000020",
-            InvoicePositionRefDocId = "2156307416",
-            InvoicePositionRefDocType = "130",
-            InvoicePositionRefDocRefType = "VN",
-            LineStatusReasonCode = "GROUP"
-        }).GetAwaiter().GetResult();
-
-        _invoicePositionService.AddInvoicePositionAsync(new InvoicePositionDetailsDTO
-        {
-            InvoicePositionNr = 3,
-            InvoicePositionDescription = "SHR-AW30-(A2K)-7,5X152",
-            InvoicePositionProductDescription = "Abstandsmontageschraube Rahmen",
-            InvoicePositionItemNr = "05234830152 200",
-            InvoicePositionEan = "7738898142591",
-            InvoicePositionQuantity = 400m,
-            InvoicePostionUnit = "H87",
-            InvoicePositionUnitPrice = 32.76m,
-            InvoicePositionVatRate = 19,
-            InvoicePositionVatCategoryCode = "S",
-            InvoicePositionNetAmount = 0m,
-            InvoicePositionGrossAmount = 0m,
-            InvoicePositionDiscountReason = string.Empty,
-            InvoicePositionDiscountNetAmount = 0m,
-            InvoicePositionNetAmountAfterDiscount = null,
-            InvoicePositionOrderDate = new DateOnly(2026, 8, 27),
-            InvoicePositionOrderId = "Abholung 2",
-            InvoicePositionDeliveryNoteDate = new DateOnly(2026, 8, 27),
-            InvoicePositionDeliveryNoteId = "8408230046",
-            InvoicePositionDeliveryNoteLineId = "000010",
-            InvoicePositionRefDocId = "2156307417",
-            InvoicePositionRefDocType = "130",
-            InvoicePositionRefDocRefType = "VN",
-            LineStatusReasonCode = "GROUP"
-        }).GetAwaiter().GetResult();
     }
     #endregion
 }

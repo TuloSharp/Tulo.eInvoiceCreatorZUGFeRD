@@ -56,25 +56,26 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
 
+                                                                  <!--Text="{Binding InvoicePositionNr, Converter={StaticResource IntToStringConverter}}"-->
                         <customedtextblock:LeaderLabeledTextBlock Grid.Column="0"
-                                                                  Text="{Binding InvoicePositionNr, Converter={StaticResource IntToStringConverter}}"
+                                                                  Text="{Binding DisplayInvPosNr}"
                                                                   Label="#"
-                                                                  Width="14"
-                                                                  CornerWidth="12"
+                                                                  Width="34"
+                                                                  CornerWidth="22"
                                                                   Style="{StaticResource InvoicePosStyle}" />
 
                         <customedtextblock:LeaderLabeledTextBlock Grid.Column="2"
                                                                   Text="{Binding InvoicePositionDescription}"
                                                                   Label="Description"
                                                                   Width="252"
-                                                                  CornerWidth="220"
+                                                                  CornerWidth="232"
                                                                   Style="{StaticResource InvoicePosStyle}" />
 
                         <customedtextblock:LeaderLabeledTextBlock Grid.Column="4"
                                                                   Text="{Binding InvoicePositionProductDescription}"
                                                                   Label="Product Description"
-                                                                  Width="328"
-                                                                  CornerWidth="300"
+                                                                  Width="308"
+                                                                  CornerWidth="280"
                                                                   Style="{StaticResource InvoicePosStyle}" />
                     </Grid>
 

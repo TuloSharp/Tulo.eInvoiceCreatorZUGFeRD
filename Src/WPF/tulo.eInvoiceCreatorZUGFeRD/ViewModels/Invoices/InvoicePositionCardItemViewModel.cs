@@ -23,6 +23,7 @@ public class InvoicePositionCardItemViewModel : BaseViewModel
     #region Pass-through properties – base position fields
     public Guid InvoicePositionId => InvoicePositionDetails.Id;
     public int InvoicePositionNr => InvoicePositionDetails.InvoicePositionNr;
+    public string DisplayInvPosNr => InvoicePositionDetails.DisplayInvPosNr;
     public string InvoicePositionDescription => InvoicePositionDetails.InvoicePositionDescription;
     public string InvoicePositionProductDescription => InvoicePositionDetails.InvoicePositionProductDescription;
     public string InvoicePositionItemNr => InvoicePositionDetails.InvoicePositionItemNr;

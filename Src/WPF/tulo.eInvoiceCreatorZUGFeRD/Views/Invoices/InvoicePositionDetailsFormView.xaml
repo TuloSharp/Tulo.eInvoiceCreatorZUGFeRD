@@ -80,10 +80,24 @@
                         CornerRadius="8,8,0,0"
                         Background="#F8FAFC"
                         Padding="12,8">
-                    <TextBlock Text="{Binding LabelInvoicePositionGroupBox}"
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding LabelInvoicePositionGroupBox}"
+                                   Grid.Column="0"
                                FontWeight="SemiBold"
                             
                                Foreground="#374151"/>
+                        <CheckBox Grid.Column="1"
+                  IsChecked="{Binding IsGroupPosition, Mode=TwoWay}"
+                  Content="{Binding LabelCreateAsGroupItem}"
+                  VerticalAlignment="Center"
+                  Foreground="#374151"
+                  Margin="12,0,0,0" />
+                    </Grid>
                 </Border>
 
 
@@ -114,6 +128,7 @@
                                 <ColumnDefinition Width="auto" />
                             </Grid.ColumnDefinitions>
 
+                                     <!--Text="{Binding InvoicePositionNr, Converter={StaticResource IntToStringConverter}}"-->
                             <TextBox Grid.Column="0"
                                      HorizontalAlignment="Left"
                                      TextAlignment="Right"
@@ -121,9 +136,9 @@
                                      IsReadOnly="True"
                                      IsEnabled="False"
                                      utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
-                                     Text="{Binding InvoicePositionNr, Converter={StaticResource IntToStringConverter}}"
+                                     Text="{Binding DisplayInvPosNr}"
                                      ToolTip="{Binding ToolTipInvoicePositionNr}"
-                                     Width="20"
+                                     Width="30"
                                      BorderThickness="0.5" />
                             <placeholder:PlaceholderTextBox Grid.Column="1"
                                                             Placeholder="{Binding PlaceholderInvoicePositionDescription}"
@@ -145,7 +160,7 @@
                                                             Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
                                                             Text="{Binding InvoicePositionProductDescription, UpdateSourceTrigger=PropertyChanged}"
                                                             Height="22"
-                                                            Width="310"
+                                                            Width="300"
                                                             MaxLength="400"
                                                             BorderThickness="0,0,0,0.75"
                                                             Margin="4,0,0,0"

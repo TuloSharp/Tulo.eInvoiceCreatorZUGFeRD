@@ -107,6 +107,13 @@ public class InvoicePositionDetailsFormViewModel : BaseViewModel
         set => SetField(ref _invoicePositionNr, value);
     }
 
+    private string _displayInvPosNr = string.Empty;
+    public string DisplayInvPosNr
+    {
+        get => _displayInvPosNr;
+        set => SetField(ref _displayInvPosNr, value);
+    }
+
     private string _invoicePositionDescription = string.Empty;
     public string InvoicePositionDescription
     {
