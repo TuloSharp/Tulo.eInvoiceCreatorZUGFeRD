@@ -163,6 +163,7 @@ public class DeleteInvoicePositionViewModel : BaseViewModel
             InvoicePositionRefDocType = invPos.InvoicePositionRefDocType,
             InvoicePositionRefDocRefType = invPos.InvoicePositionRefDocRefType,
 
+            IsGroupPosition = invPos.LineStatusReasonCode == "GROUP" ? true : false,
             //InvoicePositionSelectedVatCategory = invPos.InvoicePositionSelectedVatCategory,
 
             //IsEnableAdditionalButton = false,

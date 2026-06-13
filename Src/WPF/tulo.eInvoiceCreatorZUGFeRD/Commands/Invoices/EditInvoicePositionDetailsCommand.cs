@@ -22,6 +22,7 @@ public class EditInvoicePositionDetailsCommand(EditInvoicePositionViewModel edit
         _editInvoicePositionViewModel.StatusMessage = string.Empty;
 
         InvoicePositionDetailsFormViewModel invPosDetailsViewModel = _editInvoicePositionViewModel.InvoicePositionDetailsFormViewModel;
+        string isMainPos = invPosDetailsViewModel.IsGroupPosition ? "GROUP" : string.Empty;
 
         InvoicePositionDetailsDTO updatedInvPos = new()
         {
@@ -56,7 +57,9 @@ public class EditInvoicePositionDetailsCommand(EditInvoicePositionViewModel edit
             InvoicePositionRefDocType = invPosDetailsViewModel.InvoicePositionRefDocType,
             InvoicePositionRefDocRefType = invPosDetailsViewModel.InvoicePositionRefDocRefType,
 
-            InvoicePositionSelectedVatCategory = invPosDetailsViewModel.InvoicePositionSelectedVatCategory
+            InvoicePositionSelectedVatCategory = invPosDetailsViewModel.InvoicePositionSelectedVatCategory,
+            //is main position or not
+            LineStatusReasonCode = isMainPos
         };
 
         try

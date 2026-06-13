@@ -58,6 +58,92 @@
                 </Style.Triggers>
             </Style>
 
+            <Style TargetType="{x:Type CheckBox}" x:Key="ModernCheckBox">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="Foreground" Value="#333333" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type CheckBox}">
+                            <BulletDecorator Background="Transparent">
+                                <BulletDecorator.Bullet>
+                                    <Border x:Name="Border"
+                                            Width="20"
+                                            Height="20"
+                                            CornerRadius="4"
+                                            BorderThickness="2"
+                                            BorderBrush="#CCCCCC"
+                                            Background="White">
+                                        <Border.Effect>
+                                            <DropShadowEffect ShadowDepth="1"
+                                                              Opacity="0.15"
+                                                              BlurRadius="2" />
+                                        </Border.Effect>
+                                        <Path x:Name="CheckMark"
+                                              Data="M 2 8 L 7 13 L 15 2"
+                                              Stroke="#2952CC"
+                                              StrokeThickness="2"
+                                              StrokeStartLineCap="Round"
+                                              StrokeEndLineCap="Round"
+                                              StrokeLineJoin="Round"
+                                              Stretch="Uniform"
+                                              Visibility="Hidden" />
+                                    </Border>
+                                </BulletDecorator.Bullet>
+                                <ContentPresenter Margin="8,0,0,0"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True" />
+                            </BulletDecorator>
+
+                            <ControlTemplate.Triggers>
+                                <!--  Checked State  -->
+                                <Trigger Property="IsChecked" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="#2952CC" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#2952CC" />
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="CheckMark" Property="Stroke" Value="White" />
+                                </Trigger>
+
+                                <!--  Hover State  -->
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#999999" />
+                                    <Setter TargetName="Border" Property="Background" Value="#F5F5F5" />
+                                </Trigger>
+
+                                <!--  Checked + Hover State  -->
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsChecked" Value="true" />
+                                        <Condition Property="IsMouseOver" Value="true" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="Border" Property="Background" Value="#2952CC" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#2952CC" />
+                                </MultiTrigger>
+
+                                <!--  Focused State  -->
+                                <Trigger Property="IsFocused" Value="true">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#2196F3" />
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="2" />
+                                </Trigger>
+
+                                <!--  Disabled State  -->
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#DDDDDD" />
+                                    <Setter TargetName="CheckMark" Property="Stroke" Value="#AAAAAA" />
+                                    <Setter Property="Foreground" Value="#AAAAAA" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid ToolTipService.ShowOnDisabled="True">
@@ -74,7 +160,7 @@
                 CornerRadius="8">
             <StackPanel>
 
-                <!-- Card-Header -->
+                <!--  Card-Header  -->
                 <Border BorderThickness="0,0,0,1"
                         BorderBrush="#E2E8F0"
                         CornerRadius="8,8,0,0"
@@ -85,150 +171,151 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding LabelInvoicePositionGroupBox}"
                                    Grid.Column="0"
-                               FontWeight="SemiBold"
-                            
-                               Foreground="#374151"/>
-                        <CheckBox Grid.Column="1"
-                  IsChecked="{Binding IsGroupPosition, Mode=TwoWay}"
-                  Content="{Binding LabelCreateAsGroupItem}"
-                  VerticalAlignment="Center"
-                  Foreground="#374151"
-                  Margin="12,0,0,0" />
+                                   FontWeight="SemiBold"
+                                   Foreground="#374151" />
+                        <TextBlock Text="{Binding LabelCreateAsGroupItem}" Grid.Column="1" />
+                        <CheckBox Grid.Column="2"
+                                  Style="{StaticResource ModernCheckBox}"
+                                  IsChecked="{Binding IsGroupPosition, Mode=TwoWay}"
+                                  VerticalAlignment="Center"
+                                  Foreground="#374151"
+                                  Margin="12,0,0,0" />
                     </Grid>
                 </Border>
 
 
                 <Grid Margin="0,5,0,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="auto" />
-                    <ColumnDefinition Width="2" />
-                    <ColumnDefinition Width="auto" />
-                </Grid.ColumnDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="2" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
 
-                <Border Grid.Column="0"
-                        Margin="4,0,0,0"
-                        BorderThickness="0,1,0,1"
-                        BorderBrush="LightGray">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="8" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
+                    <Border Grid.Column="0"
+                            Margin="4,0,0,0"
+                            BorderThickness="0,1,0,1"
+                            BorderBrush="LightGray">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="8" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
 
-                        <!--  Row 1: Position / Description  -->
-                        <Grid Grid.Row="1" Margin="0,0,0,4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
+                            <!--  Row 1: Position / Description  -->
+                            <Grid Grid.Row="1" Margin="0,0,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
 
-                                     <!--Text="{Binding InvoicePositionNr, Converter={StaticResource IntToStringConverter}}"-->
-                            <TextBox Grid.Column="0"
-                                     HorizontalAlignment="Left"
-                                     TextAlignment="Right"
-                                     Height="22"
-                                     IsReadOnly="True"
-                                     IsEnabled="False"
-                                     utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
-                                     Text="{Binding DisplayInvPosNr}"
-                                     ToolTip="{Binding ToolTipInvoicePositionNr}"
-                                     Width="30"
-                                     BorderThickness="0.5" />
-                            <placeholder:PlaceholderTextBox Grid.Column="1"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionDescription}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionDescription}"
-                                                            HorizontalContentAlignment="Right"
-                                                            Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
-                                                            Text="{Binding InvoicePositionDescription, UpdateSourceTrigger=PropertyChanged}"
-                                                            Height="22"
-                                                            Width="170"
-                                                            MaxLength="100"
-                                                            BorderThickness="0,0,0,0.75"
-                                                            Margin="4,0,0,0"
-                                                            Padding="2" />
+                                <!--  Text="{Binding InvoicePositionNr, Converter={StaticResource IntToStringConverter}}"  -->
+                                <TextBox Grid.Column="0"
+                                         HorizontalAlignment="Left"
+                                         TextAlignment="Right"
+                                         Height="22"
+                                         IsReadOnly="True"
+                                         IsEnabled="False"
+                                         utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
+                                         Text="{Binding DisplayInvPosNr}"
+                                         ToolTip="{Binding ToolTipInvoicePositionNr}"
+                                         Width="30"
+                                         BorderThickness="0.5" />
+                                <placeholder:PlaceholderTextBox Grid.Column="1"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionDescription}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionDescription}"
+                                                                HorizontalContentAlignment="Right"
+                                                                Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
+                                                                Text="{Binding InvoicePositionDescription, UpdateSourceTrigger=PropertyChanged}"
+                                                                Height="22"
+                                                                Width="170"
+                                                                MaxLength="100"
+                                                                BorderThickness="0,0,0,0.75"
+                                                                Margin="4,0,0,0"
+                                                                Padding="2" />
 
-                            <placeholder:PlaceholderTextBox Grid.Column="2"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionProductDescription}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionProductDescription}"
-                                                            HorizontalContentAlignment="Right"
-                                                            Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
-                                                            Text="{Binding InvoicePositionProductDescription, UpdateSourceTrigger=PropertyChanged}"
-                                                            Height="22"
-                                                            Width="300"
-                                                            MaxLength="400"
-                                                            BorderThickness="0,0,0,0.75"
-                                                            Margin="4,0,0,0"
-                                                            Padding="2" />
-                        </Grid>
+                                <placeholder:PlaceholderTextBox Grid.Column="2"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionProductDescription}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionProductDescription}"
+                                                                HorizontalContentAlignment="Right"
+                                                                Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
+                                                                Text="{Binding InvoicePositionProductDescription, UpdateSourceTrigger=PropertyChanged}"
+                                                                Height="22"
+                                                                Width="300"
+                                                                MaxLength="400"
+                                                                BorderThickness="0,0,0,0.75"
+                                                                Margin="4,0,0,0"
+                                                                Padding="2" />
+                            </Grid>
 
-                        <!--  Row 2: Quantity / Unit  / Unit Price / VAT / Total  -->
-                        <Grid Grid.Row="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="2" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="2" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="2" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="2" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="2" />
-                                <ColumnDefinition Width="auto" />
+                            <!--  Row 2: Quantity / Unit  / Unit Price / VAT / Total  -->
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="2" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="2" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="2" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="2" />
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="2" />
+                                    <ColumnDefinition Width="auto" />
 
-                            </Grid.ColumnDefinitions>
-                            <placeholder:PlaceholderTextBox Grid.Column="1"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionItemNr}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionItemNr}"
-                                                            HorizontalContentAlignment="Right"
-                                                            Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
-                                                            Text="{Binding InvoicePositionItemNr, UpdateSourceTrigger=PropertyChanged}"
-                                                            utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
-                                                            Width="120"
-                                                            Height="22"
-                                                            MaxLength="70"
-                                                            BorderThickness="0,0,0,0.75"
-                                                            Margin="2,2,0,0"
-                                                            Padding="2" />
+                                </Grid.ColumnDefinitions>
+                                <placeholder:PlaceholderTextBox Grid.Column="1"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionItemNr}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionItemNr}"
+                                                                HorizontalContentAlignment="Right"
+                                                                Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
+                                                                Text="{Binding InvoicePositionItemNr, UpdateSourceTrigger=PropertyChanged}"
+                                                                utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
+                                                                Width="120"
+                                                                Height="22"
+                                                                MaxLength="70"
+                                                                BorderThickness="0,0,0,0.75"
+                                                                Margin="2,2,0,0"
+                                                                Padding="2" />
 
-                            <placeholder:PlaceholderTextBox Grid.Column="3"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionEan}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionEan}"
-                                                            HorizontalContentAlignment="Right"
-                                                            Text="{Binding InvoicePositionEan, UpdateSourceTrigger=PropertyChanged}"
-                                                            utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
-                                                            Width="100"
-                                                            Height="22"
-                                                            MaxLength="14"
-                                                            BorderThickness="0,0,0,0.75"
-                                                            Margin="2,2,0,0"
-                                                            Padding="2" />
+                                <placeholder:PlaceholderTextBox Grid.Column="3"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionEan}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionEan}"
+                                                                HorizontalContentAlignment="Right"
+                                                                Text="{Binding InvoicePositionEan, UpdateSourceTrigger=PropertyChanged}"
+                                                                utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
+                                                                Width="100"
+                                                                Height="22"
+                                                                MaxLength="14"
+                                                                BorderThickness="0,0,0,0.75"
+                                                                Margin="2,2,0,0"
+                                                                Padding="2" />
 
-                            <placeholder:PlaceholderTextBox Grid.Column="5"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionQuantity}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionQuantity}"
-                                                            HorizontalContentAlignment="Right"
-                                                            Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
-                                                            utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
-                                                            Width="50"
-                                                            Height="22"
-                                                            MaxLength="7"
-                                                            BorderThickness="0,0,0,0.75"
-                                                            Margin="2,2,0,0"
-                                                            Padding="2"
-                                                            utilities:MoneyInput.IsEnabled="True"
-                                                            utilities:MoneyInput.ShowZeroWhenEmpty="False"
-                                                            utilities:MoneyInput.Value="{Binding InvoicePositionQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                            utilities:MoneyInput.Mode="ShiftCents" />
+                                <placeholder:PlaceholderTextBox Grid.Column="5"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionQuantity}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionQuantity}"
+                                                                HorizontalContentAlignment="Right"
+                                                                Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
+                                                                utilities:TextBoxProperties.AllowedCharactersRegex="^[0-9]*$"
+                                                                Width="50"
+                                                                Height="22"
+                                                                MaxLength="7"
+                                                                BorderThickness="0,0,0,0.75"
+                                                                Margin="2,2,0,0"
+                                                                Padding="2"
+                                                                utilities:MoneyInput.IsEnabled="True"
+                                                                utilities:MoneyInput.ShowZeroWhenEmpty="False"
+                                                                utilities:MoneyInput.Value="{Binding InvoicePositionQuantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                utilities:MoneyInput.Mode="ShiftCents" />
 
-                            <!--<placeholder:PlaceholderTextBox Grid.Column="7"
+                                <!--<placeholder:PlaceholderTextBox Grid.Column="7"
                                                             Placeholder="{Binding PlaceholderInvoicePostionUnit}"
                                                             ToolTip="{Binding ToolTipInvoicePostionUnit}"
                                                             HorizontalContentAlignment="Right"
@@ -239,220 +326,220 @@
                                                             Margin="2,2,0,0"
                                                             Padding="2" />-->
 
-                            <ComboBox Grid.Column="7"
-                                      Template="{StaticResource ComboBoxCustomized}"
-                                      Validation.ErrorTemplate="{x:Null}"
-                                      ToolTip="{Binding ToolTipInvoicePostionUnit}"
-                                      x:Name="comboBoxUnits"
-                                      Height="24"
-                                      Margin="0,2,0,0"
-                                      Width="70"
-                                      Padding="4,2"
-                                      IsSynchronizedWithCurrentItem="True"
-                                      ItemsSource="{Binding UnitsObservableCollection}"
-                                      DisplayMemberPath="DisplayText"
-                                      SelectedItem="{Binding InvoicePositionSelectedUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <ComboBox Grid.Column="7"
+                                          Template="{StaticResource ComboBoxCustomized}"
+                                          Validation.ErrorTemplate="{x:Null}"
+                                          ToolTip="{Binding ToolTipInvoicePostionUnit}"
+                                          x:Name="comboBoxUnits"
+                                          Height="24"
+                                          Margin="0,2,0,0"
+                                          Width="70"
+                                          Padding="4,2"
+                                          IsSynchronizedWithCurrentItem="True"
+                                          ItemsSource="{Binding UnitsObservableCollection}"
+                                          DisplayMemberPath="DisplayText"
+                                          SelectedItem="{Binding InvoicePositionSelectedUnit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
-                            <placeholder:PlaceholderTextBox Grid.Column="9"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionUnitPrice}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionUnitPrice}"
-                                                            Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
-                                                            HorizontalContentAlignment="Right"
-                                                            Width="60"
-                                                            Height="22"
-                                                            MaxLength="10"
-                                                            BorderThickness="0,0,0,0.75"
-                                                            Margin="2,2,0,0"
-                                                            Padding="2"
-                                                            utilities:MoneyInput.IsEnabled="True"
-                                                            utilities:MoneyInput.ShowZeroWhenEmpty="False"
-                                                            utilities:MoneyInput.Value="{Binding InvoicePositionUnitPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                            utilities:MoneyInput.Mode="ShiftCents" />
+                                <placeholder:PlaceholderTextBox Grid.Column="9"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionUnitPrice}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionUnitPrice}"
+                                                                Style="{StaticResource ErrorAtBorderBrushTextBoxPlaceholder}"
+                                                                HorizontalContentAlignment="Right"
+                                                                Width="60"
+                                                                Height="22"
+                                                                MaxLength="10"
+                                                                BorderThickness="0,0,0,0.75"
+                                                                Margin="2,2,0,0"
+                                                                Padding="2"
+                                                                utilities:MoneyInput.IsEnabled="True"
+                                                                utilities:MoneyInput.ShowZeroWhenEmpty="False"
+                                                                utilities:MoneyInput.Value="{Binding InvoicePositionUnitPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                utilities:MoneyInput.Mode="ShiftCents" />
 
-                            <Grid Grid.Column="11">
+                                <Grid Grid.Column="11">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="2" />
+                                        <ColumnDefinition Width="auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <ComboBox Grid.Column="1"
+                                              Template="{StaticResource ComboBoxCustomized}"
+                                              Validation.ErrorTemplate="{x:Null}"
+                                              ToolTip="{Binding ToolTipInvoicePositionSelectedVat}"
+                                              x:Name="comboBoxVats"
+                                              Height="24"
+                                              Margin="0,2,0,0"
+                                              Width="22"
+                                              IsSynchronizedWithCurrentItem="True"
+                                              ItemsSource="{Binding VatListItemCollectionView}"
+                                              SelectedValue="{Binding InvoicePositionSelectedVat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <ComboBox.ItemContainerStyle>
+                                            <Style TargetType="ComboBoxItem">
+                                                <Setter Property="Padding" Value="2,2,2,0" />
+                                            </Style>
+                                        </ComboBox.ItemContainerStyle>
+                                    </ComboBox>
+
+                                    <placeholder:PlaceholderTextBox Grid.Column="0"
+                                                                    Placeholder="{Binding PlaceholderInvoicePositionVatRate}"
+                                                                    ToolTip="{Binding ToolTipInvoicePositionVatRate}"
+                                                                    HorizontalContentAlignment="Right"
+                                                                    IsReadOnly="True"
+                                                                    IsEnabled="False"
+                                                                    Text="{Binding InvoicePositionVatRate, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToStringConverter}}"
+                                                                    Width="22"
+                                                                    Height="22"
+                                                                    BorderThickness="0,0,0,0.75"
+                                                                    Margin="4,2,0,0"
+                                                                    Padding="2" />
+
+                                    <ComboBox Grid.Column="3"
+                                              Template="{StaticResource ComboBoxCustomized}"
+                                              Validation.ErrorTemplate="{x:Null}"
+                                              ToolTip="{Binding SelectedVatCategoryTooltip}"
+                                              x:Name="comboBoxVatCategories"
+                                              Height="24"
+                                              Margin="0,2,0,0"
+                                              Width="40"
+                                              Padding="4,2"
+                                              IsSynchronizedWithCurrentItem="True"
+                                              ItemsSource="{Binding VatCategoriesObservableCollection}"
+                                              DisplayMemberPath="Code"
+                                              SelectedValue="{Binding InvoicePositionSelectedVatCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                </Grid>
+
+                            </Grid>
+
+                            <!--  Row 3: Discount Description / Discount Amounts  -->
+                            <Grid Grid.Row="3" Margin="0,4">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="auto" />
-                                    <ColumnDefinition Width="2" />
+                                    <ColumnDefinition Width="4" />
                                     <ColumnDefinition Width="auto" />
                                 </Grid.ColumnDefinitions>
 
-                                <ComboBox Grid.Column="1"
-                                          Template="{StaticResource ComboBoxCustomized}"
-                                          Validation.ErrorTemplate="{x:Null}"
-                                          ToolTip="{Binding ToolTipInvoicePositionSelectedVat}"
-                                          x:Name="comboBoxVats"
-                                          Height="24"
-                                          Margin="0,2,0,0"
-                                          Width="22"
-                                          IsSynchronizedWithCurrentItem="True"
-                                          ItemsSource="{Binding VatListItemCollectionView}"
-                                          SelectedValue="{Binding InvoicePositionSelectedVat, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                                    <ComboBox.ItemContainerStyle>
-                                        <Style TargetType="ComboBoxItem">
-                                            <Setter Property="Padding" Value="2,2,2,0" />
-                                        </Style>
-                                    </ComboBox.ItemContainerStyle>
-                                </ComboBox>
-
-                                <placeholder:PlaceholderTextBox Grid.Column="0"
-                                                                Placeholder="{Binding PlaceholderInvoicePositionVatRate}"
-                                                                ToolTip="{Binding ToolTipInvoicePositionVatRate}"
+                                <placeholder:PlaceholderTextBox Grid.Column="1"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionDiscountReason}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionDiscountReason}"
                                                                 HorizontalContentAlignment="Right"
-                                                                IsReadOnly="True"
-                                                                IsEnabled="False"
-                                                                Text="{Binding InvoicePositionVatRate, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource IntToStringConverter}}"
-                                                                Width="22"
+                                                                Text="{Binding InvoicePositionDiscountReason, UpdateSourceTrigger=PropertyChanged}"
+                                                                Width="350"
                                                                 Height="22"
+                                                                MaxLength="280"
                                                                 BorderThickness="0,0,0,0.75"
-                                                                Margin="4,2,0,0"
+                                                                Margin="2,2,0,0"
                                                                 Padding="2" />
 
-                                <ComboBox Grid.Column="3"
-                                          Template="{StaticResource ComboBoxCustomized}"
-                                          Validation.ErrorTemplate="{x:Null}"
-                                          ToolTip="{Binding SelectedVatCategoryTooltip}"
-                                          x:Name="comboBoxVatCategories"
-                                          Height="24"
-                                          Margin="0,2,0,0"
-                                          Width="40"
-                                          Padding="4,2"
-                                          IsSynchronizedWithCurrentItem="True"
-                                          ItemsSource="{Binding VatCategoriesObservableCollection}"
-                                          DisplayMemberPath="Code"
-                                          SelectedValue="{Binding InvoicePositionSelectedVatCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                <placeholder:PlaceholderTextBox Grid.Column="3"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionDiscountNetAmount}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionDiscountNetAmount}"
+                                                                HorizontalContentAlignment="Right"
+                                                                Width="66"
+                                                                Height="22"
+                                                                MaxLength="6"
+                                                                BorderThickness="0,0,0,0.75"
+                                                                Margin="2,2,0,0"
+                                                                Padding="2"
+                                                                utilities:MoneyInput.IsEnabled="True"
+                                                                utilities:MoneyInput.ShowZeroWhenEmpty="False"
+                                                                utilities:MoneyInput.Value="{Binding InvoicePositionDiscountNetAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                utilities:MoneyInput.Mode="ShiftCents" />
                             </Grid>
 
                         </Grid>
+                    </Border>
 
-                        <!--  Row 3: Discount Description / Discount Amounts  -->
-                        <Grid Grid.Row="3" Margin="0,4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="4" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
+                    <Border Grid.Column="2"
+                            Margin="4,0,0,0"
+                            BorderThickness="0,1,0,1"
+                            BorderBrush="LightGray">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="8" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                            </Grid.RowDefinitions>
 
-                            <placeholder:PlaceholderTextBox Grid.Column="1"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionDiscountReason}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionDiscountReason}"
+                            <placeholder:PlaceholderTextBox Grid.Row="1"
+                                                            HorizontalAlignment="Left"
                                                             HorizontalContentAlignment="Right"
-                                                            Text="{Binding InvoicePositionDiscountReason, UpdateSourceTrigger=PropertyChanged}"
-                                                            Width="350"
-                                                            Height="22"
-                                                            MaxLength="280"
-                                                            BorderThickness="0,0,0,0.75"
-                                                            Margin="2,2,0,0"
-                                                            Padding="2" />
-
-                            <placeholder:PlaceholderTextBox Grid.Column="3"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionDiscountNetAmount}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionDiscountNetAmount}"
-                                                            HorizontalContentAlignment="Right"
-                                                            Width="66"
-                                                            Height="22"
-                                                            MaxLength="6"
-                                                            BorderThickness="0,0,0,0.75"
-                                                            Margin="2,2,0,0"
-                                                            Padding="2"
-                                                            utilities:MoneyInput.IsEnabled="True"
-                                                            utilities:MoneyInput.ShowZeroWhenEmpty="False"
-                                                            utilities:MoneyInput.Value="{Binding InvoicePositionDiscountNetAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                                            utilities:MoneyInput.Mode="ShiftCents" />
-                        </Grid>
-
-                    </Grid>
-                </Border>
-
-                <Border Grid.Column="2"
-                        Margin="4,0,0,0"
-                        BorderThickness="0,1,0,1"
-                        BorderBrush="LightGray">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="8" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                            <RowDefinition Height="auto" />
-                        </Grid.RowDefinitions>
-
-                        <placeholder:PlaceholderTextBox Grid.Row="1"
-                                                        HorizontalAlignment="Left"
-                                                        HorizontalContentAlignment="Right"
-                                                        Placeholder="{Binding PlaceholderInvoicePositionNetAmount}"
-                                                        ToolTip="{Binding ToolTipInvoicePositionNetAmount}"
-                                                        IsEnabled="False"
-                                                        Text="{Binding InvoicePositionNetAmount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
-                                                        Width="90"
-                                                        Height="22"
-                                                        BorderThickness="0,0,0,0.75"
-                                                        Margin="4,4,0,0"
-                                                        Padding="2" />
-                        <Grid Grid.Row="2" Margin="0,4">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="auto" />
-                                <ColumnDefinition Width="4" />
-                                <ColumnDefinition Width="auto" />
-                            </Grid.ColumnDefinitions>
-
-                            <placeholder:PlaceholderTextBox Grid.Column="0"
-                                                            HorizontalContentAlignment="Right"
-                                                            Placeholder="{Binding PlaceholderInvoicePositionGrossAmount}"
-                                                            ToolTip="{Binding ToolTipInvoicePositionGrossAmount}"
+                                                            Placeholder="{Binding PlaceholderInvoicePositionNetAmount}"
+                                                            ToolTip="{Binding ToolTipInvoicePositionNetAmount}"
                                                             IsEnabled="False"
-                                                            Text="{Binding InvoicePositionGrossAmount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
+                                                            Text="{Binding InvoicePositionNetAmount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
                                                             Width="90"
                                                             Height="22"
                                                             BorderThickness="0,0,0,0.75"
-                                                            Margin="4,7,0,0"
+                                                            Margin="4,4,0,0"
                                                             Padding="2" />
+                            <Grid Grid.Row="2" Margin="0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto" />
+                                    <ColumnDefinition Width="4" />
+                                    <ColumnDefinition Width="auto" />
+                                </Grid.ColumnDefinitions>
 
-                            <Button Name="btnCalculateGrossAmount"
-                                    IsDefault="True"
-                                    Grid.Column="2"
-                                    VerticalAlignment="Bottom"
-                                    ToolTip="{Binding ToolTipCalculateTotalsAtInvoicePositionCommand}"
-                                    Width="22"
-                                    Height="22"
-                                    Visibility="{Binding IsEnable4ShowButtons, Converter={StaticResource BooleanToVisibilityConverter}}"
-                                    KeyboardNavigation.AcceptsReturn="False"
-                                    BorderBrush="Transparent"
-                                    Foreground="Transparent"
-                                    Command="{Binding CalculateTotalsAtInvoicePositionCommand}">
-                                <Button.InputBindings>
-                                    <KeyBinding Key="Enter" Command="{Binding CalculateTotalsAtInvoicePositionCommand}" />
-                                </Button.InputBindings>
+                                <placeholder:PlaceholderTextBox Grid.Column="0"
+                                                                HorizontalContentAlignment="Right"
+                                                                Placeholder="{Binding PlaceholderInvoicePositionGrossAmount}"
+                                                                ToolTip="{Binding ToolTipInvoicePositionGrossAmount}"
+                                                                IsEnabled="False"
+                                                                Text="{Binding InvoicePositionGrossAmount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
+                                                                Width="90"
+                                                                Height="22"
+                                                                BorderThickness="0,0,0,0.75"
+                                                                Margin="4,7,0,0"
+                                                                Padding="2" />
 
-                                <Grid>
-                                    <Viewbox Width="12"
-                                             Height="12"
-                                             Style="{StaticResource ViewBox4Icon}">
-                                        <Path Style="{StaticResource ContentButtonPathStyle}"
-                                              Data="{StaticResource CalculateIconSVG}"
-                                              Fill="{StaticResource ButtonBrushIconColor}"
-                                              Width="auto"
-                                              Height="auto" />
-                                    </Viewbox>
-                                </Grid>
-                            </Button>
+                                <Button Name="btnCalculateGrossAmount"
+                                        IsDefault="True"
+                                        Grid.Column="2"
+                                        VerticalAlignment="Bottom"
+                                        ToolTip="{Binding ToolTipCalculateTotalsAtInvoicePositionCommand}"
+                                        Width="22"
+                                        Height="22"
+                                        Visibility="{Binding IsEnable4ShowButtons, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        KeyboardNavigation.AcceptsReturn="False"
+                                        BorderBrush="Transparent"
+                                        Foreground="Transparent"
+                                        Command="{Binding CalculateTotalsAtInvoicePositionCommand}">
+                                    <Button.InputBindings>
+                                        <KeyBinding Key="Enter" Command="{Binding CalculateTotalsAtInvoicePositionCommand}" />
+                                    </Button.InputBindings>
+
+                                    <Grid>
+                                        <Viewbox Width="12"
+                                                 Height="12"
+                                                 Style="{StaticResource ViewBox4Icon}">
+                                            <Path Style="{StaticResource ContentButtonPathStyle}"
+                                                  Data="{StaticResource CalculateIconSVG}"
+                                                  Fill="{StaticResource ButtonBrushIconColor}"
+                                                  Width="auto"
+                                                  Height="auto" />
+                                        </Viewbox>
+                                    </Grid>
+                                </Button>
+                            </Grid>
+
+                            <placeholder:PlaceholderTextBox Grid.Row="3"
+                                                            Placeholder="{Binding PlaceholderInvoicePositionNetAmountAfterDiscount}"
+                                                            ToolTip="{Binding ToolTipInvoicePositionNetAmountAfterDiscount}"
+                                                            IsEnabled="False"
+                                                            HorizontalAlignment="Left"
+                                                            HorizontalContentAlignment="Right"
+                                                            Text="{Binding InvoicePositionNetAmountAfterDiscount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
+                                                            Width="90"
+                                                            Height="22"
+                                                            BorderThickness="0,0,0,0.75"
+                                                            Margin="4,2,0,0"
+                                                            Padding="2" />
                         </Grid>
-
-                        <placeholder:PlaceholderTextBox Grid.Row="3"
-                                                        Placeholder="{Binding PlaceholderInvoicePositionNetAmountAfterDiscount}"
-                                                        ToolTip="{Binding ToolTipInvoicePositionNetAmountAfterDiscount}"
-                                                        IsEnabled="False"
-                                                        HorizontalAlignment="Left"
-                                                        HorizontalContentAlignment="Right"
-                                                        Text="{Binding InvoicePositionNetAmountAfterDiscount, UpdateSourceTrigger=LostFocus, Converter={StaticResource DecimalToStringConverter}}"
-                                                        Width="90"
-                                                        Height="22"
-                                                        BorderThickness="0,0,0,0.75"
-                                                        Margin="4,2,0,0"
-                                                        Padding="2" />
-                    </Grid>
-                </Border>
-            </Grid>
+                    </Border>
+                </Grid>
             </StackPanel>
         </Border>
 

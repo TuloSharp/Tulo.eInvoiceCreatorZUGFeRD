@@ -160,10 +160,10 @@
   <!--#region Invoice Position Details - Labels -->
   <entry key="LabelSaveRequestMessage">Möchten Sie die Änderungen speichern?</entry>
   <entry key="LabelInvoicePositionGroupBox">Rechnungsposition</entry>
-
   <entry key="ContentButtonSaveSaveRequestMessage">_Speichern</entry>
   <entry key="ContentButtonNoSaveRequestMessage">_Abbrechen</entry>
   <entry key="ContentButtonReturnSaveRequestMessage">_Zurück</entry>
+  <entry key="LabelCreateAsGroupItem">Als Gruppe für Unterpositionen</entry>
   <!--#endregion -->
 
   <!--#region Invoice Position Details - ToolTips -->

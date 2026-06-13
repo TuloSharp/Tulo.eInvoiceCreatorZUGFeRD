@@ -163,6 +163,7 @@
   <entry key="ContentButtonSaveSaveRequestMessage">_Salvar</entry>
   <entry key="ContentButtonNoSaveRequestMessage">_Cancelar</entry>
   <entry key="ContentButtonReturnSaveRequestMessage">_Retornar</entry>
+  <entry key="LabelCreateAsGroupItem">Como grupo con subposiciones</entry>
   <!--#endregion -->
 
   <!--#region Invoice Position Details - ToolTips -->

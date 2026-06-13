@@ -164,6 +164,7 @@ public class EditInvoicePositionViewModel : BaseViewModel
             InvoicePositionRefDocRefType = invPos.InvoicePositionRefDocRefType,
 
            InvoicePositionVatCategoryCode = invPos.InvoicePositionVatCategoryCode ?? "S",
+           IsGroupPosition = invPos.LineStatusReasonCode == "GROUP" ? true : false,
 
             //IsEnableAdditionalButton = false,
             IsEnable4ShowButtons = true,
@@ -172,8 +173,6 @@ public class EditInvoicePositionViewModel : BaseViewModel
             IsSaveRequestMessageVisible = IsSaveRequestMessageVisible,
             HasUnsavedChanges = HasUnsavedChanges,
         };
-
-
 
         _globalPropsUiManage.IsEnableToSaveDataChanged += GlobalPropsUiManageOnIsEnableToSaveDataChanged;
         _globalPropsUiManage.IsRequiredFieldChanged += GlobalPropsUiManageOnIsRequiredFieldChanged;

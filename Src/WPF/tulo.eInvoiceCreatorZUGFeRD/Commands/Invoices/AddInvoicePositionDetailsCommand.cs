@@ -23,6 +23,7 @@ public class AddInvoicePositionDetailsCommand(AddInvoicePositionViewModel addInv
         _addInvoicePositionViewModel.StatusMessage = string.Empty;
 
         InvoicePositionDetailsFormViewModel invPosDetailsViewModel = _addInvoicePositionViewModel.InvoicePositionDetailsFormViewModel;
+        string isMainPos = invPosDetailsViewModel.IsGroupPosition ? "GROUP" : string.Empty;
 
         InvoicePositionDetailsDTO newInvPos = new()
         {
@@ -57,8 +58,8 @@ public class AddInvoicePositionDetailsCommand(AddInvoicePositionViewModel addInv
             InvoicePositionRefDocRefType = invPosDetailsViewModel.InvoicePositionRefDocRefType,
 
             InvoicePositionSelectedVatCategory = invPosDetailsViewModel.InvoicePositionSelectedVatCategory,
-            //main position 
-            LineStatusReasonCode = "GROUP"
+            //is main position or not
+            LineStatusReasonCode = isMainPos
         };
 
         try
