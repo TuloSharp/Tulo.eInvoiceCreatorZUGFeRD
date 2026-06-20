@@ -9,9 +9,13 @@
              xmlns:commoncontrols="clr-namespace:tulo.ResourcesWpfLib.Controls.Common;assembly=tulo.ResourcesWpfLib"
              xmlns:extended="clr-namespace:tulo.ResourcesWpfLib.Utilities;assembly=tulo.ResourcesWpfLib"
              xmlns:converters="clr-namespace:tulo.ResourcesWpfLib.Converters;assembly=tulo.ResourcesWpfLib"
-             Background="White"
+             Focusable="True"
+             FocusManager.IsFocusScope="True"
+             KeyboardNavigation.TabNavigation="Cycle"
+             extended:SetFocusOnModalShow.Enabled="True"
+             Background="{StaticResource PanelBrushColor}"
+             Style="{StaticResource RoundedUserControlStyle}"
              ToolTipService.InitialShowDelay="500"
-             BorderThickness="2"
              mc:Ignorable="d"
              Width="670"
              Height="Auto"
@@ -39,17 +43,17 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid ToolTipService.ShowOnDisabled="True" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
-                <RowDefinition Height="41" />
-                <RowDefinition Height="14" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="6" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border CornerRadius="2"
+            <!--  Bar UI Buttons  -->
+            <Border Grid.Row="0"
                     BorderBrush="{StaticResource MainBrushColor}"
                     BorderThickness="0,2,0,0"
                     ClipToBounds="True">
@@ -105,23 +109,48 @@
                 </Grid>
             </Border>
 
-            <Border Grid.Row="1"
-                    BorderThickness="0,0,0,1"
-                    BorderBrush="{StaticResource GroupBoxBrushColor}">
-                <Grid Background="{StaticResource PanelBrushColor}">
+            <!--  Form  -->
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="14" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="6" />
+                </Grid.RowDefinitions>
 
+                <local:InvoicePositionDetailsFormView DataContext="{Binding InvoicePositionDetailsFormViewModel}"
+                                                      Grid.Row="1"
+                                                      IsEnabled="False" />
+
+                <commoncontrols:StatusMessageControl Grid.Row="2"
+                                                     Margin="0,8,0,0"
+                                                     Grid.Column="1"
+                                                     Grid.ColumnSpan="1"
+                                                     DataContext="{Binding StatusMessageViewModel}" />
+            </Grid>
+
+            <!--  Bar Form Buttons  -->
+            <Border Grid.Row="2" BorderBrush="{StaticResource GroupBoxBrushColor}">
+                <Grid Background="{StaticResource PanelBrushColor}">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="10" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="3" />
+                        <ColumnDefinition Width="10" />
                     </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="5" />
+                    </Grid.RowDefinitions>
 
                     <Button Name="requestedReturnButton"
                             Grid.Column="1"
+                            Grid.Row="1"
                             Margin="0,2,0,2"
                             Style="{StaticResource ToolbarSecondaryButton}"
                             KeyboardNavigation.AcceptsReturn="False"
@@ -142,6 +171,7 @@
 
                     <Button Name="doneButton"
                             Grid.Column="3"
+                            Grid.Row="1"
                             Margin="0,2,0,2"
                             Style="{StaticResource ToolbarDangerButton}"
                             ToolTip="{Binding ToolTipSave}"
@@ -163,28 +193,6 @@
                 </Grid>
             </Border>
 
-            <Grid Grid.Row="4">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="14" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="6" />
-                </Grid.RowDefinitions>
-
-                <local:InvoicePositionDetailsFormView DataContext="{Binding InvoicePositionDetailsFormViewModel}"
-                                                      Grid.Row="1"
-                                                      IsEnabled="False" />
-
-                <commoncontrols:StatusMessageControl Grid.Row="2"
-                                                     Margin="0,8,0,0"
-                                                     Grid.Column="1"
-                                                     Grid.ColumnSpan="1"
-                                                     DataContext="{Binding StatusMessageViewModel}" />
-
-            </Grid>
         </Grid>
     </Grid>
 </UserControl>

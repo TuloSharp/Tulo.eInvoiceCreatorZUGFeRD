@@ -28,6 +28,92 @@
             <converters:MultiCommandParameterConverter x:Key="MultiCommandParameterConverter" />
             <system:Boolean x:Key="TrueFlag">True</system:Boolean>
             <system:Boolean x:Key="FalseFlag">False</system:Boolean>
+
+            <Style TargetType="{x:Type CheckBox}" x:Key="ModernCheckBox">
+                <Setter Property="Margin" Value="8" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="SnapsToDevicePixels" Value="true" />
+                <Setter Property="OverridesDefaultStyle" Value="true" />
+                <Setter Property="Foreground" Value="#333333" />
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type CheckBox}">
+                            <BulletDecorator Background="Transparent">
+                                <BulletDecorator.Bullet>
+                                    <Border x:Name="Border"
+                                            Width="20"
+                                            Height="20"
+                                            CornerRadius="4"
+                                            BorderThickness="2"
+                                            BorderBrush="#CCCCCC"
+                                            Background="White">
+                                        <Border.Effect>
+                                            <DropShadowEffect ShadowDepth="1"
+                                                              Opacity="0.15"
+                                                              BlurRadius="2" />
+                                        </Border.Effect>
+                                        <Path x:Name="CheckMark"
+                                              Data="M 2 8 L 7 13 L 15 2"
+                                              Stroke="#2952CC"
+                                              StrokeThickness="2"
+                                              StrokeStartLineCap="Round"
+                                              StrokeEndLineCap="Round"
+                                              StrokeLineJoin="Round"
+                                              Stretch="Uniform"
+                                              Visibility="Hidden" />
+                                    </Border>
+                                </BulletDecorator.Bullet>
+                                <ContentPresenter Margin="8,0,0,0"
+                                                  VerticalAlignment="Center"
+                                                  HorizontalAlignment="Left"
+                                                  RecognizesAccessKey="True" />
+                            </BulletDecorator>
+
+                            <ControlTemplate.Triggers>
+                                <!--  Checked State  -->
+                                <Trigger Property="IsChecked" Value="true">
+                                    <Setter TargetName="Border" Property="Background" Value="#2952CC" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#2952CC" />
+                                    <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                                    <Setter TargetName="CheckMark" Property="Stroke" Value="White" />
+                                </Trigger>
+
+                                <!--  Hover State  -->
+                                <Trigger Property="IsMouseOver" Value="true">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#999999" />
+                                    <Setter TargetName="Border" Property="Background" Value="#F5F5F5" />
+                                </Trigger>
+
+                                <!--  Checked + Hover State  -->
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsChecked" Value="true" />
+                                        <Condition Property="IsMouseOver" Value="true" />
+                                    </MultiTrigger.Conditions>
+                                    <Setter TargetName="Border" Property="Background" Value="#2952CC" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#2952CC" />
+                                </MultiTrigger>
+
+                                <!--  Focused State  -->
+                                <Trigger Property="IsFocused" Value="true">
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#2196F3" />
+                                    <Setter TargetName="Border" Property="BorderThickness" Value="2" />
+                                </Trigger>
+
+                                <!--  Disabled State  -->
+                                <Trigger Property="IsEnabled" Value="false">
+                                    <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="#DDDDDD" />
+                                    <Setter TargetName="CheckMark" Property="Stroke" Value="#AAAAAA" />
+                                    <Setter Property="Foreground" Value="#AAAAAA" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
     </UserControl.Resources>
 
@@ -296,10 +382,10 @@
 
                         <!--  Checkbox  -->
                         <CheckBox Grid.Column="3"
-                                  HorizontalAlignment="Right"
-                                  Height="20"
-                                  Width="20"
-                                  Style="{StaticResource CustomizedCheckBox}"
+                                  VerticalAlignment="Center"
+                                  Foreground="#374151"
+                                  Margin="12,0,0,0"
+                                  Style="{StaticResource ModernCheckBox}"
                                   IsChecked="{Binding HasDiscount, UpdateSourceTrigger=PropertyChanged}" />
                     </Grid>
 

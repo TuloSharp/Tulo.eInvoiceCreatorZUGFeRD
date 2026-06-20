@@ -13,7 +13,7 @@
              FocusManager.IsFocusScope="True"
              KeyboardNavigation.TabNavigation="Cycle"
              extended:SetFocusOnModalShow.Enabled="True"
-             Background="White"
+             Background="{StaticResource PanelBrushColor}"
              Style="{StaticResource RoundedUserControlStyle}"
              ToolTipService.InitialShowDelay="500"
              mc:Ignorable="d"
@@ -46,17 +46,18 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid ToolTipService.ShowOnDisabled="True" Grid.Row="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="25" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="0" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="6" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Border CornerRadius="2"
+            <!--  Bar UI Buttons  -->
+            <Border Grid.Row="0"
+                    CornerRadius="2"
                     BorderBrush="{StaticResource MainBrushColor}"
                     BorderThickness="0,2,0,0"
                     ClipToBounds="True">
@@ -113,68 +114,8 @@
                 </Grid>
             </Border>
 
-            <Border Grid.Row="1"
-                    BorderThickness="0,0,0,1"
-                    BorderBrush="{StaticResource GroupBoxBrushColor}">
-                <Grid Background="{StaticResource PanelBrushColor}">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="3" />
-                    </Grid.ColumnDefinitions>
-
-                    <Button Name="requestedReturnButton"
-                            Grid.Column="1"
-                            Margin="0,2,0,2"
-                            Style="{StaticResource ToolbarSecondaryButton}"
-                            KeyboardNavigation.AcceptsReturn="False"
-                            IsEnabled="{Binding IsSaveRequestMessageVisible, Converter={StaticResource InverseBoolConverter}}"
-                            ToolTip="{Binding ToolTipReturn}"
-                            Command="{Binding CloseAddInvoicePositionDetailsCommand}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Path Data="{StaticResource ArrowBackIconSVG}"
-                                  Fill="{StaticResource ButtonIconPrimaryColorBrush}"
-                                  Width="14"
-                                  Height="14"
-                                  Stretch="Uniform"
-                                  VerticalAlignment="Center"
-                                  Margin="0,0,8,0" />
-                            <AccessText Text="{Binding ContentButtonReturn}" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-
-                    <!--  ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"  -->
-                    <!--  ToolTipService.ShowOnDisabled="True"  -->
-                    <Button Name="saveButton"
-                            Grid.Column="3"
-                            Margin="0,2,0,2"
-                            Style="{StaticResource ToolbarPrimaryButton}"
-                            ToolTip="{Binding ToolTipSave}"
-                            KeyboardNavigation.AcceptsReturn="False"
-                            IsEnabled="{Binding IsEnableToSaveData, Converter={StaticResource DebuggerConverter}, ConverterParameter=IsEnableToSaveData}"
-                            Command="{Binding AddInvoicePositionDetailsCommand}">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Path Data="{StaticResource DoneIconSVG}"
-                                  Fill="White"
-                                  Width="14"
-                                  Height="14"
-                                  Stretch="Uniform"
-                                  VerticalAlignment="Center"
-                                  Margin="0,0,8,0" />
-                            <AccessText Text="{Binding ContentButtonInsertPosition}" VerticalAlignment="Center" />
-                        </StackPanel>
-                    </Button>
-
-                </Grid>
-            </Border>
-
-
-            <Grid Grid.Row="4">
+            <!--  Form  -->
+            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="14" />
                     <RowDefinition Height="auto" />
@@ -197,6 +138,71 @@
                                                           Grid.Row="3"
                                                           Margin="4,0,4,0" />
             </Grid>
+
+            <!--  Bar Form Buttons  -->
+            <Border Grid.Row="2"
+                    BorderBrush="{StaticResource GroupBoxBrushColor}">
+                <Grid Background="{StaticResource PanelBrushColor}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="5" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="5" />
+                    </Grid.RowDefinitions>
+
+                    <Button Name="requestedReturnButton"
+                            Grid.Column="1"
+                            Grid.Row="1"
+                            Margin="0,2,0,2"
+                            Style="{StaticResource ToolbarSecondaryButton}"
+                            KeyboardNavigation.AcceptsReturn="False"
+                            IsEnabled="{Binding IsSaveRequestMessageVisible, Converter={StaticResource InverseBoolConverter}}"
+                            ToolTip="{Binding ToolTipReturn}"
+                            Command="{Binding CloseAddInvoicePositionDetailsCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource ArrowBackIconSVG}"
+                                  Fill="{StaticResource ButtonIconPrimaryColorBrush}"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
+                            <AccessText Text="{Binding ContentButtonReturn}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                    <!--  ToolTip="{Binding RelativeSource={RelativeSource Self}, Path=DataContext}"  -->
+                    <!--  ToolTipService.ShowOnDisabled="True"  -->
+                    <Button Name="saveButton"
+                            Grid.Column="3"
+                            Grid.Row="1"
+                            Margin="0,2,0,2"
+                            Style="{StaticResource ToolbarPrimaryButton}"
+                            ToolTip="{Binding ToolTipSave}"
+                            KeyboardNavigation.AcceptsReturn="False"
+                            IsEnabled="{Binding IsEnableToSaveData, Converter={StaticResource DebuggerConverter}, ConverterParameter=IsEnableToSaveData}"
+                            Command="{Binding AddInvoicePositionDetailsCommand}">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                            <Path Data="{StaticResource DoneIconSVG}"
+                                  Fill="White"
+                                  Width="14"
+                                  Height="14"
+                                  Stretch="Uniform"
+                                  VerticalAlignment="Center"
+                                  Margin="0,0,8,0" />
+                            <AccessText Text="{Binding ContentButtonInsertPosition}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Button>
+
+                </Grid>
+            </Border>
+
         </Grid>
     </Grid>
 </UserControl>
