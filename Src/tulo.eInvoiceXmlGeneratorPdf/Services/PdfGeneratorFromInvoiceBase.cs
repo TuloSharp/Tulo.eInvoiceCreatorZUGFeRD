@@ -14,10 +14,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.XPath;
-using tulo.XMLeInvoiceToPdf.Languages;
-using tulo.XMLeInvoiceToPdf.Utilities;
+using Tulo.XMLeInvoiceToPdf.Languages;
+using Tulo.XMLeInvoiceToPdf.Utilities;
 
-namespace tulo.XMLeInvoiceToPdf.Services;
+namespace Tulo.XMLeInvoiceToPdf.Services;
 
 [SuppressMessage("Interoperability", "CA1416:Validate platform compatibility")]
 public abstract class PdfGeneratorFromInvoiceBase(ITranslatorProvider translationProvider)
@@ -80,7 +80,7 @@ public abstract class PdfGeneratorFromInvoiceBase(ITranslatorProvider translatio
         pdfDocument.Info.Author = sellerName;
         pdfDocument.Info.Subject = $"{invoiceType} vom {invoiceDate}";
         pdfDocument.Info.Keywords = $"E-Rechnung, XML, PDF, {invoiceNumber}, {sellerName}, {buyerName}";
-        pdfDocument.Info.Creator = "tulo.XMLeInvoiceToPdf";
+        pdfDocument.Info.Creator = "Tulo.XMLeInvoiceToPdf";
         //pdfDocument.Info.Producer = "PdfSharp Extended";
         pdfDocument.Info.CreationDate = DateTime.Now;
         pdfDocument.Info.ModificationDate = DateTime.Now;

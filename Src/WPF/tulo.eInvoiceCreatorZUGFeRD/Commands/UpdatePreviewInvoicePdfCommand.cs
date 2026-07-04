@@ -1,8 +1,8 @@
 ﻿using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Commands;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Commands;
 public class UpdatePreviewInvoicePdfCommand(InvoiceViewModel invoiceViewModel, ICollectorCollection collectorCollection) : BaseCommand
 
 {

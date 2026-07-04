@@ -1,9 +1,9 @@
-using tulo.XMLeInvoiceToPdf.Languages;
+using Tulo.XMLeInvoiceToPdf.Languages;
 using PdfSharp;
 using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 
-namespace tulo.XMLeInvoiceToPdf.Services;
+namespace Tulo.XMLeInvoiceToPdf.Services;
 
 public class PdfGeneratorFromInvoiceUbl(ITranslatorProvider translationProvider) : PdfGeneratorFromInvoiceBase(translationProvider), IPdfGeneratorFromInvoice
 {

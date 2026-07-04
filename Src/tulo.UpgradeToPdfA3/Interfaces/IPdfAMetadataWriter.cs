@@ -1,8 +1,8 @@
 using PdfSharp.Pdf;
-using tulo.UpgradeToPdfA3.Options;
-using tulo.UpgradeToPdfA3.ResultPattern;
+using Tulo.UpgradeToPdfA3.Options;
+using Tulo.UpgradeToPdfA3.ResultPattern;
 
-namespace tulo.UpgradeToPdfA3.Interfaces;
+namespace Tulo.UpgradeToPdfA3.Interfaces;
 
 /// <summary>
 /// Provides functionality to write XMP metadata into a <see cref="PdfDocument"/>

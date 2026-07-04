@@ -1,8 +1,8 @@
-﻿using tulo.eInvoiceXmlGeneratorCii.Models;
+﻿using Tulo.eInvoiceXmlGeneratorCii.Models;
 using System.Globalization;
 using Zugferd24.Extended;
 
-namespace tulo.eInvoiceXmlGeneratorCii.Mappers;
+namespace Tulo.eInvoiceXmlGeneratorCii.Mappers;
 
 public class CiiMapper : ICiiMapper
 {

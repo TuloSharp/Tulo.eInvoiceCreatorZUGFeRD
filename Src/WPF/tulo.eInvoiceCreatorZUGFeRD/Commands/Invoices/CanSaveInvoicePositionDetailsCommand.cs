@@ -2,9 +2,9 @@
 using System.Windows.Input;
 using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
 public class CanSaveInvoicePositionDetailsCommand(InvoicePositionDetailsFormViewModel invoicePositionDetailsFormViewModel, ICommand submitCommand, ICollectorCollection collectorCollection) : BaseCommand
 {
     private readonly InvoicePositionDetailsFormViewModel _invoicePositionDetailsFormViewModel = invoicePositionDetailsFormViewModel;

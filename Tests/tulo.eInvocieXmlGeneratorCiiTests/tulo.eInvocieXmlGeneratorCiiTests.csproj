@@ -24,7 +24,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\Src\tulo.eInvocieXmlGeneratorCii\tulo.eInvoiceXmlGeneratorCii.csproj" />
+		<ProjectReference Include="..\..\Src\Tulo.eInvocieXmlGeneratorCii\Tulo.eInvoiceXmlGeneratorCii.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -4,7 +4,7 @@ using PdfSharp.Fonts;
 using System.Diagnostics;
 using System.Reflection;
 
-namespace tulo.XMLeInvoiceToPdf.Utilities;
+namespace Tulo.XMLeInvoiceToPdf.Utilities;
 public class EmbeddedFontResolver : IFontResolver
 {
     private static class FaceKeys

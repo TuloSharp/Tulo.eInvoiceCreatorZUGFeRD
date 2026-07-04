@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace tulo.eInvoiceCreatorZUGFeRD;
+namespace Tulo.eInvoiceCreatorZUGFeRD;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml

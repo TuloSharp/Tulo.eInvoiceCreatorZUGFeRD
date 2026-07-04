@@ -6,15 +6,15 @@ using tulo.CommonMVVM.GlobalProperties;
 using tulo.CommonMVVM.Stores;
 using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.Commands.Common;
-using tulo.eInvoiceCreatorZUGFeRD.Properties;
-using tulo.eInvoiceCreatorZUGFeRD.Utilities;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Factories;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.Commands.Common;
+using Tulo.eInvoiceCreatorZUGFeRD.Properties;
+using Tulo.eInvoiceCreatorZUGFeRD.Utilities;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Factories;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 using tulo.ResourcesWpfLib.Commands;
 using tulo.ResourcesWpfLib.Viewmodels;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels;
+namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels;
 public class MainViewModel : BaseViewModel, IResizeWindowViewModel
 {
     #region Get Services / Stores from CollectorCollection

@@ -1,11 +1,11 @@
 ﻿using tulo.CommonMVVM.Collector;
 using tulo.CoreLib.Components.ResultPattern;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.DTOs;
-using tulo.eInvoiceCreatorZUGFeRD.Services;
-using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.eInvoiceCreatorZUGFeRD.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
-namespace tulo.eInvoiceCreatorZUGFeRDTests.Fakes;
+namespace Tulo.eInvoiceCreatorZUGFeRDTests.Fakes;
 
 // FakeInvoicePositionService.cs
 public class FakeInvoicePositionService : IInvoicePositionService

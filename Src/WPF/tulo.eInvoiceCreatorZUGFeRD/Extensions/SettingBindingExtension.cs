@@ -1,7 +1,7 @@
 ﻿using System.Windows.Data;
-using tulo.eInvoiceCreatorZUGFeRD.Properties;
+using Tulo.eInvoiceCreatorZUGFeRD.Properties;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Extensions;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Extensions;
 
 public class SettingBindingExtension : Binding
 {

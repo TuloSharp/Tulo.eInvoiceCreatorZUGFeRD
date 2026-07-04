@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Views.About;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Views.About;
 /// <summary>
 /// Interaction logic for AboutView.xaml
 /// </summary>

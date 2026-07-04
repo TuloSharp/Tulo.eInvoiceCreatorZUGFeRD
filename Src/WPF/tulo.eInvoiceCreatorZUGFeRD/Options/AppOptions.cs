@@ -1,4 +1,4 @@
-﻿namespace tulo.eInvoiceCreatorZUGFeRD.Options;
+﻿namespace Tulo.eInvoiceCreatorZUGFeRD.Options;
 public class AppOptions : IAppOptions
 {
     public LocalizationOptions Localization { get; set; } = new();

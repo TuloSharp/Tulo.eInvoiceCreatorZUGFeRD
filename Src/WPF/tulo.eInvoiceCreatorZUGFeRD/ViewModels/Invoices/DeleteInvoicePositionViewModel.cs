@@ -4,11 +4,11 @@ using tulo.CommonMVVM.Commands;
 using tulo.CommonMVVM.GlobalProperties;
 using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
-using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 using tulo.LoadingSpinnerControl.ViewModels;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
 public class DeleteInvoicePositionViewModel : BaseViewModel
 {

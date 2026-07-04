@@ -4,12 +4,12 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<RootNamespace>tulo.XMLeInvoiceToPdf</RootNamespace>
-		<AssemblyName>tulo.XMLeInvoiceToPdf</AssemblyName>
+		<RootNamespace>Tulo.XMLeInvoiceToPdf</RootNamespace>
+		<AssemblyName>Tulo.XMLeInvoiceToPdf</AssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>tulo.XMLeInvoiceToPdf</PackageId>
+		<PackageId>Tulo.XMLeInvoiceToPdf</PackageId>
     <Version>1.0.2</Version>
     <Authors>Tulo Team</Authors>
     <Company>Tulo Team</Company>
@@ -17,7 +17,7 @@
      XML to Cii eInvoice. Free to use. No modification or redistribution without permission.
     </Description>
     <RepositoryType>GitHub</RepositoryType>
-    <RepositoryUrl>https://github.com/TuloSharp/tulo.eInvoiceCreatorZUGFeRD.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/TuloSharp/Tulo.eInvoiceCreatorZUGFeRD.git</RepositoryUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright>© 2025–2026 Tulo Team</Copyright>

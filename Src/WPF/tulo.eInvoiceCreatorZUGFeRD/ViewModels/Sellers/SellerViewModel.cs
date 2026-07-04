@@ -3,9 +3,9 @@ using System.Collections.ObjectModel;
 using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.Options;
+using Tulo.eInvoiceCreatorZUGFeRD.Options;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Sellers;
+namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Sellers;
 
 public class SellerViewModel : BaseViewModel
 {

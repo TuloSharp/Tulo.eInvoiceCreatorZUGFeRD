@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\tulo.eInvoiceXmlGeneratorPdf\tulo.XMLeInvoiceToPdf.csproj" />
+    <ProjectReference Include="..\..\Src\Tulo.eInvoiceXmlGeneratorPdf\Tulo.XMLeInvoiceToPdf.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -4,13 +4,13 @@
 		<TargetFramework>net8.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<RootNamespace>tulo.eInvoiceXmlGeneratorCii</RootNamespace>
-		<AssemblyName>tulo.eInvoiceXmlGeneratorCii</AssemblyName>
+		<RootNamespace>Tulo.eInvoiceXmlGeneratorCii</RootNamespace>
+		<AssemblyName>Tulo.eInvoiceXmlGeneratorCii</AssemblyName>
 	</PropertyGroup>
 
 
 	<PropertyGroup>
-		<PackageId>tulo.eInvoiceXmlGeneratorCii</PackageId>
+		<PackageId>Tulo.eInvoiceXmlGeneratorCii</PackageId>
     <Version>1.0.0</Version>
     <Authors>Tulo Team</Authors>
     <Company>Tulo Team</Company>
@@ -18,7 +18,7 @@
       Generate Xml eInvocie. Free to use. No modification or redistribution without permission.
     </Description>
     <RepositoryType>GitHub</RepositoryType>
-    <RepositoryUrl>https://github.com/TuloSharp/tulo.eInvoiceCreatorZUGFeRD.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/TuloSharp/Tulo.eInvoiceCreatorZUGFeRD.git</RepositoryUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright>© 2025–2026 Tulo Team</Copyright>

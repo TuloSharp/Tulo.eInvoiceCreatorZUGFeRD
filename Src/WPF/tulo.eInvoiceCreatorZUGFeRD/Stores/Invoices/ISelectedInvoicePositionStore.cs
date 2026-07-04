@@ -1,6 +1,6 @@
-﻿using tulo.eInvoiceCreatorZUGFeRD.DTOs;
+﻿using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
 public interface ISelectedInvoicePositionStore
 {

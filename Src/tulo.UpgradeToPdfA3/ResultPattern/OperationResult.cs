@@ -1,4 +1,4 @@
-﻿namespace tulo.UpgradeToPdfA3.ResultPattern;
+﻿namespace Tulo.UpgradeToPdfA3.ResultPattern;
 
 public class OperationResult
 {

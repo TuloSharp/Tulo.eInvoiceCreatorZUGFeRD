@@ -1,4 +1,4 @@
-﻿namespace tulo.eInvoiceCreatorZUGFeRD;
+﻿namespace Tulo.eInvoiceCreatorZUGFeRD;
 
 public static class AppConstants
 {

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection;
 
-namespace tulo.eInvoiceXmlGeneratorCii.Services;
+namespace Tulo.eInvoiceXmlGeneratorCii.Services;
 public class XmlObjectCleaner : IXmlObjectCleaner
 {
     public void RemoveEmptyNodes(object root)

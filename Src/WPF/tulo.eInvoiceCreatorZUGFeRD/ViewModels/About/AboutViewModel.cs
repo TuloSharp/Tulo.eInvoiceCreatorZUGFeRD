@@ -3,7 +3,7 @@ using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.ViewModels;
 using tulo.ResourcesWpfLib.Commands;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.About;
+namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.About;
 public class AboutViewModel : BaseViewModel
 {
     public string Version { get; } = $"Version: {System.Reflection.Assembly.GetExecutingAssembly().GetName().Version}";
@@ -21,7 +21,7 @@ Dieses Tool ist ein privates Projekt. Wenn es Ihnen hilft, freue ich mich über 
 Esta herramienta es un proyecto privado. Si le resulta útil, agradeceré su apoyo.  
 
 * ☕ [PayPal](https://paypal.me/MarceloGuartanAndrad)
-* ⭐ [GitHub](https://github.com/TuloSharp/tulo.eInvoiceCreatorZUGFeRD.git)
+* ⭐ [GitHub](https://github.com/TuloSharp/Tulo.eInvoiceCreatorZUGFeRD.git)
 
 ---
 

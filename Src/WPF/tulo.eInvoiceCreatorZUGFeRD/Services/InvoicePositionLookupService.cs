@@ -1,7 +1,7 @@
 ﻿using tulo.CommonMVVM.Collector;
 using tulo.CoreLib.Translators;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Services;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Services;
 public sealed class InvoicePositionLookupService(ICollectorCollection collectorCollection) : IInvoicePositionLookupService
 {
     private readonly ITranslatorUiProvider _translator = collectorCollection.GetService<ITranslatorUiProvider>();

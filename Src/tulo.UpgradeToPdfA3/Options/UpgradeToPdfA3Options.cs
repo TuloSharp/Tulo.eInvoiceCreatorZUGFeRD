@@ -1,4 +1,4 @@
-﻿namespace tulo.UpgradeToPdfA3.Options;
+﻿namespace Tulo.UpgradeToPdfA3.Options;
 
 public class UpgradeToPdfA3Options : IUpgradeToPdfA3Options
 {
@@ -9,13 +9,13 @@ public class PdfA3Options
 {
     public string IccProfilePath { get; set; } = string.Empty;
 
-    public string Creator { get; set; } = "tulo.UpgradeToPdfA3";
-    public string CreatorTool { get; set; } = "tulo.UpgradeToPdfA3";
+    public string Creator { get; set; } = "Tulo.UpgradeToPdfA3";
+    public string CreatorTool { get; set; } = "Tulo.UpgradeToPdfA3";
     public string Producer { get; set; } = "PdfSharp Extended";
 
     public string Title { get; set; } = "E-Invoice";
     public string Description { get; set; } = "E-Invoice as PDF/A-3";
-    public string Author { get; set; } = "tulo.UpgradeToPdfA3";
+    public string Author { get; set; } = "Tulo.UpgradeToPdfA3";
     public string Language { get; set; } = "de-DE";
 
     public string Conformance { get; set; } = "B";

@@ -1,6 +1,6 @@
 ﻿using Zugferd24.Extended;
 
-namespace tulo.eInvoiceXmlGeneratorCii.Services;
+namespace Tulo.eInvoiceXmlGeneratorCii.Services;
 
 public interface IXmlCiiExporter
 {

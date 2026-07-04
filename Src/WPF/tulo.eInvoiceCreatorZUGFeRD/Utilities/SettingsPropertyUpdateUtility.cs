@@ -2,10 +2,10 @@
 using System.Configuration;
 using System.IO;
 using System.Reflection;
-using tulo.eInvoiceCreatorZUGFeRD.Properties;
+using Tulo.eInvoiceCreatorZUGFeRD.Properties;
 using ConfigurationManager = System.Configuration.ConfigurationManager;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Utilities
+namespace Tulo.eInvoiceCreatorZUGFeRD.Utilities
 {
     /// <summary>
     /// Has some functions to verify that settings will be remain properly after update.

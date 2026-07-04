@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Services;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Services;
 /// <summary>
 /// Provides culture management for the application, including resolving,
 /// applying, and querying the current and supported cultures.

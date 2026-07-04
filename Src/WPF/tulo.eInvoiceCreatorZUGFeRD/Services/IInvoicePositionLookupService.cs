@@ -1,4 +1,4 @@
-﻿namespace tulo.eInvoiceCreatorZUGFeRD.Services;
+﻿namespace Tulo.eInvoiceCreatorZUGFeRD.Services;
 /// <summary>
 /// Provides human-readable display text and tooltip lookups
 /// for invoice position unit codes and VAT category codes.

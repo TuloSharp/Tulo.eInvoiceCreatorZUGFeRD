@@ -1,7 +1,7 @@
-﻿using tulo.eInvoiceCreatorZUGFeRD.DTOs;
-using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+﻿using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
-namespace tulo.eInvoiceCreatorZUGFeRDTests.Store.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRDTests.Store.Invoices;
 
 public class InvoicePositionStoreTests
 {

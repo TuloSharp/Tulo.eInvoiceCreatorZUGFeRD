@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Views.Sellers.Controls;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Views.Sellers.Controls;
 /// <summary>
 /// Interaction logic for SellerPartyControl.xaml
 /// </summary>

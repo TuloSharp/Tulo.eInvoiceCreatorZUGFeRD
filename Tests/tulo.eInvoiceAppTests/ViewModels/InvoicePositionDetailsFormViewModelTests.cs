@@ -8,15 +8,15 @@ using tulo.CommonMVVM.GlobalProperties;
 using tulo.CoreLib.Interfaces.SnapShots;
 using tulo.CoreLib.Services;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.DTOs;
-using tulo.eInvoiceCreatorZUGFeRD.Options;
-using tulo.eInvoiceCreatorZUGFeRD.Services;
-using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
-using tulo.eInvoiceCreatorZUGFeRDTests.Fakes;
-using tulo.eInvoiceCreatorZUGFeRDTests.TestInfrastructure;
+using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.eInvoiceCreatorZUGFeRD.Options;
+using Tulo.eInvoiceCreatorZUGFeRD.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRDTests.Fakes;
+using Tulo.eInvoiceCreatorZUGFeRDTests.TestInfrastructure;
 
-namespace tulo.eInvoiceCreatorZUGFeRDTests.ViewModels;
+namespace Tulo.eInvoiceCreatorZUGFeRDTests.ViewModels;
 
 public class InvoicePositionDetailsFormViewModelTests : IDisposable
 {

@@ -1,10 +1,10 @@
-﻿using tulo.XMLeInvoiceToPdf.Languages;
-using tulo.XMLeInvoiceToPdf.Services;
-using tulo.XMLeInvoiceToPdf.Utilities;
+﻿using Tulo.XMLeInvoiceToPdf.Languages;
+using Tulo.XMLeInvoiceToPdf.Services;
+using Tulo.XMLeInvoiceToPdf.Utilities;
 using PdfSharp.Fonts;
 using System.Diagnostics;
 
-namespace tulo.XMLeInvoiceToPdfTests;
+namespace Tulo.XMLeInvoiceToPdfTests;
 
 [TestClass]
 public class GeneratePdfFromCiiIngetrationTests

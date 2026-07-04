@@ -4,10 +4,10 @@ using System.Text.Json;
 using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
-using tulo.eInvoiceXmlGeneratorCii.Models;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceXmlGeneratorCii.Models;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
 
 public class SaveCustomerDataCommand(InvoiceViewModel invoiceViewModel, ICollectorCollection collectorCollection) : BaseCommand
 {

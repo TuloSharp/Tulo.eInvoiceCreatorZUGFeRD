@@ -6,12 +6,12 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UseWPF>true</UseWPF>
-		<RootNamespace>tulo.eInvoiceCreatorZUGFeRD</RootNamespace>
-		<AssemblyName>tulo.eInvoiceCreatorZUGFeRD</AssemblyName>
+		<RootNamespace>Tulo.eInvoiceCreatorZUGFeRD</RootNamespace>
+		<AssemblyName>Tulo.eInvoiceCreatorZUGFeRD</AssemblyName>
 	</PropertyGroup>
 
 	<PropertyGroup>
-		<PackageId>tulo.eInvoiceCreatorZUGFeRD</PackageId>
+		<PackageId>Tulo.eInvoiceCreatorZUGFeRD</PackageId>
 		<Version>1.0.1</Version>
 		<Authors>Tulo Team</Authors>
 		<Company>Tulo Team</Company>
@@ -20,7 +20,7 @@
       fully compliant electronic invoices in ZUGFeRD 2.4 EXTENDED / Factur-X 1.0
     </Description>
 		<RepositoryType>GitHub</RepositoryType>
-    <RepositoryUrl>https://github.com/TuloSharp/tulo.eInvoiceCreatorZUGFeRD.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/TuloSharp/Tulo.eInvoiceCreatorZUGFeRD.git</RepositoryUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright>© 2025–2026 Tulo Team</Copyright>
@@ -50,9 +50,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\tulo.eInvocieXmlGeneratorCii\tulo.eInvoiceXmlGeneratorCii.csproj" />
-		<ProjectReference Include="..\..\tulo.eInvoiceXmlGeneratorPdf\tulo.XMLeInvoiceToPdf.csproj" />
-		<ProjectReference Include="..\..\tulo.UpgradeToPdfA3\tulo.UpgradeToPdfA3.csproj" />
+		<ProjectReference Include="..\..\Tulo.eInvocieXmlGeneratorCii\Tulo.eInvoiceXmlGeneratorCii.csproj" />
+		<ProjectReference Include="..\..\Tulo.eInvoiceXmlGeneratorPdf\Tulo.XMLeInvoiceToPdf.csproj" />
+		<ProjectReference Include="..\..\Tulo.UpgradeToPdfA3\Tulo.UpgradeToPdfA3.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -3,9 +3,9 @@ using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Xml.Serialization;
-using tulo.eInvoiceXmlGeneratorCii.Mappers;
-using tulo.eInvoiceXmlGeneratorCii.Models;
-using tulo.eInvoiceXmlGeneratorCii.Services;
+using Tulo.eInvoiceXmlGeneratorCii.Mappers;
+using Tulo.eInvoiceXmlGeneratorCii.Models;
+using Tulo.eInvoiceXmlGeneratorCii.Services;
 using Zugferd24.Extended;
 
 namespace Tests;

@@ -1,7 +1,7 @@
-﻿using tulo.eInvoiceXmlGeneratorCii.Models;
+﻿using Tulo.eInvoiceXmlGeneratorCii.Models;
 using Zugferd24.Extended;
 
-namespace tulo.eInvoiceXmlGeneratorCii.Mappers;
+namespace Tulo.eInvoiceXmlGeneratorCii.Mappers;
 /// <summary>
 /// Defines a contract for mapping application invoice models to the ZUGFeRD Extended model.
 /// </summary>

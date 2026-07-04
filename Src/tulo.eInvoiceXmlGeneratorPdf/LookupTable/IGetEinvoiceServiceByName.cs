@@ -1,6 +1,6 @@
-﻿using tulo.XMLeInvoiceToPdf.Services;
+﻿using Tulo.XMLeInvoiceToPdf.Services;
 
-namespace tulo.XMLeInvoiceToPdf.LookupTable;
+namespace Tulo.XMLeInvoiceToPdf.LookupTable;
 /// <summary>
 /// Provides a factory lookup to resolve a specific <see cref="IPdfGeneratorFromInvoice"/>
 /// implementation by its registered name.

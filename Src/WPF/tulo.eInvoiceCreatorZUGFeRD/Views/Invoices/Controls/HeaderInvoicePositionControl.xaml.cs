@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Views.Invoices.Controls
+namespace Tulo.eInvoiceCreatorZUGFeRD.Views.Invoices.Controls
 {
     /// <summary>
     /// Interaction logic for HeaderInvoicePositionControl.xaml

@@ -1,4 +1,4 @@
-﻿namespace tulo.XMLeInvoiceToPdf.Services;
+﻿namespace Tulo.XMLeInvoiceToPdf.Services;
 
 /// <summary>
 /// Defines the contract for generating PDF documents from XML-based e-invoice data.

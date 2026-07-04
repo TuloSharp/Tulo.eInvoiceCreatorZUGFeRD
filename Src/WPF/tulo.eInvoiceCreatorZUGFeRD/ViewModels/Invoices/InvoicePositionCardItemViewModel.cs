@@ -3,11 +3,11 @@ using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
 using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.DTOs;
-using tulo.eInvoiceCreatorZUGFeRD.Services;
-using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.eInvoiceCreatorZUGFeRD.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
 public class InvoicePositionCardItemViewModel : BaseViewModel
 {

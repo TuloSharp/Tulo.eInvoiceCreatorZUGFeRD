@@ -1,7 +1,7 @@
 ﻿using tulo.CommonMVVM.ViewModels;
-using tulo.eInvoiceCreatorZUGFeRD.Utilities;
+using Tulo.eInvoiceCreatorZUGFeRD.Utilities;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Factories
+namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Factories
 {
     public interface INavigatorViewModelFactory
     {

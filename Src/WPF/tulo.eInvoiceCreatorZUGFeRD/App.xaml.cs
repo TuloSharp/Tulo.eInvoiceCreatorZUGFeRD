@@ -15,23 +15,23 @@ using tulo.CoreLib.Exceptions;
 using tulo.CoreLib.Interfaces.SnapShots;
 using tulo.CoreLib.PDFs;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD;
-using tulo.eInvoiceCreatorZUGFeRD.Options;
-using tulo.eInvoiceCreatorZUGFeRD.Properties;
-using tulo.eInvoiceCreatorZUGFeRD.Services;
-using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
-using tulo.eInvoiceCreatorZUGFeRD.Utilities;
-using tulo.eInvoiceXmlGeneratorCii.Mappers;
-using tulo.eInvoiceXmlGeneratorCii.Services;
+using Tulo.eInvoiceCreatorZUGFeRD;
+using Tulo.eInvoiceCreatorZUGFeRD.Options;
+using Tulo.eInvoiceCreatorZUGFeRD.Properties;
+using Tulo.eInvoiceCreatorZUGFeRD.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.Utilities;
+using Tulo.eInvoiceXmlGeneratorCii.Mappers;
+using Tulo.eInvoiceXmlGeneratorCii.Services;
 using tulo.SerilogLib.Common;
-using tulo.UpgradeToPdfA3.Interfaces;
-using tulo.UpgradeToPdfA3.Options;
-using tulo.XMLeInvoiceToPdf.Services;
-using tulo.XMLeInvoiceToPdf.Utilities;
+using Tulo.UpgradeToPdfA3.Interfaces;
+using Tulo.UpgradeToPdfA3.Options;
+using Tulo.XMLeInvoiceToPdf.Services;
+using Tulo.XMLeInvoiceToPdf.Utilities;
 using WpfApplication = System.Windows.Application;
 
 
-namespace tulo.eInvoiceManager;
+namespace Tulo.eInvoiceManager;
 
 /// <summary>
 /// Interaction logic for App.xaml

@@ -1,9 +1,9 @@
 ﻿using System.Globalization;
 using System.Text.Json;
 using System.Xml.Linq;
-using tulo.eInvoiceXmlGeneratorCii.Mappers;
-using tulo.eInvoiceXmlGeneratorCii.Models;
-using tulo.eInvoiceXmlGeneratorCii.Services;
+using Tulo.eInvoiceXmlGeneratorCii.Mappers;
+using Tulo.eInvoiceXmlGeneratorCii.Models;
+using Tulo.eInvoiceXmlGeneratorCii.Services;
 
 namespace Tests;
 

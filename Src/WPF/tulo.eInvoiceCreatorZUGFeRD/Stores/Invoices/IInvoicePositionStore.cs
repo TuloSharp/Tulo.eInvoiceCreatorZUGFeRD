@@ -1,7 +1,7 @@
 ﻿using tulo.CoreLib.Components.ResultPattern;
-using tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 /// <summary>
 /// In-memory store for invoice position data.
 /// Acts as the single source of truth for all invoice positions within one application session.

@@ -3,7 +3,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using Zugferd24.Extended;
 
-namespace tulo.eInvoiceXmlGeneratorCii.Services;
+namespace Tulo.eInvoiceXmlGeneratorCii.Services;
 public class XmlCiiExporter : IXmlCiiExporter
 {
     private readonly IXmlObjectCleaner _cleaner;

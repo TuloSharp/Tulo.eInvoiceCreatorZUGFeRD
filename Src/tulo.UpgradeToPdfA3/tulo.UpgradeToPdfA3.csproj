@@ -4,12 +4,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <RootNamespace>tulo.UpgradeToPdfA3</RootNamespace>
-    <AssemblyName>tulo.UpgradeToPdfA3</AssemblyName>
+    <RootNamespace>Tulo.UpgradeToPdfA3</RootNamespace>
+    <AssemblyName>Tulo.UpgradeToPdfA3</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageId>tulo.UpgradeToPdfA3</PackageId>
+    <PackageId>Tulo.UpgradeToPdfA3</PackageId>
     <Version>1.0.0</Version>
     <Authors>Tulo Team</Authors>
     <Company>Tulo Team</Company>
@@ -17,7 +17,7 @@
       Pdf and Xml eInvocie To PdfA3. Free to use. No modification or redistribution without permission.
     </Description>
     <RepositoryType>GitHub</RepositoryType>
-    <RepositoryUrl>https://github.com/TuloSharp/tulo.eInvoiceCreatorZUGFeRD.git</RepositoryUrl>
+    <RepositoryUrl>https://github.com/TuloSharp/Tulo.eInvoiceCreatorZUGFeRD.git</RepositoryUrl>
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <Copyright>© 2025–2026 Tulo Team</Copyright>

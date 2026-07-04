@@ -1,7 +1,7 @@
-using tulo.UpgradeToPdfA3.Options;
-using tulo.UpgradeToPdfA3.ResultPattern;
+using Tulo.UpgradeToPdfA3.Options;
+using Tulo.UpgradeToPdfA3.ResultPattern;
 
-namespace tulo.UpgradeToPdfA3.Interfaces;
+namespace Tulo.UpgradeToPdfA3.Interfaces;
 
 /// <summary>
 /// Provides functionality to upgrade an existing PDF/A document to PDF/A-3 conformance

@@ -1,7 +1,7 @@
 ﻿using tulo.CoreLib.Components.ResultPattern;
-using tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Services;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Services;
 
 /// <summary>
 /// Provides CRUD operations and state tracking for invoice positions.

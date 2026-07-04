@@ -41,7 +41,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\tulo.CreateZugferdPdfA3\tulo.CreateZugferdPdfA3.csproj" />
+    <ProjectReference Include="..\..\Src\Tulo.eInvoiceXmlGeneratorPdf\Tulo.XMLeInvoiceToPdf.csproj" />
+    <ProjectReference Include="..\..\Src\Tulo.UpgradeToPdfA3\Tulo.UpgradeToPdfA3.csproj" />
   </ItemGroup>
+
 
 </Project>

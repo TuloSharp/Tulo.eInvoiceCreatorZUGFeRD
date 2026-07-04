@@ -4,15 +4,15 @@ using PdfSharp.Pdf.Advanced;
 using PdfSharp.Pdf.IO;
 using System.Diagnostics;
 using System.Text;
-using tulo.UpgradeToPdfA3.Interfaces;
-using tulo.UpgradeToPdfA3.Options;
-using tulo.UpgradeToPdfA3.ResultPattern;
-using tulo.UpgradeToPdfA3.Services;
-using tulo.XMLeInvoiceToPdf.Languages;
-using tulo.XMLeInvoiceToPdf.Services;
-using tulo.XMLeInvoiceToPdf.Utilities;
+using Tulo.UpgradeToPdfA3.Interfaces;
+using Tulo.UpgradeToPdfA3.Options;
+using Tulo.UpgradeToPdfA3.ResultPattern;
+using Tulo.UpgradeToPdfA3.Services;
+using Tulo.XMLeInvoiceToPdf.Languages;
+using Tulo.XMLeInvoiceToPdf.Services;
+using Tulo.XMLeInvoiceToPdf.Utilities;
 
-namespace tulo.UpgradeToPdfA3Tests.UpgadeToPdfA3;
+namespace Tulo.UpgradeToPdfA3Tests.UpgadeToPdfA3;
 
 [TestClass]
 public class ZugferdPdfA3PdfSharpIntegrationTests
@@ -141,9 +141,9 @@ public class ZugferdPdfA3PdfSharpIntegrationTests
                 Conformance = "B",
                 Title = "E-Invoice",
                 Description = "E-Invoice as PDF/A-3",
-                Author = "tulo.UpgradeToPdfA3",
-                Creator = "tulo.UpgradeToPdfA3",
-                CreatorTool = "tulo.UpgradeToPdfA3",
+                Author = "Tulo.UpgradeToPdfA3",
+                Creator = "Tulo.UpgradeToPdfA3",
+                CreatorTool = "Tulo.UpgradeToPdfA3",
                 Producer = "PdfSharp Extended",
                 Language = "de-DE",
                 IccProfilePath = iccProfilePath,

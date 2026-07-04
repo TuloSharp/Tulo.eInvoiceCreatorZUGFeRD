@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Controls;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Controls;
 /// <summary>
 /// Interaction logic for NavigatoreInvoiceApp.xaml
 /// </summary>

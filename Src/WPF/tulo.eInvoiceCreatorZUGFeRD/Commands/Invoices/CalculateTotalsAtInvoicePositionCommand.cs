@@ -1,7 +1,7 @@
 ﻿using tulo.CommonMVVM.Commands;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices
+namespace Tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices
 {
     public class CalculateTotalsAtInvoicePositionCommand(InvoicePositionDetailsFormViewModel invoicePositionDetailsFormViewModel) : BaseCommand
     {

@@ -1,6 +1,6 @@
-﻿using tulo.XMLeInvoiceToPdf.Services;
+﻿using Tulo.XMLeInvoiceToPdf.Services;
 
-namespace tulo.XMLeInvoiceToPdf.LookupTable;
+namespace Tulo.XMLeInvoiceToPdf.LookupTable;
 public class GetEinvoiceServiceByName : IGetEinvoiceServiceByName
 {
     private readonly IEnumerable<IPdfGeneratorFromInvoice> _pdfGeneratorFromInvoice;

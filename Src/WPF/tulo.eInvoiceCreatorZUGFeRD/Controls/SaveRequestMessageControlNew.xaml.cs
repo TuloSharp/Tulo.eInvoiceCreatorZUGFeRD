@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Controls
+namespace Tulo.eInvoiceCreatorZUGFeRD.Controls
 {
     /// <summary>
     /// Interaction logic for SaveRequestMessageControlNew.xaml

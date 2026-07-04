@@ -10,19 +10,19 @@ using tulo.CoreLib.Interfaces.SnapShots;
 using tulo.CoreLib.PDFs;
 using tulo.CoreLib.Services;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.Options;
-using tulo.eInvoiceCreatorZUGFeRD.Services;
-using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
-using tulo.eInvoiceCreatorZUGFeRD.Utilities;
-using tulo.eInvoiceXmlGeneratorCii.Mappers;
-using tulo.eInvoiceXmlGeneratorCii.Services;
-using tulo.UpgradeToPdfA3.Interfaces;
-using tulo.UpgradeToPdfA3.Options;
-using tulo.UpgradeToPdfA3.Services;
-using tulo.XMLeInvoiceToPdf.Languages;
-using tulo.XMLeInvoiceToPdf.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.Options;
+using Tulo.eInvoiceCreatorZUGFeRD.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.Utilities;
+using Tulo.eInvoiceXmlGeneratorCii.Mappers;
+using Tulo.eInvoiceXmlGeneratorCii.Services;
+using Tulo.UpgradeToPdfA3.Interfaces;
+using Tulo.UpgradeToPdfA3.Options;
+using Tulo.UpgradeToPdfA3.Services;
+using Tulo.XMLeInvoiceToPdf.Languages;
+using Tulo.XMLeInvoiceToPdf.Services;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
+namespace Tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
 
 public static class AddServicesHostBuilderExtension
 {
@@ -148,7 +148,7 @@ public static class AddServicesHostBuilderExtension
             var culture = cultureService.CurrentCulture.Name;
 
             var asm = typeof(TranslatorProvider).Assembly;
-            var resourceName = $"tulo.XMLeInvoiceToPdf.Languages.{culture}.xml";
+            var resourceName = $"Tulo.XMLeInvoiceToPdf.Languages.{culture}.xml";
 
             return new TranslatorProvider(asm, resourceName);
         });

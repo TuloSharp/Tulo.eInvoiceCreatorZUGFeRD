@@ -1,7 +1,7 @@
-﻿using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
-using tulo.eInvoiceXmlGeneratorCii.Models;
+﻿using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceXmlGeneratorCii.Models;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Services;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Services;
 
 /// <summary>
 /// Provides functionality to assemble a complete <see cref="Invoice"/> model

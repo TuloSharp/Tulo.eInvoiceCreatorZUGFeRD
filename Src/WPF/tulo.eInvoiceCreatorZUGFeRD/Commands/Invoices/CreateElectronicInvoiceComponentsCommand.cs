@@ -8,16 +8,16 @@ using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
 using tulo.CoreLib.PDFs;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.Options;
-using tulo.eInvoiceCreatorZUGFeRD.Services;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
-using tulo.eInvoiceXmlGeneratorCii.Mappers;
-using tulo.eInvoiceXmlGeneratorCii.Services;
-using tulo.UpgradeToPdfA3.Interfaces;
-using tulo.UpgradeToPdfA3.Options;
-using tulo.XMLeInvoiceToPdf.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.Options;
+using Tulo.eInvoiceCreatorZUGFeRD.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceXmlGeneratorCii.Mappers;
+using Tulo.eInvoiceXmlGeneratorCii.Services;
+using Tulo.UpgradeToPdfA3.Interfaces;
+using Tulo.UpgradeToPdfA3.Options;
+using Tulo.XMLeInvoiceToPdf.Services;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
 
 public class CreateElectronicInvoiceComponentsCommand(InvoiceViewModel invoiceViewModel, ICollectorCollection collectorCollection) : AsyncBaseCommand
 {

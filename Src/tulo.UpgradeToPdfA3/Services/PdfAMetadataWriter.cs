@@ -1,10 +1,10 @@
 using PdfSharp.Pdf;
 using System.Text;
-using tulo.UpgradeToPdfA3.Interfaces;
-using tulo.UpgradeToPdfA3.Options;
-using tulo.UpgradeToPdfA3.ResultPattern;
+using Tulo.UpgradeToPdfA3.Interfaces;
+using Tulo.UpgradeToPdfA3.Options;
+using Tulo.UpgradeToPdfA3.ResultPattern;
 
-namespace tulo.UpgradeToPdfA3.Services;
+namespace Tulo.UpgradeToPdfA3.Services;
 
 public sealed class PdfAMetadataWriter : IPdfAMetadataWriter
 {
@@ -104,7 +104,7 @@ public sealed class PdfAMetadataWriter : IPdfAMetadataWriter
     private static bool TryLoadTemplate(string fileName, out string template, out string errorMessage)
     {
         var assembly = typeof(PdfAMetadataWriter).Assembly;
-        var resourceName = $"tulo.UpgradeToPdfA3.Templates.{fileName}";
+        var resourceName = $"Tulo.UpgradeToPdfA3.Templates.{fileName}";
 
         using var stream = assembly.GetManifestResourceStream(resourceName);
         if (stream is not null)

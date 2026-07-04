@@ -1,6 +1,6 @@
-﻿using tulo.eInvoiceCreatorZUGFeRD.DTOs;
+﻿using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
 #if DEBUG
 public partial class InvoiceViewModel

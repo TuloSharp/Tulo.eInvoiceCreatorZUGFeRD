@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Views.Common;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Views.Common;
 /// <summary>
 /// Interaction logic for InsertPublicKeyView.xaml
 /// </summary>

@@ -6,7 +6,7 @@ using tulo.CommonMVVM.GlobalProperties;
 using tulo.CommonMVVM.Stores;
 using tulo.CoreLib.SystemConfig;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
+namespace Tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
 
 public static class AddCollectorHostBuilderExtensions
 {

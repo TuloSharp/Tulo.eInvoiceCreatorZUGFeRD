@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using tulo.CommonMVVM.Stores;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
+namespace Tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
 
 public static class AddProjectStoresHostBuilderExtensions
 {

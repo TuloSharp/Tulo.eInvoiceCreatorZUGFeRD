@@ -1,4 +1,4 @@
-﻿namespace tulo.eInvoiceCreatorZUGFeRD.Utilities
+﻿namespace Tulo.eInvoiceCreatorZUGFeRD.Utilities
 {
     public enum NavTypes
     {

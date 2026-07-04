@@ -12,17 +12,17 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/Src/">
-    <Project Path="Src/tulo.eInvocieXmlGeneratorCii/tulo.eInvoiceXmlGeneratorCii.csproj" />
-    <Project Path="Src/tulo.eInvoiceXmlGeneratorPdf/tulo.XMLeInvoiceToPdf.csproj" />
-    <Project Path="Src/tulo.UpgradeToPdfA3/tulo.UpgradeToPdfA3.csproj" />
+    <Project Path="Src/Tulo.eInvocieXmlGeneratorCii/Tulo.eInvoiceXmlGeneratorCii.csproj" />
+    <Project Path="Src/Tulo.eInvoiceXmlGeneratorPdf/Tulo.XMLeInvoiceToPdf.csproj" />
+    <Project Path="Src/Tulo.UpgradeToPdfA3/Tulo.UpgradeToPdfA3.csproj" />
   </Folder>
   <Folder Name="/Src/WPF/">
-    <Project Path="Src/WPF/tulo.eInvoiceCreatorZUGFeRD/tulo.eInvoiceCreatorZUGFeRD.csproj" />
+    <Project Path="Src/WPF/Tulo.eInvoiceCreatorZUGFeRD/Tulo.eInvoiceCreatorZUGFeRD.csproj" />
   </Folder>
   <Folder Name="/Tests/">
-    <Project Path="Tests/tulo.CreateZugferdPdfA3Tests/tulo.UpgradeToPdfA3Tests.csproj" />
-    <Project Path="Tests/tulo.eInvocieXmlGeneratorCiiTests/tulo.eInvocieXmlGeneratorCiiTests.csproj" />
-    <Project Path="Tests/tulo.eInvoiceAppTests/tulo.eInvoiceAppTests.csproj" />
-    <Project Path="Tests/tulo.eInvoiceXmlGeneratorPdfTests/tulo.eInvoiceXmlGeneratorPdfTests.csproj" />
+    <Project Path="Tests/Tulo.UpgradeToPdfA3Tests/Tulo.UpgradeToPdfA3Tests.csproj" />
+    <Project Path="Tests/Tulo.eInvocieXmlGeneratorCiiTests/Tulo.eInvocieXmlGeneratorCiiTests.csproj" />
+    <Project Path="Tests/Tulo.eInvoiceAppTests/Tulo.eInvoiceAppTests.csproj" />
+    <Project Path="Tests/Tulo.eInvoiceXmlGeneratorPdfTests/Tulo.eInvoiceXmlGeneratorPdfTests.csproj" />
   </Folder>
 </Solution>

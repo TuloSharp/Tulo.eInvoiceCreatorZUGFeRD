@@ -2,13 +2,13 @@
 using Microsoft.Extensions.Hosting;
 using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.ViewModels;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.About;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Factories;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
-using tulo.eInvoiceCreatorZUGFeRD.ViewModels.Sellers;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.About;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Factories;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Sellers;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
+namespace Tulo.eInvoiceCreatorZUGFeRD.HostBuilders;
 
 public static class AddViewModelsHostBuilderExtensions
 {

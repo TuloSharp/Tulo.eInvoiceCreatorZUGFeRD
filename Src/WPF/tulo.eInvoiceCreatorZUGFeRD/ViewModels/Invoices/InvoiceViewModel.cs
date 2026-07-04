@@ -8,17 +8,17 @@ using tulo.CommonMVVM.Commands;
 using tulo.CommonMVVM.GlobalProperties;
 using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
-using tulo.eInvoiceCreatorZUGFeRD.Commands;
-using tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
-using tulo.eInvoiceCreatorZUGFeRD.DTOs;
-using tulo.eInvoiceCreatorZUGFeRD.Options;
-using tulo.eInvoiceCreatorZUGFeRD.Services;
-using tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
-using tulo.eInvoiceXmlGeneratorCii.Models;
+using Tulo.eInvoiceCreatorZUGFeRD.Commands;
+using Tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
+using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.eInvoiceCreatorZUGFeRD.Options;
+using Tulo.eInvoiceCreatorZUGFeRD.Services;
+using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
+using Tulo.eInvoiceXmlGeneratorCii.Models;
 using tulo.LoadingSpinnerControl.ViewModels;
 using tulo.ResourcesWpfLib.Commands;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
 public partial class InvoiceViewModel : BaseViewModel
 {

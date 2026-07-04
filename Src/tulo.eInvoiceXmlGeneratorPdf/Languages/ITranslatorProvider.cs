@@ -1,4 +1,4 @@
-﻿namespace tulo.XMLeInvoiceToPdf.Languages;
+﻿namespace Tulo.XMLeInvoiceToPdf.Languages;
 /// <summary>
 /// Provides translation lookups for the application,
 /// resolving a given key to its corresponding localized string

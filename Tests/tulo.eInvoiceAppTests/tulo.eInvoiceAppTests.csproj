@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Src\WPF\tulo.eInvoiceCreatorZUGFeRD\tulo.eInvoiceCreatorZUGFeRD.csproj" />
+    <ProjectReference Include="..\..\Src\WPF\Tulo.eInvoiceCreatorZUGFeRD\Tulo.eInvoiceCreatorZUGFeRD.csproj" />
   </ItemGroup>
 
   <ItemGroup>

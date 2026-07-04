@@ -1,4 +1,4 @@
-﻿namespace tulo.eInvoiceXmlGeneratorCii.Models;
+﻿namespace Tulo.eInvoiceXmlGeneratorCii.Models;
 
 public class PaymentDetails
 {

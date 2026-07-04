@@ -2,7 +2,7 @@
 using System.Reflection;
 using System.Xml;
 
-namespace tulo.XMLeInvoiceToPdf.Languages;
+namespace Tulo.XMLeInvoiceToPdf.Languages;
 
 public class TranslatorProvider : ITranslatorProvider
 {

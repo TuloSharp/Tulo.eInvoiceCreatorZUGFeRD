@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace tulo.eInvoiceCreatorZUGFeRD.Views.Invoices;
+namespace Tulo.eInvoiceCreatorZUGFeRD.Views.Invoices;
 /// <summary>
 /// Interaction logic for InvoicePositionCardItemView.xaml
 /// </summary>

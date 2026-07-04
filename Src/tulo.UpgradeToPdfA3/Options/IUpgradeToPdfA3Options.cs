@@ -1,4 +1,4 @@
-﻿namespace tulo.UpgradeToPdfA3.Options;
+﻿namespace Tulo.UpgradeToPdfA3.Options;
 
 /// <summary>
 /// Represents the configuration options required to perform a PDF/A-3 upgrade,

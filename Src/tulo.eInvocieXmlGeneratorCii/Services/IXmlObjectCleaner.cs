@@ -1,4 +1,4 @@
-﻿namespace tulo.eInvoiceXmlGeneratorCii.Services;
+﻿namespace Tulo.eInvoiceXmlGeneratorCii.Services;
 
 public interface IXmlObjectCleaner
 {

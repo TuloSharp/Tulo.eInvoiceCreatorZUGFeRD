@@ -1,4 +1,4 @@
-﻿namespace tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
+﻿namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
 public partial class InvoicePositionDetailsFormViewModel
 {

@@ -1,4 +1,4 @@
-﻿namespace tulo.eInvoiceCreatorZUGFeRD.Options;
+﻿namespace Tulo.eInvoiceCreatorZUGFeRD.Options;
 /// <summary>
 /// Represents the root application configuration, grouping all
 /// option sections used across the application.
