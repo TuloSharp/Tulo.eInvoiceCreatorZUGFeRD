@@ -55,6 +55,7 @@
 
   <entry key="ToolTipSearchText">Eintrag suchen</entry>
   <entry key="ToolTipCreateInvoicePosition">Neue Rechnungsposition hinzufügen</entry>
+  <entry key="ToolTipRefreshPreview">Vorschau aktualisieren</entry>
   <!--#endregion -->
 
   <!--#region Invoice Placeholders -->
@@ -163,6 +164,7 @@
   <entry key="ContentButtonSaveSaveRequestMessage">_Speichern</entry>
   <entry key="ContentButtonNoSaveRequestMessage">_Abbrechen</entry>
   <entry key="ContentButtonReturnSaveRequestMessage">_Zurück</entry>
+  <entry key="ContentButtonRefresh">_Aktualisieren</entry>
   <entry key="LabelCreateAsGroupItem">Als Gruppe für Unterpositionen</entry>
   <!--#endregion -->
 

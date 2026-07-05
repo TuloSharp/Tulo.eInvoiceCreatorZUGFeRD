@@ -55,6 +55,7 @@
 
   <entry key="ToolTipSearchText">Buscar el item</entry>
   <entry key="ToolTipCreateInvoicePosition">Insertar nueva posición de factura</entry>
+  <entry key="ToolTipRefreshPreview">Actualizar vista previa</entry>
   <!--#endregion -->
 
   <!--#region Invoice Placeholders -->
@@ -96,6 +97,7 @@
   <entry key="LabelContentHeader">Encabezado</entry>
   <entry key="LabelContentPaymentInformation">Información de pago</entry>
   <entry key="LabelContentPositionsList">Lista de posiciones</entry>
+  
   <!--#endregion -->
 
   <!--#region Seller ToolTips -->
@@ -163,6 +165,7 @@
   <entry key="ContentButtonSaveSaveRequestMessage">_Salvar</entry>
   <entry key="ContentButtonNoSaveRequestMessage">_Cancelar</entry>
   <entry key="ContentButtonReturnSaveRequestMessage">_Retornar</entry>
+  <entry key="ContentButtonRefresh">_Actualizar</entry>
   <entry key="LabelCreateAsGroupItem">Como grupo con subposiciones</entry>
   <!--#endregion -->
 

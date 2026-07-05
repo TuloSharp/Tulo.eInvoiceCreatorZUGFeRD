@@ -15,7 +15,7 @@ public class UpdatePreviewInvoicePdfCommand(InvoiceViewModel invoiceViewModel, I
             try
             {
 
-            _invoiceViewModel.DocumentSource = "<html><body><h1>PDF stream is empty.</h1></body></html>";
+            _invoiceViewModel.DocumentSource = "<html><body><h1>PDF stream is empty ToDo.</h1></body></html>";
             //if (pdfResult == null)
             //{
             //    _invoiceViewModel.DocumentSource = "<html><body><h1>PDF generation returned null result.</h1></body></html>";

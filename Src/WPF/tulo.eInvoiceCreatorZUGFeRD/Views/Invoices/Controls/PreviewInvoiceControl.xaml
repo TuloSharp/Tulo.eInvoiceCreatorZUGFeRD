@@ -30,21 +30,22 @@
             </Grid.ColumnDefinitions>
 
             <Button Name="RefreshPreviewButton"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
+                    Style="{StaticResource ToolbarPrimaryButton}"
+                    ToolTip="{Binding ToolTipRefreshPreview}"
                     Grid.Column="1"
-                    Command="{Binding UpdatePreviewInvoicePdfCommand}"
-                    ToolTip="Refresh pdf preview">
-                <Grid>
-                    <Viewbox Style="{StaticResource ViewBox4Icon}">
-                        <Path Data="{StaticResource RefreshIconSVG}"
-                              Style="{StaticResource ContentButtonPathStyle}"
-                              Fill="{StaticResource ButtonBrushIconColor}"
-                              Width="auto"
-                              Height="auto" />
-                    </Viewbox>
-                </Grid>
+                    Command="{Binding UpdatePreviewInvoicePdfCommand}">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Path Data="{StaticResource RefreshIconSVG}"
+                          Fill="White"
+                          Width="14"
+                          Height="14"
+                          Stretch="Uniform"
+                          VerticalAlignment="Center"
+                          Margin="0,0,8,0" />
+                    <AccessText Text="{Binding ContentButtonRefresh}" VerticalAlignment="Center" />
+                </StackPanel>
             </Button>
+
         </Grid>
 
         <wv2:WebView2 Name="webView" Grid.Row="3">

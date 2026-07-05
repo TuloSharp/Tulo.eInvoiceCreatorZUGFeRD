@@ -44,6 +44,7 @@ public partial class InvoiceViewModel
     //Search
     public string ToolTipSearchText { get; private set; } = string.Empty;
     public string ToolTipCreateInvoicePosition { get; private set; } = string.Empty;
+    public string ToolTipRefreshPreview { get; private set; } = string.Empty;
 
     private void FillAllInvoiceToolTips()
     {
@@ -90,6 +91,8 @@ public partial class InvoiceViewModel
         //search
         ToolTipSearchText = _translatorUiProvider.Translate("ToolTipSearch");
         ToolTipCreateInvoicePosition = _translatorUiProvider.Translate("ToolTipCreateInvoicePosition");
+
+        ToolTipRefreshPreview = _translatorUiProvider.Translate("ToolTipRefreshPreview");
     }
     #endregion
 
@@ -186,6 +189,7 @@ public partial class InvoiceViewModel
     public string ContentButtonLoad { get; private set; } = string.Empty;
     public string ContentButtonClearAll { get; private set; } = string.Empty;
     public string ContentButtonCreateInvoicePosition { get; private set; } = string.Empty;
+    public string ContentButtonRefresh { get; private set; } = string.Empty;
 
     private void FillAllInvoiceLabelsAndContents()
     {
@@ -216,6 +220,7 @@ public partial class InvoiceViewModel
         ContentButtonLoad = _translatorUiProvider.Translate("ContentButtonLoad");
         ContentButtonClearAll = _translatorUiProvider.Translate("ContentButtonClearAll");
         ContentButtonCreateInvoicePosition = _translatorUiProvider.Translate("ContentButtonCreateInvoicePosition");
+        ContentButtonRefresh = _translatorUiProvider.Translate("ContentButtonRefresh");
     }
     #endregion
 }
