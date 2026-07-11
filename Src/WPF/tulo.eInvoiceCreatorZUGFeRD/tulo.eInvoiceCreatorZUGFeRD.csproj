@@ -12,7 +12,7 @@
 
 	<PropertyGroup>
 		<PackageId>Tulo.eInvoiceCreatorZUGFeRD</PackageId>
-		<Version>1.0.1</Version>
+		<Version>1.1.0</Version>
 		<Authors>Tulo Team</Authors>
 		<Company>Tulo Team</Company>
 		<Description>
