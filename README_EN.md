@@ -86,7 +86,7 @@ After generating an invoice, validation using official tools is strongly recomme
 | **Factur-X 1.0 EXTENDED** | French/European equivalent — fully supported and tested |
 | **CII** | Cross Industry Invoice (UN/CEFACT) — used as the underlying data format |
 | **PDF/A-3** | Part 3, Conformance B — archival PDF with embedded XML |
-| **XRechnung SubLine EXTENDED** | 🚧 Coming soon |
+| **XRechnung SubLine EXTENDED** | supported |
 
 > **Note:** Other ZUGFeRD profiles (MINIMUM, BASIC WL, BASIC, EN16931) are not actively
 > tested. They may work but are not guaranteed. The focus of this application is

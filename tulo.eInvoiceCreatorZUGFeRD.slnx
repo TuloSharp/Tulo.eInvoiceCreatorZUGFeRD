@@ -10,6 +10,7 @@
     <File Path="LICENSE" />
     <File Path="NuGet.Config" />
     <File Path="README.md" />
+    <File Path="README_EN.md" />
   </Folder>
   <Folder Name="/Src/">
     <Project Path="Src/Tulo.eInvocieXmlGeneratorCii/Tulo.eInvoiceXmlGeneratorCii.csproj" />
