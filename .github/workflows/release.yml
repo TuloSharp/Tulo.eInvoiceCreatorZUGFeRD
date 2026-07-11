@@ -13,10 +13,10 @@ jobs:
     uses: ./.github/workflows/common-release.yml
     with:
       project_name: eInvoiceCreatorZUGFeRD
-      project_path: Src/WPF/tulo.eInvoiceCreatorZUGFeRD/tulo.eInvoiceCreatorZUGFeRD.csproj
-      publish_dir: publish/tulo.eInvoiceCreatorZUGFeRD
-      zip_prefix: tulo.eInvoiceCreatorZUGFeRD
-      executable_name: tulo.eInvoiceCreatorZUGFeRD.exe
+      project_path: Src/WPF/Tulo.eInvoiceCreatorZUGFeRD/Tulo.eInvoiceCreatorZUGFeRD.csproj
+      publish_dir: publish/Tulo.eInvoiceCreatorZUGFeRD
+      zip_prefix: Tulo.eInvoiceCreatorZUGFeRD
+      executable_name: Tulo.eInvoiceCreatorZUGFeRD.exe
       runtime: win-x64
       dotnet_version: 8.0.x
       config_file: NuGet.config
@@ -31,11 +31,16 @@ jobs:
        ### How to use
          1. Download the ZIP file
          2. Extract the ZIP file
-         3. Run tulo.eInvoiceCreatorZUGFeRD.exe
+         3. Run Tulo.eInvoiceCreatorZUGFeRD.exe
         
        ### Notes
          - Please report issues on GitHub
-         
+
+       ### v1.1.0
+        - Redesigned user interface to improve usability
+        - Sublines can now be entered directly in the UI and are no longer limited to XML input only
+        - Internal code review carried out to improve code quality, maintainability, and overall stability
+
        ### v1.0.1
          - Footer rendering improved
          - Buyer block alignment adjusted for the letterhead
