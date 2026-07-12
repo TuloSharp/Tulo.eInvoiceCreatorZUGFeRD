@@ -245,9 +245,10 @@ Seller data is defined once in `appsettings.json` and reused for all invoices:
 PDF/A-3 signing is handled by the companion CLI tool `tulo.SigningPdfA3.exe`.
 
 Signing is **skipped silently and without error** if any of the following is absent:
-- The signing executable path (`SignedExepath`)
-- The certificate file (`SignaturePath`)
-- The certificate password (`PublicKey`)
+    
+    The signing executable path (`SignedExepath`)
+    The certificate file (`SignaturePath`)
+    The certificate password (`PublicKey`)
 
 Configure in `appsettings.json`:
 
@@ -440,7 +441,7 @@ and source context — making it easy to trace issues across pipeline steps.
 | Digital signing (optional) | ✅ Supported |
 | Buyer data save / load (JSON) | ✅ Supported |
 | Multi-language UI (EN / DE / ES) | ✅ Supported |
-| XRechnung SubLine EXTENDED | 🚧 Coming soon |
+| XRechnung SubLine EXTENDED | ✅ Supported |
 
 ---
 

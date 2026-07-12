@@ -252,8 +252,9 @@ Die Signierung wird still und ohne Fehler übersprungen, wenn eines der folgende
     Das Zertifikatspasswort (PublicKey)
 
 Konfiguration in appsettings.json:
-json
 
+
+```json
 "Signature": {
   "SignedExepath": "C:\\Tools\\tulo.SigningPdfA3.exe",
   "SignaturePath": "C:\\Certificates\\your-certificate.pfx",
@@ -262,91 +263,113 @@ json
   "Location": "Germany",
   "ContactInfo": "contact@example.com"
 }
+```
 
-Wichtiger Hinweis zu Zertifikaten
+**Wichtiger Hinweis zu Zertifikaten**
 
 Dieses Projekt kann Beispiel- oder Dummy-Konfigurationen für die Signierung enthalten (z. B. Platzhalterpfade oder ein selbstsigniertes Testzertifikat, das während der Entwicklung verwendet wurde).
 
-    Es wird kein produktionsreifes Zertifikat mit diesem Repository ausgeliefert.
-    Jedes Beispielzertifikat oder Passwort, das im Code oder in der Konfiguration gezeigt wird, ist ausschließlich für lokale Tests, Demo- oder Forschungszwecke gedacht.
-    Für den echten geschäftlichen, rechtlichen oder compliance-relevanten Einsatz musst du ein eigenes geeignetes Zertifikat beschaffen (zum Beispiel von einer vertrauenswürdigen Zertifizierungsstelle oder gemäß deinen lokalen/eIDAS-Anforderungen).
+   - Es wird kein produktionsreifes Zertifikat mit diesem Repository ausgeliefert.
+   - Jedes Beispielzertifikat oder Passwort, das im Code oder in der Konfiguration gezeigt wird, ist ausschließlich für lokale Tests, Demo- oder Forschungszwecke gedacht.
+   - Für den echten geschäftlichen, rechtlichen oder compliance-relevanten Einsatz musst du ein eigenes geeignetes Zertifikat beschaffen (zum Beispiel von einer vertrauenswürdigen Zertifizierungsstelle oder gemäß deinen lokalen/eIDAS-Anforderungen).
 
 Du bist vollständig verantwortlich für:
 
-    Die Auswahl eines geeigneten Zertifikatstyps und Vertrauensniveaus für deinen Anwendungsfall
-    Die sichere und vertrauliche Aufbewahrung der .pfx-Datei und ihres Passworts
-    Sicherzustellen, dass private Schlüssel und Passwörter niemals:
-        in die Versionsverwaltung eingecheckt,
-        zusammen mit Binärdateien verteilt,
-        oder auf unsichere Weise weitergegeben werden
+   - Die Auswahl eines geeigneten Zertifikatstyps und Vertrauensniveaus für deinen Anwendungsfall
+   - Die sichere und vertrauliche Aufbewahrung der .pfx-Datei und ihres Passworts
+   - Sicherzustellen, dass private Schlüssel und Passwörter niemals:
+       - in die Versionsverwaltung eingecheckt,
+       - zusammen mit Binärdateien verteilt,
+       - oder auf unsichere Weise weitergegeben werden
 
 Für den Produktionseinsatz gilt immer:
 
-    Ersetze alle Dummy-/Testpfade und Passwörter durch deine eigene sichere Konfiguration Speichere Geheimnisse über sichere Mechanismen (z. B. Umgebungsvariablen, Secret Manager, geschützte Konfiguration)
-    Prüfe, dass deine Signaturkonfiguration alle anwendbaren Vorschriften erfüllt (Steuerrecht, E-Rechnungsregeln, Anforderungen an fortgeschrittene/qualifizierte elektronische Signaturen usw.)
+   - Ersetze alle Dummy-/Testpfade und Passwörter durch deine eigene sichere Konfiguration Speichere Geheimnisse über sichere Mechanismen (z. B. Umgebungsvariablen, Secret Manager, geschützte Konfiguration)
+   - Prüfe, dass deine Signaturkonfiguration alle anwendbaren Vorschriften erfüllt (Steuerrecht, E-Rechnungsregeln, Anforderungen an fortgeschrittene/qualifizierte elektronische Signaturen usw.)
 
 Haftungsausschluss
 
-    Die Signaturkonfiguration, Beispiel-Einstellungen und alle Dummy-/Testzertifikate in diesem Projekt werden ohne Gewähr bereitgestellt und dürfen nicht unverändert in Produktion verwendet werden.
-    Die Autoren und Mitwirkenden übernehmen keine Haftung für Schäden, Compliance-Probleme oder rechtliche Folgen, die durch eine fehlerhafte oder unsichere Zertifikatskonfiguration entstehen. Jeder Nutzer ist selbst verantwortlich für die Einrichtung und den Betrieb einer sicheren und konformen Signaturumgebung.
+- Die Signaturkonfiguration, Beispiel-Einstellungen und alle Dummy-/Testzertifikate in diesem Projekt werden ohne Gewähr bereitgestellt und dürfen nicht unverändert in Produktion verwendet werden.
+-  Die Autoren und Mitwirkenden übernehmen keine Haftung für Schäden, Compliance-Probleme oder rechtliche Folgen, die durch eine fehlerhafte oder unsichere Zertifikatskonfiguration entstehen. Jeder Nutzer ist selbst verantwortlich für die Einrichtung und den Betrieb einer sicheren und konformen Signaturumgebung.
 
-Konfiguration — Endanwender
+---
+
+## Konfiguration — Endanwender
 
 Wenn eine neue Release-Version heruntergeladen wird, würde die in der ZIP enthaltene appsettings.json normalerweise überschrieben werden. Um das zu verhindern, unterstützt die Anwendung einen externen Einstellungsordner, der neben dem Anwendungsordner liegt und von Updates niemals verändert wird.
 
 Empfohlene Ordnerstruktur:
 
+```
 Root/
 ├── Tulo.eInvoiceCreatorZUGFeRD/                     ← ZIP hier entpacken
 │   └── Tulo.eInvoiceCreatorZUGFeRD.exe
 │
 └── Tulo.eInvoiceCreatorZUGFeRD-appsettings/         ← hier liegen deine eigenen Einstellungen
     └── appsettings.json                  ← wird durch Updates nie überschrieben
+```
 
-Die Anwendung erkennt und lädt die appsettings.json aus dem Ordner Tulo.eInvoiceCreatorZUGFeRD-appsettings automatisch, falls dieser existiert.
+Die Anwendung erkennt und lädt die `appsettings.json` aus dem Ordner `Tulo.eInvoiceCreatorZUGFeRD-appsettings` automatisch, falls dieser existiert.
 
-Das bedeutet, dass du die Anwendung aktualisieren kannst, indem du einfach den Inhalt von Tulo.eInvoiceCreatorZUGFeRD/ ersetzt, ohne deine Verkäuferdaten, Ausgabepfade, Zertifikatskonfiguration oder sonstige Anpassungen zu verlieren.
-Konfiguration — Entwickler
+Das bedeutet, dass du die Anwendung aktualisieren kannst, indem du einfach den Inhalt von `Tulo.eInvoiceCreatorZUGFeRD/` ersetzt, ohne deine Verkäuferdaten, Ausgabepfade, Zertifikatskonfiguration oder sonstige Anpassungen zu verlieren.
 
-Für die Entwicklung kann jeder Entwickler seine eigenen lokalen Einstellungen pflegen, ohne die gemeinsame appsettings.json zu verändern.
+---
+
+## Konfiguration — Entwickler
+
+Für die Entwicklung kann jeder Entwickler seine eigenen lokalen Einstellungen pflegen, ohne die gemeinsame `appsettings.json` zu verändern.
 
 Die folgenden Dateien werden automatisch geladen, falls sie existieren:
-Datei	Zweck
-appsettings.json	Basiskonfiguration — wird in die Versionsverwaltung eingecheckt
-appsettings.{machinename}.json	Entwickler-spezifische Überschreibungen — wird nicht eingecheckt (zur .gitignore hinzufügen)
-AdditionalParameters_{machinename}.json	Zusätzliche rechnerbezogene Parameter — wird nicht eingecheckt
-Tulo.eInvoiceCreatorZUGFeRD-appsettings/appsettings.json	Externe Ordner-Überschreibung — Hot-Reload aktiviert
+
+|Datei | Zweck|
+|---|---|
+|`appsettings.json`|Basiskonfiguration — wird in die Versionsverwaltung eingecheckt|
+|`appsettings.{machinename}.json`|Entwickler-spezifische Überschreibungen — wird nicht eingecheckt (zur .gitignore hinzufügen)|
+|`AdditionalParameters_{machinename}.json`|Zusätzliche rechnerbezogene Parameter — wird nicht eingecheckt|
+|`Tulo.eInvoiceCreatorZUGFeRD-appsettings/appsettings.json`|Externe Ordner-Überschreibung — Hot-Reload aktiviert|
 
 Dadurch kann jeder Entwickler lokal unterschiedliche Ausgabepfade, Zertifikate oder Verkäuferdaten verwenden, ohne andere Teammitglieder oder die gemeinsame Konfiguration zu beeinflussen.
-Lokalisierung
+
+---
+
+## Lokalisierung
 
 Alle UI-Beschriftungen, Tooltips, Platzhalter und Fehlermeldungen werden durch XML-Übersetzungsdateien gesteuert.
 
 Standardmäßig unterstützte Sprachen:
-Sprache	Kultur
-Englisch	en-US
-Deutsch	de-DE
-Spanisch	es-ES
 
-Die aktive Sprache wird in appsettings.json konfiguriert:
-json
+| Sprache | Kultur |
+|---------|--------|
+| Englisch | en-US |
+| Deutsch | de-DE |
+| Spanisch | es-ES |
 
+Die aktive Sprache wird in `appsettings.json` konfiguriert:
+
+```json
 "Localization": {
   "DefaultCulture": "en-US",
   "SupportedCultures": [ "de-DE", "en-US", "es-ES" ]
 }
+```
 
 Weitere Sprachen können hinzugefügt werden, indem eine neue XML-Übersetzungsdatei nach dem bestehenden Schlüssel/Wert-Schema erstellt wird.
-Mehrwertsteuersätze
+
+---
+
+## Mehrwertsteuersätze
 
 Unterstützte Mehrwertsteuersätze sind in appsettings.json konfigurierbar:
-json
 
+```json
 "Vats": {
   "VatList": [ 0, 7, 19 ]
 }
+```
 
-Kernpipeline
+---
+
+## Kernpipeline
 
 Jede Rechnung durchläuft automatisch die folgenden Schritte:
 
@@ -376,67 +399,94 @@ Wenn die Signierung konfiguriert ist, wird das PDF/A-3 über das begleitende CLI
 
 Schritt 9 — Mit Standard-Viewer öffnen (optional)
 Wenn in der Konfiguration aktiviert, wird die finale Datei automatisch geöffnet. Falls beide vorhanden sind, wird das signierte PDF gegenüber der unsignierten Version bevorzugt.
-Logging
+
+---
+
+## Logging
 
 Die Anwendung verwendet Serilog für strukturiertes, erweitertes Logging über die gesamte Pipeline hinweg.
 
 Es werden zwei Logdateien in das Temp-Verzeichnis des Systems geschrieben:
-Datei	Inhalt
-Tulo.eInvoiceCreatorZUGFeRD_.log	Vollständiges Log — alle Level (täglich rollierend, 7 Tage)
-Tulo.eInvoiceCreatorZUGFeRD_Error_.log	Nur Fehler-Log (täglich rollierend, 7 Tage)
+
+| Datei | Inhalt |
+|-------|--------|
+| Tulo.eInvoiceCreatorZUGFeRD_.log | Vollständiges Log — alle Level (täglich rollierend, 7 Tage) |
+| Tulo.eInvoiceCreatorZUGFeRD_Error_.log | Nur Fehler-Log (täglich rollierend, 7 Tage) |
 
 Jeder Logeintrag enthält Zeitstempel, Benutzername, Thread-ID, Prozess-ID, Log-Level und Source Context — dadurch lassen sich Probleme über die einzelnen Pipeline-Schritte hinweg leicht nachvollziehen.
-Roadmap
-Feature	Status
-ZUGFeRD 2.4 EXTENDED	✅ Unterstützt
-Factur-X 1.0 EXTENDED	✅ Unterstützt
-PDF/A-3-Erzeugung	✅ Unterstützt
-Digitale Signierung (optional)	✅ Unterstützt
-Käuferdaten speichern / laden (JSON)	✅ Unterstützt
-Mehrsprachige UI (EN / DE / ES)	✅ Unterstützt
-XRechnung SubLine EXTENDED	✅ Unterstützt
-CI/CD — GitHub Actions
+
+---
+
+## Roadmap
+
+|Feature|	Status|
+|-------|--------|
+|ZUGFeRD 2.4 EXTENDED|	✅ Unterstützt|
+|Factur-X 1.0 EXTENDED|	✅ Unterstützt|
+|PDF/A-3-Erzeugung|	✅ Unterstützt|
+|Digitale Signierung (optional)|	✅ Unterstützt|
+|Käuferdaten speichern / laden (JSON)|	✅ Unterstützt|
+|Mehrsprachige UI (EN / DE / ES)|	✅ Unterstützt|
+|XRechnung SubLine EXTENDED|	✅ Unterstützt|
+
+---
+
+## CI/CD — GitHub Actions
 
 Releases werden automatisch über einen wiederverwendbaren GitHub-Actions-Workflow erstellt und veröffentlicht.
 
 Die Release-Pipeline:
 
-    Checkt das Repository aus
-    Richtet .NET 8 ein
-    Prüft, dass die Projekt-<Version> mit dem Git-Tag übereinstimmt
-    Veröffentlicht als Single-File-Windows-x64-Executable (nicht self-contained, .NET 8 Runtime erforderlich)
-    Erstellt ein ZIP-Archiv
-    Lädt die ZIP-Datei als GitHub-Release-Asset hoch
+- Checkt das Repository aus
+- Richtet .NET 8 ein
+- Prüft, dass die Projekt-<Version> mit dem Git-Tag übereinstimmt
+- Veröffentlicht als Single-File-Windows-x64-Executable (nicht self-contained, .NET 8 Runtime erforderlich)
+- Erstellt ein ZIP-Archiv
+- Lädt die ZIP-Datei als GitHub-Release-Asset hoch
 
+```
 publishes as:  single-file, win-x64, .NET 8
 release name:  {project_name} {tag}
 ZIP name:      {zip_prefix}-{tag}-win-x64.zip
+```
 
-Drittanbieter-Bibliotheken
-Bibliothek	Zweck
-PDFsharp-extended	PDF-Erzeugung und PDF/A-Konvertierung
-Serilog	Strukturiertes Logging
-tulo.CommonMVVM.WPF	MVVM-Basisinfrastruktur
-tulo.CoreLib	Zentrale Hilfsfunktionen
-tulo.SerilogLib	Serilog-Host-Builder-Erweiterungen
-Tulo.XMLeInvoiceToPdf	CII-XML-zu-PDF-Rendering
-tulo.ResourcesWpfLib	WPF-Ressourcenhilfen
-tulo.LoadingSpinnerControl	UI-Ladespinner
+---
+
+## Drittanbieter-Bibliotheken
+
+|Bibliothek|	Zweck |
+|----------|--------|
+|PDFsharp-extended|	PDF-Erzeugung und PDF/A-Konvertierung|
+|Serilog|	Strukturiertes Logging|
+|tulo.CommonMVVM.WPF|	MVVM-Basisinfrastruktur|
+|tulo.CoreLib|	Zentrale Hilfsfunktionen|
+|tulo.SerilogLib|	Serilog-Host-Builder-Erweiterungen|
+|Tulo.XMLeInvoiceToPdf|	CII-XML-zu-PDF-Rendering|
+|tulo.ResourcesWpfLib|	WPF-Ressourcenhilfen|
+|tulo.LoadingSpinnerControl|	UI-Ladespinner|
 
 Alle Credits gehen an die jeweiligen Autoren und Maintainer.
-UI-Icons
+
+--- 
+
+## UI-Icons
 
 Dieses Projekt verwendet Google Material Icons in der Benutzeroberfläche.
 
 Alle Credits gehen an die jeweiligen Autoren und Maintainer.
-Support
+
+---
+
+## Support
 
 Dieses Tool ist ein privates Projekt. Wenn es dir hilft, freue ich mich über Unterstützung.
 
-    ☕ PayPal
-    ⭐ GitHub
+- ☕ [PayPal](https://paypal.me/MarceloGuartanAndrad)
+- ⭐ [GitHub](https://github.com/TuloSharp/Tulo.eInvoiceCreatorZUGFeRD.git)
 
-Lizenz
+---
+
+## Lizenz
 
     Apache License, Version 2.0
     https://www.apache.org/licenses/LICENSE-2.0
