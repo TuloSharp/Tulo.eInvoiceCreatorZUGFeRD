@@ -14,18 +14,18 @@ public class TestSystem
     public IUnitOfWorkFactory UnitOfWorkFactory = null!;
     public ISellerService SellerService = null!;
     public ICustomerService CustomerService = null!;
+    private const string RequiredTestDbName = "InvoiceManagerDb-Tests";
 
     private readonly DbContextOptions<AppDbContext> _dbContextOptions;
 
     public TestSystem()
     {
         var config = ObtainConfiguration();
-        var connectionString = config.GetConnectionString("DefaultConnection")
-            ?? throw new InvalidOperationException("Connection string not configured.");
+        var connectionString = config.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not configured.");
 
-        _dbContextOptions = new DbContextOptionsBuilder<AppDbContext>()
-            .UseSqlServer(connectionString)
-            .Options;
+        _dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(connectionString).Options;
+
+        EnsureTestDatabase();
     }
 
     public AppDbContext CreateDbContext() => new(_dbContextOptions);
@@ -45,6 +45,8 @@ public class TestSystem
 
     public void ClearDatabase()
     {
+        EnsureTestDatabase();
+
         using var context = CreateDbContext();
 
         var tables = context.Model.GetEntityTypes()
@@ -58,6 +60,20 @@ public class TestSystem
             ClearTable(context, table!);
     }
 
+    private void EnsureTestDatabase()
+    {
+        using var ctx = CreateDbContext();
+        var dbName = ctx.Database.GetDbConnection().Database;
+
+        if (!string.Equals(dbName, RequiredTestDbName, StringComparison.OrdinalIgnoreCase))
+        {
+            throw new InvalidOperationException(
+                $"⛔ SICHERHEIT: Testoperationen sind nur auf '{RequiredTestDbName}' erlaubt.\n" +
+                $"   Aktuelle Datenbank: '{dbName}'\n" +
+                $"   Bitte ConnectionString in appsettings.json prüfen.");
+        }
+    }
+
     private static void ClearTable(AppDbContext context, string tableName)
     {
         var fs = FormattableStringFactory.Create($"DELETE FROM {tableName}");
@@ -65,9 +81,7 @@ public class TestSystem
     }
 
     private static IConfiguration ObtainConfiguration() =>
-        new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json")
-            .Build();
+        new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
     // Passe dies an deinen echten Host-Builder an
     private static IHost CreateTestHostInstance()
