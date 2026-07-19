@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Src\Tulo.Application\Tulo.Application.csproj" />
+    <ProjectReference Include="..\..\Src\Tulo.Infrastructure\Tulo.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bogus" />
+    <PackageReference Include="MSTest" />
+  </ItemGroup>
+
+</Project>

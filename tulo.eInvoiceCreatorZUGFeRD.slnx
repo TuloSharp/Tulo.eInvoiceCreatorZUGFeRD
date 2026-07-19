@@ -24,6 +24,8 @@
     <Project Path="Src/WPF/Tulo.eInvoiceCreatorZUGFeRD/Tulo.eInvoiceCreatorZUGFeRD.csproj" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="Tests/TestList/TestList.csproj" />
+    <Project Path="Tests/Tulo.IntegrationTests/Tulo.IntegrationTests.csproj" Id="3a51f814-bac7-45f7-adb8-015c4733b6c1" />
     <Project Path="Tests/Tulo.eInvocieXmlGeneratorCiiTests/Tulo.eInvocieXmlGeneratorCiiTests.csproj" />
     <Project Path="Tests/Tulo.eInvoiceAppTests/Tulo.eInvoiceAppTests.csproj" />
     <Project Path="Tests/Tulo.eInvoiceXmlGeneratorPdfTests/Tulo.eInvoiceXmlGeneratorPdfTests.csproj" />
