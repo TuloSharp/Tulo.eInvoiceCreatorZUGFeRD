@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Tulo.Domain\Tulo.Domain.csproj" />
+    <PackageReference Include="tulo.CoreLib" />
   </ItemGroup>
 
 </Project>

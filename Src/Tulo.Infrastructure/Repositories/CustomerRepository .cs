@@ -16,17 +16,12 @@ public sealed class CustomerRepository : ICustomerRepository
 
     public async Task<IReadOnlyList<Customer>> GetAllAsync(CancellationToken ct = default)
     {
-        return await _dbContext.Customers
-            .AsNoTracking()
-            .OrderBy(c => c.Name)
-            .ToListAsync(ct);
+        return await _dbContext.Customers.AsNoTracking().OrderBy(c => c.Name).ToListAsync(ct);
     }
 
     public async Task<Customer?> GetByIdAsync(Guid id, CancellationToken ct = default)
     {
-        return await _dbContext.Customers
-            .AsNoTracking()
-            .FirstOrDefaultAsync(c => c.Id == id, ct);
+        return await _dbContext.Customers.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id, ct);
     }
 
     public async Task<IReadOnlyList<Customer>> GetFilteredSortedAsync(
@@ -38,10 +33,7 @@ public sealed class CustomerRepository : ICustomerRepository
         if (!string.IsNullOrWhiteSpace(search))
         {
             string normalized = search.ToLower();
-            query = query.Where(c =>
-                c.Name.ToLower().Contains(normalized) ||
-                c.City.ToLower().Contains(normalized) ||
-                c.PartyId.ToLower().Contains(normalized));
+            query = query.Where(c => c.Name.ToLower().Contains(normalized) || c.City.ToLower().Contains(normalized) || c.PartyId.ToLower().Contains(normalized));
         }
 
         // ---- SORT ----
@@ -68,8 +60,6 @@ public sealed class CustomerRepository : ICustomerRepository
 
     public async Task DeleteAsync(Guid id, CancellationToken ct = default)
     {
-        await _dbContext.Customers
-            .Where(c => c.Id == id)
-            .ExecuteDeleteAsync(ct);
+        await _dbContext.Customers.Where(c => c.Id == id).ExecuteDeleteAsync(ct);
     }
 }

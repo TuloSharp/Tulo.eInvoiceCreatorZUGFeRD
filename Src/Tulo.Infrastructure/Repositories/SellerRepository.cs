@@ -15,9 +15,7 @@ public sealed class SellerRepository : ISellerRepository
 
     public async Task<Seller?> GetAsync(CancellationToken ct = default)
     {
-        return await _dbContext.Sellers
-            .AsNoTracking()
-            .FirstOrDefaultAsync(ct);
+        return await _dbContext.Sellers.AsNoTracking().FirstOrDefaultAsync(ct);
     }
 
     public async Task AddAsync(Seller seller, CancellationToken ct = default)
@@ -32,8 +30,6 @@ public sealed class SellerRepository : ISellerRepository
 
     public async Task DeleteAsync(Guid id, CancellationToken ct = default)
     {
-        await _dbContext.Sellers
-            .Where(s => s.Id == id)
-            .ExecuteDeleteAsync(ct);
+        await _dbContext.Sellers.Where(s => s.Id == id).ExecuteDeleteAsync(ct);
     }
 }
