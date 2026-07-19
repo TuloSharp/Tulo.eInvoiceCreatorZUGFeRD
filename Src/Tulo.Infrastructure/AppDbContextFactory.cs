@@ -10,6 +10,7 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 
         // Simplest way: fixed connection for local migrations
         optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=InvoiceManagerDb; Trusted_Connection=True;");
+        //optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB; Database=InvoiceManagerDb-Tests; Trusted_Connection=True;");
 
         return new AppDbContext(optionsBuilder.Options);
     }
