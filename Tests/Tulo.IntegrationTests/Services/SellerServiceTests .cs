@@ -15,7 +15,7 @@ public class SellerServiceTests
         _system = new TestSystem();
         _scope = _system.CreateTestServiceScope();
         _system.SetRequiredServices(_scope);
-        _system.ClearDatabase();
+        _system.ClearTestSystem();
     }
 
     [TestMethod]
@@ -80,7 +80,7 @@ public class SellerServiceTests
     [TestCleanup]
     public void Cleanup()
     {
-        _system.ClearDatabase();
+        _system.ClearTestSystem();
         _scope.Dispose();
     }
 }

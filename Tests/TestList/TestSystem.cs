@@ -2,49 +2,44 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PdfSharp.Fonts;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using Tulo.Application.Interfaces.Services;
 using Tulo.Application.Interfaces.UnitOfWorks;
+using Tulo.eInvoiceCreatorZUGFeRD;
+using Tulo.eInvoiceCreatorZUGFeRD.Options;
 using Tulo.Infrastructure;
+using Tulo.XMLeInvoiceToPdf.Utilities;
 
 namespace TestList;
 
 public class TestSystem
 {
+    public AppDbContext CreateDbContext() => new(_dbContextOptions);
     public IUnitOfWorkFactory UnitOfWorkFactory = null!;
     public ISellerService SellerService = null!;
     public ICustomerService CustomerService = null!;
     private const string RequiredTestDbName = "InvoiceManagerDb-Tests";
+    public IAppOptions AppOptions = null!;
 
-    private readonly DbContextOptions<AppDbContext> _dbContextOptions;
+    private readonly string _appSettingsKeyConnectionString = "connection:connectionstring";
+    private readonly DbContextOptions<AppDbContext> _dbContextOptions = null!;
 
     public TestSystem()
     {
         var config = ObtainConfiguration();
-        var connectionString = config.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string not configured.");
+        var connectionString = config.GetValue<string>(_appSettingsKeyConnectionString) ?? throw new InvalidOperationException("connection string not configured.");
 
         _dbContextOptions = new DbContextOptionsBuilder<AppDbContext>().UseSqlServer(connectionString).Options;
 
         EnsureTestDatabase();
+        GlobalFontSettings.FontResolver = new EmbeddedFontResolver();
     }
 
-    public AppDbContext CreateDbContext() => new(_dbContextOptions);
-
-    public IServiceScope CreateTestServiceScope()
+    public void ClearTestSystem()
     {
-        var host = CreateTestHostInstance();
-        return host.Services.CreateScope();
-    }
-
-    public void SetRequiredServices(IServiceScope scope)
-    {
-        UnitOfWorkFactory = scope.ServiceProvider.GetRequiredService<IUnitOfWorkFactory>();
-        SellerService = scope.ServiceProvider.GetRequiredService<ISellerService>();
-        CustomerService = scope.ServiceProvider.GetRequiredService<ICustomerService>();
-    }
-
-    public void ClearDatabase()
-    {
+        Trace.TraceInformation(nameof(ClearTestSystem));
         EnsureTestDatabase();
 
         using var context = CreateDbContext();
@@ -58,6 +53,20 @@ public class TestSystem
 
         foreach (var table in tables)
             ClearTable(context, table!);
+    }
+
+    public IServiceScope CreateTestServiceScope()
+    {
+        var host = CreateTestHostInstance();
+        return host.Services.CreateScope();
+    }
+
+    public void SetRequiredServices(IServiceScope scope)
+    {
+        UnitOfWorkFactory = scope.ServiceProvider.GetRequiredService<IUnitOfWorkFactory>();
+        SellerService = scope.ServiceProvider.GetRequiredService<ISellerService>();
+        CustomerService = scope.ServiceProvider.GetRequiredService<ICustomerService>();
+        AppOptions = scope.ServiceProvider.GetRequiredService<IAppOptions>();
     }
 
     private void EnsureTestDatabase()
@@ -83,18 +92,10 @@ public class TestSystem
     private static IConfiguration ObtainConfiguration() =>
         new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
-    // Passe dies an deinen echten Host-Builder an
     private static IHost CreateTestHostInstance()
     {
-        var builder = Host.CreateDefaultBuilder()
-            .ConfigureAppConfiguration(cfg => cfg.AddJsonFile("appsettings.json"))
-            .ConfigureServices((ctx, services) =>
-            {
-                // Deine DI-Registrierungen hier – z.B.:
-                // services.AddTuloInfrastructure(ctx.Configuration);
-                // services.AddTuloApplication();
-            });
-
-        return builder.Build();
+        var app = new UiApplication(null!);
+        var hostBuilder = app.InitializeHostBuilder();
+        return app.BuildHost(hostBuilder);
     }
 }
