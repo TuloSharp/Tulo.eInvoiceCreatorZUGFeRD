@@ -6,16 +6,17 @@ namespace Tulo.IntegrationTests.Services;
 [TestClass]
 public class SellerServiceTests
 {
-    private TestSystem _system = null!;
+    private TestSystem _testSystem = null!;
     private IServiceScope _scope = null!;
 
     [TestInitialize]
     public void Init()
     {
-        _system = new TestSystem();
-        _scope = _system.CreateTestServiceScope();
-        _system.SetRequiredServices(_scope);
-        _system.ClearTestSystem();
+        _testSystem = new TestSystem();
+        _testSystem.ClearTestSystem();
+
+        _scope = _testSystem.CreateTestServiceScope();
+        _testSystem.SetRequiredServices(_scope);
     }
 
     [TestMethod]
@@ -23,11 +24,11 @@ public class SellerServiceTests
     {
         var seller = new SellerFaker().Generate();
 
-        var result = await _system.SellerService.AddAsync(seller);
+        var result = await _testSystem.SellerService.AddAsync(seller);
 
         Assert.IsTrue(result.Success, result.Message);
 
-        using var ctx = _system.CreateDbContext();
+        using var ctx = _testSystem.CreateDbContext();
         var fromDb = ctx.Sellers.FirstOrDefault(s => s.Id == seller.Id);
         Assert.IsNotNull(fromDb);
         Assert.AreEqual(seller.Name, fromDb.Name);
@@ -37,14 +38,14 @@ public class SellerServiceTests
     public async Task UpdateAsync_ShouldUpdateSellerInDb()
     {
         var seller = new SellerFaker().Generate();
-        await _system.SellerService.AddAsync(seller);
+        await _testSystem.SellerService.AddAsync(seller);
 
         seller.Name = "Updated GmbH";
-        var result = await _system.SellerService.UpdateAsync(seller);
+        var result = await _testSystem.SellerService.UpdateAsync(seller);
 
         Assert.IsTrue(result.Success, result.Message);
 
-        using var ctx = _system.CreateDbContext();
+        using var ctx = _testSystem.CreateDbContext();
         var fromDb = ctx.Sellers.FirstOrDefault(s => s.Id == seller.Id);
         Assert.IsNotNull(fromDb);
         Assert.AreEqual("Updated GmbH", fromDb.Name);
@@ -54,13 +55,13 @@ public class SellerServiceTests
     public async Task DeleteAsync_ShouldRemoveSellerFromDb()
     {
         var seller = new SellerFaker().Generate();
-        await _system.SellerService.AddAsync(seller);
+        await _testSystem.SellerService.AddAsync(seller);
 
-        var result = await _system.SellerService.DeleteAsync(seller.Id);
+        var result = await _testSystem.SellerService.DeleteAsync(seller.Id);
 
         Assert.IsTrue(result.Success, result.Message);
 
-        using var ctx = _system.CreateDbContext();
+        using var ctx = _testSystem.CreateDbContext();
         var fromDb = ctx.Sellers.FirstOrDefault(s => s.Id == seller.Id);
         Assert.IsNull(fromDb);
     }
@@ -69,18 +70,18 @@ public class SellerServiceTests
     public async Task LoadAsync_ShouldLoadSellerIntoService()
     {
         var seller = new SellerFaker().Generate();
-        await _system.SellerService.AddAsync(seller);
+        await _testSystem.SellerService.AddAsync(seller);
 
-        await _system.SellerService.LoadAsync();
+        await _testSystem.SellerService.LoadAsync();
 
-        Assert.IsNotNull(_system.SellerService.Seller);
-        Assert.AreEqual(seller.Name, _system.SellerService.Seller!.Name);
+        Assert.IsNotNull(_testSystem.SellerService.Seller);
+        Assert.AreEqual(seller.Name, _testSystem.SellerService.Seller!.Name);
     }
 
     [TestCleanup]
     public void Cleanup()
     {
-        _system.ClearTestSystem();
+        _testSystem.ClearTestSystem();
         _scope.Dispose();
     }
 }

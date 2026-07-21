@@ -52,6 +52,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Tulo.eInvocieXmlGeneratorCii\Tulo.eInvoiceXmlGeneratorCii.csproj" />
 		<ProjectReference Include="..\..\Tulo.eInvoiceXmlGeneratorPdf\Tulo.XMLeInvoiceToPdf.csproj" />
+		<ProjectReference Include="..\..\Tulo.Infrastructure\Tulo.Infrastructure.csproj" />
 		<ProjectReference Include="..\..\Tulo.UpgradeToPdfA3\Tulo.UpgradeToPdfA3.csproj" />
 	</ItemGroup>
 

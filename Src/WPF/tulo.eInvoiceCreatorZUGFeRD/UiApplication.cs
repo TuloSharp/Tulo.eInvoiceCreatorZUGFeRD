@@ -58,6 +58,7 @@ public class UiApplication
                        .AddUnhandledExceptionHandler()
                        .AddProjectStores()
                        .AddServices()
+                       .AddDbContext()
                        .AddCollector()
                        .AddViewModels()
                        .AddViews();

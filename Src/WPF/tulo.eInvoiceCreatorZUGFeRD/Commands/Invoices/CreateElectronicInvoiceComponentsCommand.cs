@@ -313,7 +313,7 @@ public class CreateElectronicInvoiceComponentsCommand(InvoiceViewModel invoiceVi
     #region Helpers
     private async Task UpdateUiAsync(Window? window, bool isPreview)
     {
-        await Application.Current.Dispatcher.InvokeAsync(() =>
+        await System.Windows.Application.Current.Dispatcher.InvokeAsync(() =>
         {
             if (isPreview)
             {

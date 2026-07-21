@@ -10,12 +10,18 @@ using tulo.CoreLib.Interfaces.SnapShots;
 using tulo.CoreLib.PDFs;
 using tulo.CoreLib.Services;
 using tulo.CoreLib.Translators;
+using Tulo.Application.Interfaces.Repositories;
+using Tulo.Application.Interfaces.Services;
+using Tulo.Application.Interfaces.UnitOfWorks;
+using Tulo.Application.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Options;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 using Tulo.eInvoiceCreatorZUGFeRD.Utilities;
 using Tulo.eInvoiceXmlGeneratorCii.Mappers;
 using Tulo.eInvoiceXmlGeneratorCii.Services;
+using Tulo.Infrastructure.Repositories;
+using Tulo.Infrastructure.UnitOfWork;
 using Tulo.UpgradeToPdfA3.Interfaces;
 using Tulo.UpgradeToPdfA3.Options;
 using Tulo.UpgradeToPdfA3.Services;
@@ -166,6 +172,18 @@ public static class AddServicesHostBuilderExtension
         #region Invoice
         services.AddSingleton<IInvoicePositionService, InvoicePositionService>();
         services.AddSingleton<IInvoicePositionLookupService, InvoicePositionLookupService>();
+        #endregion
+
+        #region Unit Of Work
+        services.AddTransient<IUnitOfWorkFactory, UnitOfWorkFactory>();
+        #endregion
+
+        #region Services&Repositories
+        services.AddScoped<ICustomerService, CustomerService>();
+        services.AddScoped<ISellerService, SellerService>();
+       
+        services.AddScoped<ICustomerRepository, CustomerRepository>();
+        services.AddScoped<ISellerRepository, SellerRepository>();
         #endregion
     }
     internal class WebServicesHostBuilderExtension { }
