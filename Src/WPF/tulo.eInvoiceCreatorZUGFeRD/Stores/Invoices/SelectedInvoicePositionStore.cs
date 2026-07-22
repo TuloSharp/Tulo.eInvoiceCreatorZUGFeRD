@@ -1,10 +1,10 @@
-﻿using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+﻿using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 
 namespace Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 public class SelectedInvoicePositionStore : ISelectedInvoicePositionStore
 {
-    private readonly IInvoicePositionService _invoicePositionService;
+    private readonly IInvoicePositionServiceByStore _invoicePositionService;
 
     private Guid? _selectedInvoicePositionId;
     public Guid? SelectedInvoicePositionId
@@ -35,7 +35,7 @@ public class SelectedInvoicePositionStore : ISelectedInvoicePositionStore
     // Always reset to null after the Add operation completes (success or cancel).
     public Guid? SelectedParentPositionId { get; set; }
 
-    public SelectedInvoicePositionStore(IInvoicePositionService invociePositionService)
+    public SelectedInvoicePositionStore(IInvoicePositionServiceByStore invociePositionService)
     {
         _invoicePositionService = invociePositionService;
 

@@ -8,7 +8,7 @@ using tulo.CommonMVVM.GlobalProperties;
 using tulo.CoreLib.Interfaces.SnapShots;
 using tulo.CoreLib.Services;
 using tulo.CoreLib.Translators;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Options;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;

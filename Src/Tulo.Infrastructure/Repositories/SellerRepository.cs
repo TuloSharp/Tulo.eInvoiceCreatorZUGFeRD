@@ -4,14 +4,9 @@ using Tulo.Domain.Entitites;
 
 namespace Tulo.Infrastructure.Repositories;
 
-public sealed class SellerRepository : ISellerRepository
+public sealed class SellerRepository(AppDbContext dbContext) : ISellerRepository
 {
-    private readonly AppDbContext _dbContext;
-
-    public SellerRepository(AppDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+    private readonly AppDbContext _dbContext = dbContext;
 
     public async Task<Seller?> GetAsync(CancellationToken ct = default)
     {

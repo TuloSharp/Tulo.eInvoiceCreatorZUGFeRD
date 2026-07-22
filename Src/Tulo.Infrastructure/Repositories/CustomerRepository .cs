@@ -5,14 +5,9 @@ using Tulo.Domain.Entitites;
 
 namespace Tulo.Infrastructure.Repositories;
 
-public sealed class CustomerRepository : ICustomerRepository
+public sealed class CustomerRepository(AppDbContext dbContext) : ICustomerRepository
 {
-    private readonly AppDbContext _dbContext;
-
-    public CustomerRepository(AppDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
+    private readonly AppDbContext _dbContext = dbContext;
 
     public async Task<IReadOnlyList<Customer>> GetAllAsync(CancellationToken ct = default)
     {

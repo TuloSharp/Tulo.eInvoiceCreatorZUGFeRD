@@ -3,7 +3,7 @@ using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
 using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 

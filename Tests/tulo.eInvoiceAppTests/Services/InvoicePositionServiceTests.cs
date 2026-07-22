@@ -1,4 +1,4 @@
-﻿using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+﻿using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
@@ -35,7 +35,7 @@ public class InvoicePositionServiceTests
             InvoicePostionUnit = "C62"
         };
 
-    private static InvoicePositionService CreateService() =>
+    private static InvoicePositionServiceByStore CreateService() =>
         new(new InvoicePositionStore());
 
     #region LoadAllInvoicePositionsAsync

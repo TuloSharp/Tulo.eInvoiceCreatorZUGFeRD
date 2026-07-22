@@ -46,7 +46,7 @@ public class AddInvoicePositionViewModelTests : IDisposable
         _collectorCollection.AddService<ISelectedInvoicePositionStore>(_selectionStore);
         _collectorCollection.AddService<IGlobalPropsUiManage>(_globalProps);
         _collectorCollection.AddService<ITranslatorUiProvider>(translator);
-        _collectorCollection.AddService<IInvoicePositionService>(_invoiceService);
+        _collectorCollection.AddService<IInvoicePositionServiceByStore>(_invoiceService);
         _collectorCollection.AddService<ILoggerFactory>(NullLoggerFactory.Instance);
         _collectorCollection.AddService<IOptions<AppOptions>>(appOptions);
         _collectorCollection.AddService<ISnapShotService>(new SnapShotService());     

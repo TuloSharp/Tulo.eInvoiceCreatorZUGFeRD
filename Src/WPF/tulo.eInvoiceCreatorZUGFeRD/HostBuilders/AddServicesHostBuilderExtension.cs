@@ -41,10 +41,7 @@ public static class AddServicesHostBuilderExtension
     {
         var bootstrapLogger = Log.Logger.ForContext<WebServicesHostBuilderExtension>();
 
-        host.ConfigureServices((context, services) =>
-        {
-            AddServicesInternal(services, context.Configuration);
-        });
+        host.ConfigureServices((context, services) => AddServicesInternal(services, context.Configuration));
 
         bootstrapLogger.Information("Application Services has been initialized successfully.");
         return host;
@@ -170,7 +167,7 @@ public static class AddServicesHostBuilderExtension
         #endregion
 
         #region Invoice
-        services.AddSingleton<IInvoicePositionService, InvoicePositionService>();
+        services.AddSingleton<IInvoicePositionServiceByStore, InvoicePositionServiceByStore>();
         services.AddSingleton<IInvoicePositionLookupService, InvoicePositionLookupService>();
         #endregion
 
@@ -178,13 +175,21 @@ public static class AddServicesHostBuilderExtension
         services.AddTransient<IUnitOfWorkFactory, UnitOfWorkFactory>();
         #endregion
 
-        #region Services&Repositories
+        #region DB Services
         services.AddScoped<ICustomerService, CustomerService>();
         services.AddScoped<ISellerService, SellerService>();
-       
+        services.AddScoped<IInvoiceHeaderService, InvoiceHeaderService>();
+        services.AddScoped<IInvoicePositionService, InvoicePositionService>();
+        services.AddScoped<IProductService, ProductService>();
+        #endregion
+
+        #region Repositories
         services.AddScoped<ICustomerRepository, CustomerRepository>();
         services.AddScoped<ISellerRepository, SellerRepository>();
+        services.AddScoped<IInvoiceHeaderRepository, InvoiceHeaderRepository>();
+        services.AddScoped<IInvoicePositionRepository, InvoicePositionRepository>();
+        services.AddScoped<IProductRepository, ProductRepository>();
         #endregion
     }
-    internal class WebServicesHostBuilderExtension { }
+    internal class WebServicesHostBuilderExtension;
 }

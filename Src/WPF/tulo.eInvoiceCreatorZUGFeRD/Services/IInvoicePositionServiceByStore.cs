@@ -1,5 +1,5 @@
 ﻿using tulo.CoreLib.Components.ResultPattern;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 
 namespace Tulo.eInvoiceCreatorZUGFeRD.Services;
 
@@ -7,7 +7,7 @@ namespace Tulo.eInvoiceCreatorZUGFeRD.Services;
 /// Provides CRUD operations and state tracking for invoice positions.
 /// Raises events to notify subscribers when positions are loaded, created, updated, or deleted.
 /// </summary>
-public interface IInvoicePositionService
+public interface IInvoicePositionServiceByStore
 {
     /// <summary>
     /// Gets a value indicating whether the invoice positions have been successfully loaded.

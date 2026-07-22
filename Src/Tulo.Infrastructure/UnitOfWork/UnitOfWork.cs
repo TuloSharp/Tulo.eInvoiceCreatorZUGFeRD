@@ -12,15 +12,20 @@ public class UnitOfWork : IUnitOfWork
 
     public ICustomerRepository CustomerRepository { get; }
     public ISellerRepository SellerRepository { get; }
+    public IInvoiceHeaderRepository InvoiceHeaderRepository { get; }
+    public IInvoicePositionRepository InvoicePositionRepository { get; }
+    public IProductRepository ProductRepository { get; }
 
 
     public UnitOfWork(IDbContextFactory<AppDbContext> dbFactory)
     {
         _dbContext = dbFactory.CreateDbContext();
-   
 
         CustomerRepository = new CustomerRepository(_dbContext);
         SellerRepository = new SellerRepository(_dbContext);
+        InvoiceHeaderRepository = new InvoiceHeaderRepository(_dbContext);
+        InvoicePositionRepository = new InvoicePositionRepository(_dbContext);
+        ProductRepository = new ProductRepository(_dbContext);
     }
 
     public Task<int> CompleteAsync(CancellationToken ct = default)

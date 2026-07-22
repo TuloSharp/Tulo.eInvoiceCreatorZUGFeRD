@@ -6,7 +6,9 @@ public interface IUnitOfWork : IAsyncDisposable
 {
     ICustomerRepository CustomerRepository { get; }
     ISellerRepository SellerRepository { get; }
-
+    IInvoiceHeaderRepository InvoiceHeaderRepository { get; }
+    IInvoicePositionRepository InvoicePositionRepository { get; }
+    IProductRepository ProductRepository { get; }
 
     Task<int> CompleteAsync(CancellationToken ct = default);
 }

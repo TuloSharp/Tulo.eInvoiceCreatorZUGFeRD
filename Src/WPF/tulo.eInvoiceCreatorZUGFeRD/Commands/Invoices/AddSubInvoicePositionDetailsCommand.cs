@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.Commands;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 
@@ -13,7 +13,7 @@ public class AddSubInvoicePositionDetailsCommand(AddInvoicePositionViewModel add
 
     #region Services / Stores filled via CollectorCollection
     private readonly ILogger<AddSubInvoicePositionDetailsCommand> _logger = collectorCollection.GetService<ILoggerFactory>().CreateLogger<AddSubInvoicePositionDetailsCommand>();
-    private readonly IInvoicePositionService _invoicePositionService = collectorCollection.GetService<IInvoicePositionService>();
+    private readonly IInvoicePositionServiceByStore _invoicePositionService = collectorCollection.GetService<IInvoicePositionServiceByStore>();
     #endregion
 
     protected override async Task ExecuteAsync(object parameter)    

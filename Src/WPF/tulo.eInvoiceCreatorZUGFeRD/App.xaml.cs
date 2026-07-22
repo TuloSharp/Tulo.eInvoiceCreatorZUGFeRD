@@ -135,7 +135,7 @@ public partial class App : WpfApplication
 
         // --------------- Invoices ----------------
         AddToCollectorRequired<IInvoiceBuilderService>(scope.ServiceProvider, collector);
-        AddToCollectorRequired<IInvoicePositionService>(scope.ServiceProvider, collector);
+        AddToCollectorRequired<IInvoicePositionServiceByStore>(scope.ServiceProvider, collector);
         AddToCollectorRequired<IInvoicePositionLookupService>(scope.ServiceProvider, collector);
         AddToCollectorRequired<IPdfGeneratorFromInvoice>(scope.ServiceProvider, collector);
         AddToCollectorRequired<IXmlCiiExporter>(scope.ServiceProvider, collector);

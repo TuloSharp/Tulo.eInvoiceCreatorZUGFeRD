@@ -1,4 +1,4 @@
-﻿namespace Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+﻿namespace Tulo.Application.DTOs;
 
 public class InvoicePositionDetailsDTO
 {

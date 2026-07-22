@@ -11,7 +11,7 @@ public class DeleteInvoicePositionDetailsCommand(DeleteInvoicePositionViewModel 
 
     #region Services / Stores filled via CollectorCollection
     private readonly ILogger<DeleteInvoicePositionDetailsCommand> _logger = collectorCollection.GetService<ILoggerFactory>().CreateLogger<DeleteInvoicePositionDetailsCommand>();
-    private readonly IInvoicePositionService _invoicePositionService = collectorCollection.GetService<IInvoicePositionService>();
+    private readonly IInvoicePositionServiceByStore _invoicePositionService = collectorCollection.GetService<IInvoicePositionServiceByStore>();
     #endregion
 
     protected override async Task ExecuteAsync(object parameter)

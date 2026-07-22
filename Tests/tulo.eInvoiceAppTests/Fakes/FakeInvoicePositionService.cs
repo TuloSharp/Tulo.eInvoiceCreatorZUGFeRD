@@ -1,14 +1,14 @@
 ﻿using tulo.CommonMVVM.Collector;
 using tulo.CoreLib.Components.ResultPattern;
 using tulo.CoreLib.Translators;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
 namespace Tulo.eInvoiceCreatorZUGFeRDTests.Fakes;
 
 // FakeInvoicePositionService.cs
-public class FakeInvoicePositionService : IInvoicePositionService
+public class FakeInvoicePositionService : IInvoicePositionServiceByStore
 {
     // Simple writable properties so tests can inspect or manipulate service state
     public bool IsLoaded { get; set; }

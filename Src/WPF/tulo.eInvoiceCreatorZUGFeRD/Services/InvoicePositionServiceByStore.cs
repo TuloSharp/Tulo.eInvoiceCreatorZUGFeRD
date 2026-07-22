@@ -1,10 +1,10 @@
 ﻿using tulo.CoreLib.Components.ResultPattern;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
 namespace Tulo.eInvoiceCreatorZUGFeRD.Services;
 
-public sealed class InvoicePositionService(IInvoicePositionStore invoicePositionStore) : IInvoicePositionService
+public sealed class InvoicePositionServiceByStore(IInvoicePositionStore invoicePositionStore) : IInvoicePositionServiceByStore
 {
     private readonly IInvoicePositionStore _invoicePositionStore = invoicePositionStore;
 

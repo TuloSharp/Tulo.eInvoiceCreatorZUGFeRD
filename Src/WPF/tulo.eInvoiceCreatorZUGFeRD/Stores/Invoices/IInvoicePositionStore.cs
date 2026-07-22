@@ -1,5 +1,5 @@
 ﻿using tulo.CoreLib.Components.ResultPattern;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 
 namespace Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 /// <summary>

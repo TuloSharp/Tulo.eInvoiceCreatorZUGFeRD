@@ -3,15 +3,9 @@ using Tulo.Application.Interfaces.UnitOfWorks;
 
 namespace Tulo.Infrastructure.UnitOfWork;
 
-public class UnitOfWorkFactory : IUnitOfWorkFactory
+public class UnitOfWorkFactory(IDbContextFactory<AppDbContext> dbFactory) : IUnitOfWorkFactory
 {
-    private readonly IDbContextFactory<AppDbContext> _dbFactory;
-
-    public UnitOfWorkFactory(IDbContextFactory<AppDbContext> dbFactory)
-    {
-        _dbFactory = dbFactory;
-       
-    }
+    private readonly IDbContextFactory<AppDbContext> _dbFactory = dbFactory;
 
     public IUnitOfWork Create()
     {

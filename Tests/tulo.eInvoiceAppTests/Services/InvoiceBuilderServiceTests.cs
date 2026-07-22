@@ -5,7 +5,7 @@ using Microsoft.Extensions.Options;
 using tulo.CommonMVVM.Collector;
 using tulo.CommonMVVM.GlobalProperties;
 using tulo.CoreLib.Translators;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Options;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
@@ -34,7 +34,7 @@ public class InvoiceBuilderServiceTests : IDisposable
         _collector.AddService<ISelectedInvoicePositionStore>(new SelectedInvoicePositionStore(fakeInvoicePositionService));
         _collector.AddService<IGlobalPropsUiManage>(new GlobalPropsUiManage());
         _collector.AddService<ITranslatorUiProvider>(new TranslatorUiProvider(new Dictionary<string, string>()));
-        _collector.AddService<IInvoicePositionService>(new FakeInvoicePositionService());
+        _collector.AddService<IInvoicePositionServiceByStore>(new FakeInvoicePositionService());
         _collector.AddService<ILoggerFactory>(NullLoggerFactory.Instance);
     }
 

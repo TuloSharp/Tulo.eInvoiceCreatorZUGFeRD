@@ -1,4 +1,4 @@
-﻿using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+﻿using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
 
 namespace Tulo.eInvoiceCreatorZUGFeRDTests.Store.Invoices;

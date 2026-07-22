@@ -7,7 +7,7 @@ using tulo.CommonMVVM.Stores;
 using tulo.CoreLib.Interfaces.SnapShots;
 using tulo.CoreLib.Services;
 using tulo.CoreLib.Translators;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Options;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
@@ -26,7 +26,7 @@ public class AddInvoicePositionIntegrationTests : IDisposable
     public AddInvoicePositionIntegrationTests()
     {
         _store = new InvoicePositionStore();
-        var invoicePositionService = new InvoicePositionService(_store);
+        var invoicePositionService = new InvoicePositionServiceByStore(_store);
         _selectionStore = new SelectedInvoicePositionStore(invoicePositionService);
 
         var testTranslations = new Dictionary<string, string>
@@ -43,7 +43,7 @@ public class AddInvoicePositionIntegrationTests : IDisposable
         _collectorCollection.AddService<ISelectedInvoicePositionStore>(_selectionStore);
         _collectorCollection.AddService<IGlobalPropsUiManage>(new GlobalPropsUiManage());
         _collectorCollection.AddService<ITranslatorUiProvider>(new TranslatorUiProvider(testTranslations));
-        _collectorCollection.AddService<IInvoicePositionService>(invoicePositionService);
+        _collectorCollection.AddService<IInvoicePositionServiceByStore>(invoicePositionService);
         _collectorCollection.AddService<ILoggerFactory>(NullLoggerFactory.Instance);
         _collectorCollection.AddService<IOptions<AppOptions>>(Options.Create(new AppOptions()));
         _collectorCollection.AddService<ISnapShotService>(new SnapShotService());

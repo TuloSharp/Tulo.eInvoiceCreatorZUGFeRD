@@ -10,7 +10,7 @@ namespace Tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
 public class LoadInvoicePositionsCommand(InvoiceViewModel invoiceViewModel, ICollectorCollection collectorCollection) : AsyncBaseCommand
 {
     private readonly InvoiceViewModel _invoiceViewModel = invoiceViewModel;
-    private readonly IInvoicePositionService _invoiceService = collectorCollection.GetService<IInvoicePositionService>();
+    private readonly IInvoicePositionServiceByStore _invoiceService = collectorCollection.GetService<IInvoicePositionServiceByStore>();
     private readonly ILogger<LoadInvoicePositionsCommand> _logger = collectorCollection.GetService<ILoggerFactory>().CreateLogger<LoadInvoicePositionsCommand>();
     private readonly ISelectedInvoicePositionStore _selectedInvoicePositionStore = collectorCollection.GetService<ISelectedInvoicePositionStore>();
 

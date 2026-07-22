@@ -1,4 +1,4 @@
-﻿using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+﻿using Tulo.Application.DTOs;
 
 namespace Tulo.eInvoiceCreatorZUGFeRD.ViewModels.Invoices;
 

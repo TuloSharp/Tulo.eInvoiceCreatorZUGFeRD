@@ -10,7 +10,7 @@ using tulo.CommonMVVM.ViewModels;
 using tulo.CoreLib.Translators;
 using Tulo.eInvoiceCreatorZUGFeRD.Commands;
 using Tulo.eInvoiceCreatorZUGFeRD.Commands.Invoices;
-using Tulo.eInvoiceCreatorZUGFeRD.DTOs;
+using Tulo.Application.DTOs;
 using Tulo.eInvoiceCreatorZUGFeRD.Options;
 using Tulo.eInvoiceCreatorZUGFeRD.Services;
 using Tulo.eInvoiceCreatorZUGFeRD.Stores.Invoices;
@@ -24,7 +24,7 @@ public partial class InvoiceViewModel : BaseViewModel
 {
     #region Services / Stores filled via CollectorCollection
     private readonly IGlobalPropsUiManage _globalPropsUiManage;
-    private readonly IInvoicePositionService _invoicePositionService;
+    private readonly IInvoicePositionServiceByStore _invoicePositionService;
     private readonly ISelectedInvoicePositionStore _selectedInvoicePositionStore;
     private readonly ICollectorCollection _collectorCollection;
     //private readonly IRenavigationService _renavServiceEmployeCardList;
@@ -614,7 +614,7 @@ public partial class InvoiceViewModel : BaseViewModel
         #region Get Services / Stores from CollectorCollection
         _collectorCollection = collectorCollection;
         _selectedInvoicePositionStore = collectorCollection.GetService<ISelectedInvoicePositionStore>();
-        _invoicePositionService = collectorCollection.GetService<IInvoicePositionService>();
+        _invoicePositionService = collectorCollection.GetService<IInvoicePositionServiceByStore>();
         _globalPropsUiManage = collectorCollection.GetService<IGlobalPropsUiManage>();
         //_renavServiceEmployeCardList = collectorCollection.GetService<IRenavigationService<EmployeeCardListViewModel>>();
         _appOptions = collectorCollection.GetService<IAppOptions>();

@@ -20,6 +20,10 @@ public class TestSystem
     public IUnitOfWorkFactory UnitOfWorkFactory = null!;
     public ISellerService SellerService = null!;
     public ICustomerService CustomerService = null!;
+    public IInvoicePositionService InvoicePositionService = null!;
+    public IInvoiceHeaderService InvoiceHeaderService = null!;
+    public IProductService ProductService = null!;
+
     private const string RequiredTestDbName = "InvoiceManagerDb-Tests";
     public IAppOptions AppOptions = null!;
 
@@ -66,6 +70,9 @@ public class TestSystem
         UnitOfWorkFactory = scope.ServiceProvider.GetRequiredService<IUnitOfWorkFactory>();
         SellerService = scope.ServiceProvider.GetRequiredService<ISellerService>();
         CustomerService = scope.ServiceProvider.GetRequiredService<ICustomerService>();
+        InvoiceHeaderService = scope.ServiceProvider.GetRequiredService<IInvoiceHeaderService>();
+        InvoicePositionService = scope.ServiceProvider.GetRequiredService<IInvoicePositionService>();
+        ProductService = scope.ServiceProvider.GetRequiredService<IProductService>();
         AppOptions = scope.ServiceProvider.GetRequiredService<IAppOptions>();
     }
 
