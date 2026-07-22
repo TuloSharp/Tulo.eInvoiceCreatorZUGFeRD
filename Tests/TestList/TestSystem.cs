@@ -55,9 +55,23 @@ public class TestSystem
             .Distinct()
             .ToList();
 
+        // FK-Constraints disable
         foreach (var table in tables)
-            ClearTable(context, table!);
+            context.Database.ExecuteSqlRaw("ALTER TABLE [" + table + "] NOCHECK CONSTRAINT ALL");
+
+        try
+        {
+            foreach (var table in tables)
+                ClearTable(context, table!);
+        }
+        finally
+        {
+            // FK-Constraints enable again
+            foreach (var table in tables)
+                context.Database.ExecuteSqlRaw("ALTER TABLE [" + table + "] WITH CHECK CHECK CONSTRAINT ALL");
+        }
     }
+
 
     public IServiceScope CreateTestServiceScope()
     {
